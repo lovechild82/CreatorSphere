@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Studio — Cre8ive Vib3s</title>
+<title>Writing Studio — Cre8ive Vib3s</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--cream:#faf6f0;--ink:#1a1410;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
@@ -30,21 +30,17 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);di
 .card p{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.5rem;}
 .badge{display:inline-block;font-size:.6rem;padding:.2rem .5rem;background:rgba(178,201,173,.2);color:#3d5c38;border-radius:6px;margin-bottom:.5rem;}
 .link{color:var(--gold);text-decoration:none;font-weight:600;}
-.link:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
 
 <nav class="topnav">
-  <a class="logo" href="index.html">
-    <div class="lotus">🪷</div>
-    <div class="bn">Cre8ive Vib3s <span>Studio</span></div>
-  </a>
+  <a class="logo" href="index.html"><div class="lotus">🪷</div><div class="bn">Cre8ive Vib3s <span>Studio</span></div></a>
   <div class="navlinks">
     <a class="nl" href="index.html">🏠</a>
     <a class="nl" href="image-studio.html">🎨 Images</a>
-    <a class="nl active" href="video-studio.html">🎬 Video</a>
-    <a class="nl" href="writing-studio.html">✍️ Writing</a>
+    <a class="nl" href="video-studio.html">🎬 Video</a>
+    <a class="nl active" href="writing-studio.html">✍️ Writing</a>
     <a class="nl" href="design-studio.html">✏️ Design</a>
     <a class="nl" href="marketing-studio.html">📈 Marketing</a>
     <a class="nl" href="products-studio.html">📦 Products</a>
@@ -55,53 +51,38 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);di
 
 <div class="container">
   <div class="sidebar">
-    <button class="btn-nav active" onclick="show('edit')">✂️ Video Editors</button>
-    <button class="btn-nav" onclick="show('voice')">🎤 Voice Over</button>
-    <button class="btn-nav" onclick="show('captions')">📝 Auto Captions</button>
+    <button class="btn-nav active" onclick="show('ai')">🤖 AI Writers</button>
+    <button class="btn-nav" onclick="show('grammar')">✏️ Grammar Check</button>
   </div>
 
   <div class="content">
-    
-    <div class="panel show" id="edit">
+    <div class="panel show" id="ai">
       <div class="card">
-        <span class="badge">✅ 100% FREE & NO WATERMARKS</span>
-        <h2>✂️ Video Editors (Free & Unlimited)</h2>
+        <span class="badge">✅ 100% FREE & UNLIMITED</span>
+        <h2>🤖 AI Writing Tools</h2>
       </div>
-
       <div class="card">
-        <h3>⭐ BEST FREE OPTIONS</h3>
-        <p>🎬 <a href="https://www.capcut.com" target="_blank">CapCut</a> — Mobile + Desktop, no watermarks<br>
-        🎥 <a href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank">DaVinci Resolve</a> — Professional, no watermarks<br>
-        🎞️ <a href="https://shotcut.org" target="_blank">Shotcut</a> — Open-source, desktop<br>
-        🎬 <a href="https://www.openshot.org" target="_blank">OpenShot</a> — Simple & powerful<br>
-        🖥️ <a href="https://kdenlive.org" target="_blank">Kdenlive</a> — Professional editor<br>
+        <h3>⭐ BEST FREE AI WRITERS</h3>
+        <p>🧠 <a href="https://chat.deepseek.com" target="_blank">DeepSeek</a> — Best reasoning, unlimited free<br>
+        💬 <a href="https://claude.ai" target="_blank">Claude (Free Tier)</a> — Excellent writing<br>
+        🤖 <a href="https://qwen.alibabacloud.com" target="_blank">Qwen</a> — Free, open-source, powerful<br>
+        🎨 <a href="https://gemini.google.com" target="_blank">Google Gemini</a> — Versatile, unlimited<br>
+        ⚡ <a href="https://groq.com" target="_blank">Groq</a> — Lightning fast, free<br>
+        💭 <a href="https://pi.ai" target="_blank">Pi</a> — Empathetic writing assistant<br>
         </p>
       </div>
     </div>
 
-    <div class="panel" id="voice">
+    <div class="panel" id="grammar">
       <div class="card">
-        <h2>🎤 Voice Over (100% Free AI)</h2>
+        <h2>✏️ Grammar & Editing (100% Free)</h2>
       </div>
       <div class="card">
-        <p>🎙️ <a href="https://cloud.google.com/text-to-speech" target="_blank">Google Text-to-Speech</a> — Natural voices, unlimited<br>
-        🎤 <a href="https://elevenlabs.io" target="_blank">Eleven Labs</a> — Free tier available<br>
-        🔊 <a href="https://voicebox.meta.com" target="_blank">VoiceBox (Meta)</a> — Free voice synthesis<br>
+        <p>📝 <a href="https://languagetool.org" target="_blank">LanguageTool</a> — Open-source, free<br>
+        ✨ <a href="https://hemingwayapp.com" target="_blank">Hemingway Editor</a> — Free writing clarity<br>
         </p>
       </div>
     </div>
-
-    <div class="panel" id="captions">
-      <div class="card">
-        <h2>📝 Auto Captions (100% Free)</h2>
-      </div>
-      <div class="card">
-        <p>📝 <a href="https://www.capcut.com" target="_blank">CapCut Auto Captions</a> — Built-in, unlimited<br>
-        🎬 <a href="https://www.nikse.dk/subtitleedit" target="_blank">Subtitle Edit</a> — Open-source subtitle tool<br>
-        </p>
-      </div>
-    </div>
-
   </div>
 </div>
 
