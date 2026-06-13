@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Image Studio — Cre8ive Vib3s Studio</title>
+<meta name="description" content="Generate, edit, and transform images free, unlimited, all in-browser.">
+<!--
+  Cre8ive Vib3s Studio — Image Studio
+  Convergence Workspace UI system © 2026 lovechild82 (MIT License)
+  ZenSereniTee brand system © 2026 lovechild82 (MIT License)
+-->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ── ZenSereniTee tokens ── */
+:root{
+  --blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;
+  --gold2:rgba(212,175,110,0.12);--gold3:rgba(212,175,110,0.28);
+  --cream:#faf6f0;--ink:#1a1410;--ink2:#3d342e;
+  --muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);
+  /* Convergence tokens remapped to ZenSereniTee */
+  --glass-bg:rgba(255,255,255,0.55);
+  --glass-border:rgba(212,175,110,0.18);
+  --glass-shadow:0 4px 24px rgba(212,175,110,0.1);
+  --node-pulse:var(--sage);
+  --progress-fill:linear-gradient(90deg,var(--blush),var(--gold));
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;min-height:100dvh;}
+a{text-decoration:none;color:inherit;}
+
+/* ── Convergence dot-grid (gold on cream) ── */
+.dot-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(212,175,110,0.3) 0.8px,transparent 0.8px);
+  background-size:22px 22px;opacity:1;}
+.ambient-orb{position:fixed;top:-10%;right:-10%;width:380px;height:380px;
+  border-radius:50%;filter:blur(100px);opacity:0.07;
+  background:radial-gradient(circle,var(--blush),var(--gold));
+  pointer-events:none;z-index:0;}
+.ambient-orb2{position:fixed;bottom:-10%;left:-5%;width:300px;height:300px;
+  border-radius:50%;filter:blur(90px);opacity:0.05;
+  background:radial-gradient(circle,var(--sage),var(--gold));
+  pointer-events:none;z-index:0;}
+
+/* ── Nav ── */
+.topnav{
+  background:linear-gradient(135deg,rgba(253,248,243,0.96),rgba(245,237,224,0.96));
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:0 1.25rem;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:200;}
+.logo{display:flex;align-items:center;gap:.5rem;}
+.lotus{font-size:1.4rem;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;}
+.bn span{color:var(--gold);}
+.navlinks{display:flex;gap:.25rem;overflow-x:auto;}
+.navlinks::-webkit-scrollbar{display:none;}
+.nl{padding:.32rem .65rem;border-radius:7px;font-size:.7rem;color:var(--ink2);
+  transition:all .15s;white-space:nowrap;border:1px solid transparent;}
+.nl:hover{background:var(--gold2);border-color:var(--border);}
+.nl.active{background:linear-gradient(135deg,rgba(242,196,206,.15),var(--gold2));
+  color:var(--ink);font-weight:500;border-color:var(--border);}
+
+/* ── Convergence node status bar ── */
+.node-statusbar{
+  background:linear-gradient(135deg,rgba(253,248,243,0.92),rgba(245,237,224,0.92));
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:.42rem 1.25rem;display:flex;align-items:center;gap:1rem;
+  font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+  overflow-x:auto;position:sticky;top:60px;z-index:190;flex-shrink:0;}
+.node-statusbar::-webkit-scrollbar{display:none;}
+.status-item{display:flex;align-items:center;gap:.3rem;white-space:nowrap;}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--sage);
+  animation:pulse-dot 2.5s ease-in-out infinite;flex-shrink:0;}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+.status-val{color:var(--gold);font-weight:500;}
+.status-sep{opacity:.25;}
+
+/* Convergence progress bar (zen-colored) */
+.progress-bar{height:3px;background:rgba(212,175,110,0.12);border-radius:2px;overflow:hidden;margin:.3rem 0;}
+.progress-fill{height:100%;background:var(--progress-fill);border-radius:2px;
+  box-shadow:0 0 6px rgba(212,175,110,.4);}
+
+/* ── Layout ── */
+.studio-layout{display:grid;grid-template-columns:214px 1fr;
+  min-height:calc(100dvh - 88px);position:relative;z-index:1;}
+
+/* ── Sidebar ── */
+.sidebar{
+  background:rgba(255,255,255,0.65);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-right:1px solid var(--border);padding:.75rem 0;
+  position:sticky;top:88px;height:calc(100dvh - 88px);overflow-y:auto;}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);}
+.sidebar-label{
+  font-family:'DM Mono',monospace;font-size:.47rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  padding:.55rem 1rem .25rem;display:flex;align-items:center;gap:.4rem;}
+.sidebar-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.tool-btn{
+  display:flex;align-items:center;gap:.5rem;width:100%;
+  padding:.52rem 1rem;border:none;background:transparent;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:.75rem;color:var(--ink2);
+  transition:all .15s;text-align:left;position:relative;
+  /* Convergence haptic */
+  transition:transform 75ms cubic-bezier(0.4,0,0.2,1),background 200ms ease;}
+.tool-btn:active{transform:scale(0.98);}
+.tool-btn:hover{background:var(--gold2);}
+.tool-btn.active{
+  background:linear-gradient(90deg,rgba(242,196,206,.2),var(--gold2));
+  color:var(--ink);font-weight:500;border-right:2px solid var(--gold);}
+/* Convergence active node dot */
+.tool-btn.active::before{
+  content:'';position:absolute;left:.6rem;top:50%;transform:translateY(-50%);
+  width:4px;height:4px;border-radius:50%;background:var(--gold);
+  box-shadow:0 0 7px rgba(212,175,110,.7);}
+.tool-btn .ti{font-size:.95rem;width:20px;text-align:center;flex-shrink:0;}
+/* Convergence node ID label */
+.tool-node{font-family:'DM Mono',monospace;font-size:.42rem;
+  color:var(--muted);margin-left:auto;letter-spacing:.05em;opacity:.7;}
+.count-badge{font-family:'DM Mono',monospace;font-size:.46rem;
+  background:var(--gold2);color:var(--gold);
+  border:1px solid rgba(212,175,110,.3);
+  padding:.1rem .38rem;border-radius:6px;margin-left:.35rem;}
+
+/* ── Main ── */
+.main{padding:1.2rem;max-width:860px;}
+.tool-panel{display:none;}
+.tool-panel.active{display:block;}
+
+/* ── Convergence glass panel ── */
+.glass-panel{
+  background:var(--glass-bg);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--glass-shadow);
+  border-radius:14px;
+  transition:all 300ms ease-out;}
+.glass-panel:hover{box-shadow:0 8px 32px rgba(212,175,110,.15);}
+
+/* ── Panel header ── */
+.panel-head{padding:1rem 1.2rem;margin-bottom:.9rem;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;}
+.panel-head-left h2{font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.5rem;margin-bottom:.2rem;line-height:1.2;}
+.panel-head-left p{font-size:.74rem;color:var(--muted);line-height:1.5;max-width:400px;}
+/* Convergence node badge */
+.node-badge{
+  font-family:'DM Mono',monospace;font-size:.47rem;letter-spacing:.12em;
+  text-transform:uppercase;background:var(--gold2);color:var(--gold);
+  border:1px solid rgba(212,175,110,.3);padding:.22rem .55rem;
+  border-radius:8px;white-space:nowrap;flex-shrink:0;
+  display:flex;align-items:center;gap:.3rem;}
+.node-badge .nd{width:5px;height:5px;border-radius:50%;
+  background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;}
+
+/* Convergence telemetry strip */
+.telemetry{
+  display:flex;align-items:center;gap:.9rem;padding:.38rem .7rem;
+  background:rgba(255,255,255,0.35);border:1px solid var(--border);
+  border-radius:8px;margin-bottom:.65rem;
+  font-family:'DM Mono',monospace;font-size:.48rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.t-dot{width:4px;height:4px;border-radius:50%;background:var(--sage);animation:pulse-dot 2s infinite;flex-shrink:0;}
+.t-val{color:var(--gold);}
+
+/* Convergence system stats panel */
+.sys-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-bottom:.9rem;}
+.stat-cell{
+  background:rgba(255,255,255,0.4);border:1px solid var(--border);
+  border-radius:10px;padding:.6rem .7rem;text-align:center;}
+.stat-label{font-family:'DM Mono',monospace;font-size:.44rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem;}
+.stat-value{font-family:'Syne',sans-serif;font-size:1.1rem;
+  font-weight:700;color:var(--gold);line-height:1;}
+.stat-unit{font-family:'DM Mono',monospace;font-size:.42rem;color:var(--muted);}
+
+/* ── Form ── */
+.form-panel{padding:1.1rem;}
+.field{margin-bottom:.85rem;}
+.field label{
+  display:block;font-family:'DM Mono',monospace;font-size:.52rem;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+  color:var(--ink2);margin-bottom:.3rem;}
+textarea,input[type=text],select{
+  width:100%;border:1px solid var(--border);border-radius:10px;
+  padding:.58rem .85rem;font-family:'Outfit',sans-serif;font-size:.82rem;
+  color:var(--ink);background:rgba(250,246,240,0.8);outline:none;
+  transition:border-color .15s,box-shadow .15s;}
+textarea{resize:vertical;min-height:82px;line-height:1.55;}
+textarea:focus,input[type=text]:focus,select:focus{
+  border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,110,.12);}
+textarea::placeholder,input::placeholder{color:var(--muted);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+
+/* Style pills */
+.style-pills{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.25rem;}
+.pill{
+  padding:.25rem .65rem;border-radius:20px;border:1px solid var(--border);
+  font-size:.67rem;cursor:pointer;background:var(--white);color:var(--ink2);
+  font-family:'Outfit',sans-serif;
+  transition:transform 75ms cubic-bezier(0.4,0,0.2,1),background 200ms ease,border-color 200ms ease;}
+.pill:active{transform:scale(0.95);}
+.pill:hover{border-color:var(--gold);background:var(--gold2);}
+.pill.active{background:linear-gradient(135deg,rgba(242,196,206,.25),var(--gold2));
+  border-color:var(--gold);color:var(--ink);font-weight:500;}
+
+/* Ratio grid */
+.ratio-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;}
+.ratio-btn{padding:.38rem .25rem;border-radius:8px;border:1px solid var(--border);
+  background:var(--white);font-size:.6rem;cursor:pointer;text-align:center;
+  color:var(--ink2);font-family:'Outfit',sans-serif;
+  transition:transform 75ms cubic-bezier(0.4,0,0.2,1),background 200ms ease;}
+.ratio-btn:active{transform:scale(0.95);}
+.ratio-btn:hover{border-color:var(--gold);background:var(--gold2);}
+.ratio-btn.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.ratio-icon{font-size:.85rem;display:block;margin-bottom:.15rem;}
+
+/* Color swatches */
+.swatch-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.25rem;}
+.swatch{width:26px;height:26px;border-radius:50%;cursor:pointer;
+  border:2px solid transparent;
+  transition:transform 75ms cubic-bezier(0.4,0,0.2,1),border-color 150ms ease;
+  flex-shrink:0;}
+.swatch:active{transform:scale(0.88);}
+.swatch.active{border-color:var(--ink);transform:scale(1.18);}
+
+/* Generate button */
+.gen-btn{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  width:100%;padding:.78rem;border-radius:11px;border:none;
+  background:linear-gradient(135deg,#c9956a,var(--gold));
+  color:var(--ink);font-family:'Outfit',sans-serif;font-size:.87rem;
+  font-weight:600;cursor:pointer;margin-top:.15rem;
+  transition:transform 75ms cubic-bezier(0.4,0,0.2,1),box-shadow 200ms ease;}
+.gen-btn:active{transform:scale(0.97);}
+.gen-btn:hover:not(:disabled){box-shadow:0 5px 20px rgba(212,175,110,.4);}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+/* Shimmer */
+.shimmer{border-radius:10px;aspect-ratio:1;
+  background:linear-gradient(90deg,#f0e8e0 25%,#e8ddd5 50%,#f0e8e0 75%);
+  background-size:200% 100%;animation:shimmer 1.4s infinite;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* Result area */
+.result-area{margin-top:.9rem;display:none;}
+.result-area.show{display:block;}
+.result-imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.6rem;}
+
+/* Image card */
+.result-img-wrap{position:relative;border-radius:10px;overflow:hidden;
+  border:1px solid var(--border);background:var(--white);
+  transition:all 300ms ease-out;}
+.result-img-wrap:hover{box-shadow:0 8px 24px rgba(212,175,110,.22);border-color:var(--gold3);}
+.result-img-wrap img{width:100%;display:block;}
+.img-actions{position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(26,20,16,.75));
+  padding:.5rem;display:flex;gap:.3rem;justify-content:flex-end;
+  opacity:0;transition:opacity .18s;}
+.result-img-wrap:hover .img-actions,.result-img-wrap:focus-within .img-actions{opacity:1;}
+.img-act-btn{padding:.22rem .52rem;border-radius:7px;border:none;
+  font-size:.62rem;cursor:pointer;font-family:'DM Mono',monospace;font-weight:500;
+  letter-spacing:.04em;
+  transition:transform 75ms cubic-bezier(0.4,0,0.2,1);}
+.img-act-btn:active{transform:scale(0.93);}
+.img-act-btn.save{background:var(--gold);color:var(--ink);}
+.img-act-btn.dl{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.25);}
+
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:.5rem;}
+.gallery-item{position:relative;border-radius:10px;overflow:hidden;
+  border:1px solid var(--border);aspect-ratio:1;background:var(--white);
+  transition:all 300ms ease-out;}
+.gallery-item:hover{box-shadow:0 6px 18px rgba(212,175,110,.2);border-color:var(--gold3);}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery-item-actions{position:absolute;top:.3rem;right:.3rem;
+  display:flex;gap:.22rem;opacity:0;transition:opacity .15s;}
+.gallery-item:hover .gallery-item-actions{opacity:1;}
+.gact{width:24px;height:24px;border-radius:6px;border:none;cursor:pointer;
+  font-size:.68rem;display:flex;align-items:center;justify-content:center;
+  transition:transform 75ms cubic-bezier(0.4,0,0.2,1);}
+.gact:active{transform:scale(0.88);}
+.gact.dl{background:var(--gold);color:var(--ink);}
+.gact.del{background:rgba(200,80,80,.85);color:#fff;}
+.gallery-empty{text-align:center;padding:3rem 1rem;
+  border:1px dashed var(--border);border-radius:14px;
+  color:var(--muted);font-size:.78rem;}
+.gallery-empty .ge-icon{font-size:2.2rem;margin-bottom:.5rem;}
+
+/* Divider */
+.divider{border:none;border-top:1px solid var(--border);margin:.9rem 0;}
+
+/* Toast */
+.toast{position:fixed;bottom:1.2rem;right:1.2rem;
+  background:var(--ink);color:var(--gold);
+  font-family:'DM Mono',monospace;font-size:.62rem;
+  padding:.45rem .85rem;border-radius:9px;border:1px solid var(--gold);
+  z-index:9999;opacity:0;transition:opacity .28s;pointer-events:none;max-width:260px;}
+.toast.show{opacity:1;}
+
+/* Mobile */
+@media(max-width:680px){
+  .studio-layout{grid-template-columns:1fr;}
+  .sidebar{
+    position:fixed;bottom:0;left:0;right:0;top:auto;height:auto;
+    display:flex;overflow-x:auto;flex-direction:row;
+    border-right:none;border-top:1px solid var(--border);
+    z-index:100;padding:0;
+    background:rgba(250,246,240,0.97);backdrop-filter:blur(16px);}
+  .sidebar::-webkit-scrollbar{display:none;}
+  .sidebar-label{display:none;}
+  .tool-btn{flex-direction:column;gap:.1rem;padding:.42rem .5rem;
+    font-size:.55rem;min-width:56px;border-right:none;
+    border-top:2px solid transparent;}
+  .tool-btn.active{border-right:none;border-top:2px solid var(--gold);}
+  .tool-btn.active::before{display:none;}
+  .tool-btn .ti{font-size:.85rem;width:auto;}
+  .tool-node{display:none;}
+  .main{padding:.9rem;padding-bottom:95px;}
+  .field-row{grid-template-columns:1fr;}
+  .ratio-grid{grid-template-columns:repeat(4,1fr);}
+  .node-statusbar{top:60px;}
+  .panel-head{flex-direction:column;gap:.5rem;}
+  .node-badge{align-self:flex-start;}
+  .sys-stats{grid-template-columns:1fr 1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<div class="dot-grid"></div>
+<div class="ambient-orb"></div>
+<div class="ambient-orb2"></div>
+<div class="toast" id="toast"></div>
+
+<!-- Nav -->
+<nav class="topnav">
+  <div class="logo">
+    <a href="index.html" style="display:flex;align-items:center;gap:.5rem;">
+      <div class="lotus">🪷</div>
+      <div><div class="bn">Cre8ive Vib3s <span>Studio</span></div></div>
+    </a>
+  </div>
+  <div class="navlinks">
+    <a class="nl" href="index.html">🏠</a>
+    <a class="nl active" href="image-studio.html">🎨 Images</a>
+    <a class="nl" href="video-studio.html">🎬 Video</a>
+    <a class="nl" href="writing-studio.html">✍️ Writing</a>
+    <a class="nl" href="design-studio.html">✏️ Design</a>
+    <a class="nl" href="marketing-studio.html">📈 Marketing</a>
+    <a class="nl" href="products-studio.html">📦 Products</a>
+    <a class="nl" href="ai-studio.html">🤖 AI</a>
+    <a class="nl" href="chat.html">💬 Chat</a>
+  </div>
+</nav>
+
+<!-- Convergence node status bar -->
+<div class="node-statusbar">
+  <div class="status-item"><span class="status-dot"></span>Image Studio</div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Node: <span class="status-val" id="activeNode">IMG_01</span></div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Engine: <span class="status-val">Pollinations AI</span></div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Status: <span class="status-val">ONLINE</span></div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Latency: <span class="status-val" id="latencyVal">—</span></div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Gallery: <span class="status-val" id="galleryNodeCount">0</span> saved</div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Free: <span class="status-val">∞</span></div>
+</div>
+
+<div class="studio-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-label">Generate</div>
+    <button class="tool-btn active" onclick="switchTool('imggen')" id="btn-imggen"><span class="ti">🎨</span>Image Gen<span class="tool-node">IMG_01</span></button>
+    <button class="tool-btn" onclick="switchTool('coloring')" id="btn-coloring"><span class="ti">🖍️</span>Coloring Book<span class="tool-node">IMG_02</span></button>
+    <button class="tool-btn" onclick="switchTool('sticker')" id="btn-sticker"><span class="ti">⭐</span>Sticker Creator<span class="tool-node">IMG_03</span></button>
+    <button class="tool-btn" onclick="switchTool('thumbnail')" id="btn-thumbnail"><span class="ti">🖼️</span>Thumbnails<span class="tool-node">IMG_04</span></button>
+    <button class="tool-btn" onclick="switchTool('cartoon')" id="btn-cartoon"><span class="ti">🧑‍🎨</span>Photo→Cartoon<span class="tool-node">IMG_05</span></button>
+    <button class="tool-btn" onclick="switchTool('superhero')" id="btn-superhero"><span class="ti">🦸</span>Superhero<span class="tool-node">IMG_06</span></button>
+    <button class="tool-btn" onclick="switchTool('fashion')" id="btn-fashion"><span class="ti">👗</span>Fashion Design<span class="tool-node">IMG_07</span></button>
+    <button class="tool-btn" onclick="switchTool('wallart')" id="btn-wallart"><span class="ti">🖼️</span>Wall Art<span class="tool-node">IMG_08</span></button>
+    <button class="tool-btn" onclick="switchTool('mockup')" id="btn-mockup"><span class="ti">🛍️</span>Product Mockup<span class="tool-node">IMG_09</span></button>
+    <div class="sidebar-label">Enhance</div>
+    <button class="tool-btn" onclick="switchTool('upscale')" id="btn-upscale"><span class="ti">⬆️</span>Upscaler<span class="tool-node">IMG_10</span></button>
+    <button class="tool-btn" onclick="switchTool('bgremove')" id="btn-bgremove"><span class="ti">✂️</span>BG Remover<span class="tool-node">IMG_11</span></button>
+    <button class="tool-btn" onclick="switchTool('watermark')" id="btn-watermark"><span class="ti">🔏</span>Add Watermark<span class="tool-node">IMG_12</span></button>
+    <button class="tool-btn" onclick="switchTool('rmwatermark')" id="btn-rmwatermark"><span class="ti">🧹</span>Remove Watermark<span class="tool-node">IMG_13</span></button>
+    <div class="sidebar-label">Library</div>
+    <button class="tool-btn" onclick="switchTool('gallery')" id="btn-gallery"><span class="ti">🗂️</span>My Gallery<span class="count-badge" id="galleryCount">0</span></button>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- ── IMAGE GENERATOR ── -->
+    <div class="tool-panel active" id="panel-imggen">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left">
+          <h2>🎨 Image Generator</h2>
+          <p>Describe anything — get a stunning image in seconds. Unlimited, free, no sign-in needed.</p>
+        </div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_01</div>
+      </div>
+      <!-- Convergence system stats -->
+      <div class="sys-stats">
+        <div class="stat-cell glass-panel">
+          <div class="stat-label">Generations</div>
+          <div class="stat-value" id="genCount">0</div>
+          <div class="stat-unit">THIS SESSION</div>
+        </div>
+        <div class="stat-cell glass-panel">
+          <div class="stat-label">Engine</div>
+          <div class="stat-value" style="font-size:.7rem;padding-top:.2rem;">FREE</div>
+          <div class="stat-unit">POLLINATIONS AI</div>
+        </div>
+        <div class="stat-cell glass-panel">
+          <div class="stat-label">Uptime</div>
+          <div class="stat-value">99.9</div>
+          <div class="stat-unit">% STABLE</div>
+        </div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field">
+          <label>Describe your image</label>
+          <textarea id="ig-prompt" placeholder="e.g. A calm Black woman journaling at a café window, golden hour light, watercolor style, soft blush tones…" rows="4"></textarea>
+        </div>
+        <div class="field">
+          <label>Style</label>
+          <div class="style-pills" id="ig-styles">
+            <span class="pill active" data-val="photorealistic">Photorealistic</span>
+            <span class="pill" data-val="watercolor">Watercolor</span>
+            <span class="pill" data-val="digital art">Digital Art</span>
+            <span class="pill" data-val="oil painting">Oil Painting</span>
+            <span class="pill" data-val="anime">Anime</span>
+            <span class="pill" data-val="pencil sketch">Sketch</span>
+            <span class="pill" data-val="flat illustration">Flat Illustration</span>
+            <span class="pill" data-val="3D render">3D Render</span>
+            <span class="pill" data-val="vintage">Vintage</span>
+            <span class="pill" data-val="minimalist">Minimalist</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Aspect Ratio</label>
+          <div class="ratio-grid">
+            <button class="ratio-btn active" data-w="1024" data-h="1024" onclick="setRatio(this,'ig')"><span class="ratio-icon">⬜</span>1:1<br><span style="font-size:.5rem;color:var(--muted)">Post</span></button>
+            <button class="ratio-btn" data-w="1024" data-h="1792" onclick="setRatio(this,'ig')"><span class="ratio-icon">📱</span>9:16<br><span style="font-size:.5rem;color:var(--muted)">Reel</span></button>
+            <button class="ratio-btn" data-w="1792" data-h="1024" onclick="setRatio(this,'ig')"><span class="ratio-icon">🖥️</span>16:9<br><span style="font-size:.5rem;color:var(--muted)">Banner</span></button>
+            <button class="ratio-btn" data-w="1024" data-h="1280" onclick="setRatio(this,'ig')"><span class="ratio-icon">📌</span>4:5<br><span style="font-size:.5rem;color:var(--muted)">Feed</span></button>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0">
+            <label>Number of images</label>
+            <select id="ig-count"><option value="1">1 image</option><option value="2" selected>2 images</option><option value="4">4 images</option></select>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>Quality boost</label>
+            <select id="ig-quality"><option value="">Standard</option><option value="highly detailed, 8k, professional">High Detail</option><option value="cinematic, dramatic lighting, award winning">Cinematic</option></select>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="ig-btn" onclick="generateImages()">✨ Generate Images</button>
+      </div>
+      <div class="result-area" id="ig-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_01</span></span><span>·</span><span>Tap image → Save + Download</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="ig-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── COLORING BOOK ── -->
+    <div class="tool-panel" id="panel-coloring">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>🖍️ Coloring Book Creator</h2><p>Generate clean black-and-white coloring pages — perfect for KDP, activity packs, or kids content.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_02</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>What should the coloring page show?</label><textarea id="cb-prompt" placeholder="e.g. A magical forest with flowers, butterflies, and a fairy cottage…" rows="3"></textarea></div>
+        <div class="field"><label>Theme</label>
+          <div class="style-pills" id="cb-themes">
+            <span class="pill active" data-val="nature">Nature</span><span class="pill" data-val="animals">Animals</span><span class="pill" data-val="mandalas">Mandalas</span><span class="pill" data-val="fantasy">Fantasy</span><span class="pill" data-val="affirmations">Affirmations</span><span class="pill" data-val="holidays">Holidays</span><span class="pill" data-val="kids">Kids</span><span class="pill" data-val="spiritual">Spiritual</span>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0"><label>Complexity</label>
+            <select id="cb-complexity"><option value="simple, few lines, easy for young children">Simple (kids)</option><option value="moderate detail, medium complexity" selected>Medium</option><option value="highly detailed, intricate, adult coloring book">Intricate (adults)</option></select>
+          </div>
+          <div class="field" style="margin-bottom:0"><label>Pages</label><select id="cb-count"><option value="1">1</option><option value="2" selected>2</option><option value="4">4</option></select></div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="cb-btn" onclick="generateColoring()">🖍️ Create Coloring Pages</button>
+      </div>
+      <div class="result-area" id="cb-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_02</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="cb-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── STICKER CREATOR ── -->
+    <div class="tool-panel" id="panel-sticker">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>⭐ Sticker Creator</h2><p>Generate cute, bold sticker-style illustrations — great for digital products, printables, and merch.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_03</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Describe your sticker</label><textarea id="st-prompt" placeholder="e.g. A cute Black girl boss with a crown and coffee cup, kawaii style…" rows="3"></textarea></div>
+        <div class="field"><label>Sticker Style</label>
+          <div class="style-pills" id="st-styles">
+            <span class="pill active" data-val="kawaii cute sticker">Kawaii</span><span class="pill" data-val="bold cartoon sticker">Bold Cartoon</span><span class="pill" data-val="watercolor sticker">Watercolor</span><span class="pill" data-val="retro vintage sticker">Retro</span><span class="pill" data-val="minimalist line art sticker">Line Art</span><span class="pill" data-val="3D glossy sticker">3D Glossy</span>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0"><label>Background</label>
+            <select id="st-bg"><option value="white background, sticker with outline">White (print-ready)</option><option value="transparent-style, thick white border outline">White border</option><option value="no background, cut-out sticker style">No background</option></select>
+          </div>
+          <div class="field" style="margin-bottom:0"><label>Count</label><select id="st-count"><option value="1">1</option><option value="2" selected>2</option><option value="4">4</option></select></div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="st-btn" onclick="generateStickers()">⭐ Create Stickers</button>
+      </div>
+      <div class="result-area" id="st-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_03</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="st-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── THUMBNAIL CREATOR ── -->
+    <div class="tool-panel" id="panel-thumbnail">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>🖼️ Thumbnail Creator</h2><p>Eye-catching thumbnails for YouTube, Pinterest, Instagram — generated in the right size, in-browser.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_04</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>What's your content about?</label><input type="text" id="th-topic" placeholder="e.g. How I made $500 selling digital products on Etsy"></div>
+        <div class="field"><label>Platform</label>
+          <div class="style-pills" id="th-platform">
+            <span class="pill active" data-val="youtube thumbnail, 16:9, bold text overlay, dramatic">YouTube</span><span class="pill" data-val="pinterest pin, vertical, aesthetic, lifestyle">Pinterest</span><span class="pill" data-val="instagram post, square, clean, bold">Instagram</span><span class="pill" data-val="facebook cover, wide banner, professional">Facebook</span>
+          </div>
+        </div>
+        <div class="field"><label>Visual Mood</label>
+          <div class="style-pills" id="th-mood">
+            <span class="pill active" data-val="bright and bold">Bright & Bold</span><span class="pill" data-val="soft and aesthetic">Soft & Aesthetic</span><span class="pill" data-val="dark and dramatic">Dark & Dramatic</span><span class="pill" data-val="clean and minimal">Clean & Minimal</span><span class="pill" data-val="luxury and elegant">Luxury</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="th-btn" onclick="generateThumbnails()">🖼️ Create Thumbnails</button>
+      </div>
+      <div class="result-area" id="th-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_04</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="th-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── PHOTO TO CARTOON ── -->
+    <div class="tool-panel" id="panel-cartoon">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>🧑‍🎨 Photo to Cartoon</h2><p>Describe a person or scene and get a cartoon or illustrated version — great for avatars and brand characters.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_05</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Describe the person or character</label><textarea id="car-prompt" placeholder="e.g. A confident Black woman with natural locs, wearing a blazer, smiling, professional setting…" rows="3"></textarea></div>
+        <div class="field"><label>Cartoon Style</label>
+          <div class="style-pills" id="car-styles">
+            <span class="pill active" data-val="Disney Pixar 3D animation style">Pixar / Disney</span><span class="pill" data-val="anime illustration style">Anime</span><span class="pill" data-val="flat vector cartoon illustration">Flat Vector</span><span class="pill" data-val="comic book illustration style">Comic Book</span><span class="pill" data-val="watercolor portrait illustration">Watercolor</span><span class="pill" data-val="line art portrait">Line Art</span>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0"><label>Count</label><select id="car-count"><option value="1">1</option><option value="2" selected>2</option><option value="4">4</option></select></div>
+          <div class="field" style="margin-bottom:0"><label>Background</label><select id="car-bg"><option value="simple clean background">Clean</option><option value="gradient background">Gradient</option><option value="detailed scene background">With scene</option></select></div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="car-btn" onclick="generateCartoon()">🧑‍🎨 Create Cartoon</button>
+      </div>
+      <div class="result-area" id="car-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_05</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="car-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── SUPERHERO ── -->
+    <div class="tool-panel" id="panel-superhero">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>🦸 Superhero Creator</h2><p>Create custom superhero characters — perfect for kids' books, brand mascots, or digital products.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_06</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Describe your superhero</label><textarea id="sh-prompt" placeholder="e.g. A young Black girl superhero with braids, purple cape, lightning powers, confident pose…" rows="3"></textarea></div>
+        <div class="field"><label>Art Style</label>
+          <div class="style-pills" id="sh-styles">
+            <span class="pill active" data-val="Marvel comic book superhero style">Marvel Comic</span><span class="pill" data-val="DC comic superhero illustration">DC Comic</span><span class="pill" data-val="cute chibi superhero">Chibi / Cute</span><span class="pill" data-val="realistic superhero digital art">Realistic</span><span class="pill" data-val="cartoon superhero illustration">Cartoon</span>
+          </div>
+        </div>
+        <div class="field"><label>Superpower Theme</label>
+          <div class="style-pills" id="sh-powers">
+            <span class="pill active" data-val="lightning and electricity powers">⚡ Lightning</span><span class="pill" data-val="fire and flames powers">🔥 Fire</span><span class="pill" data-val="ice and frost powers">❄️ Ice</span><span class="pill" data-val="nature and earth powers">🌿 Nature</span><span class="pill" data-val="tech and gadgets">🤖 Tech</span><span class="pill" data-val="magic and cosmic powers">✨ Magic</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="sh-btn" onclick="generateSuperhero()">🦸 Create Superhero</button>
+      </div>
+      <div class="result-area" id="sh-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_06</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="sh-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── FASHION DESIGNER ── -->
+    <div class="tool-panel" id="panel-fashion">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>👗 Fashion Designer</h2><p>Design outfits, mood boards, or clothing concepts — for fashion content, lookbooks, or product inspiration.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_07</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Describe the outfit or fashion concept</label><textarea id="fa-prompt" placeholder="e.g. A Black woman wearing an elegant cream linen set with gold accessories, editorial fashion shoot…" rows="3"></textarea></div>
+        <div class="field"><label>Fashion Style</label>
+          <div class="style-pills" id="fa-styles">
+            <span class="pill active" data-val="editorial fashion photography">Editorial</span><span class="pill" data-val="streetwear fashion">Streetwear</span><span class="pill" data-val="bohemian style fashion">Boho</span><span class="pill" data-val="luxury couture fashion">Luxury Couture</span><span class="pill" data-val="business professional fashion">Business</span><span class="pill" data-val="casual everyday fashion">Casual</span><span class="pill" data-val="fashion illustration flat lay">Flat Lay</span>
+          </div>
+        </div>
+        <div class="field"><label>Primary Color Palette</label>
+          <div class="swatch-row" id="fa-colors">
+            <div class="swatch active" style="background:#f2c4ce" data-val="blush pink tones" title="Blush"></div>
+            <div class="swatch" style="background:#b2c9ad" data-val="sage green tones" title="Sage"></div>
+            <div class="swatch" style="background:#d4af6e" data-val="warm gold tones" title="Gold"></div>
+            <div class="swatch" style="background:#1a1410" data-val="black and charcoal tones" title="Black"></div>
+            <div class="swatch" style="background:#ffffff;border:1px solid #ddd" data-val="crisp white tones" title="White"></div>
+            <div class="swatch" style="background:#c9956a" data-val="terracotta and earth tones" title="Terracotta"></div>
+            <div class="swatch" style="background:#7a5c8a" data-val="purple and violet tones" title="Purple"></div>
+            <div class="swatch" style="background:#4a7c6f" data-val="deep teal tones" title="Teal"></div>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="fa-btn" onclick="generateFashion()">👗 Design Outfit</button>
+      </div>
+      <div class="result-area" id="fa-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_07</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="fa-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── WALL ART ── -->
+    <div class="tool-panel" id="panel-wallart">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>🖼️ Wall Art Creator</h2><p>Generate printable wall art — sell on Etsy, use for KDP, or gift digitally.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_08</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Describe your wall art</label><textarea id="wa-prompt" placeholder="e.g. 'She believed she could so she did' in elegant script, surrounded by watercolor botanicals, soft blush and gold tones…" rows="3"></textarea></div>
+        <div class="field"><label>Art Style</label>
+          <div class="style-pills" id="wa-styles">
+            <span class="pill active" data-val="watercolor botanical art print">Botanical Watercolor</span><span class="pill" data-val="minimalist line art print">Minimalist Line Art</span><span class="pill" data-val="abstract fluid art print">Abstract</span><span class="pill" data-val="vintage retro art print">Vintage / Retro</span><span class="pill" data-val="boho wall art print">Boho</span><span class="pill" data-val="inspirational quote typography poster">Quote Typography</span><span class="pill" data-val="African art pattern print">African Art</span>
+          </div>
+        </div>
+        <div class="field"><label>Orientation</label>
+          <div class="ratio-grid" style="grid-template-columns:repeat(3,1fr)">
+            <button class="ratio-btn active" data-w="1024" data-h="1280" onclick="setRatio(this,'wa')"><span class="ratio-icon">📄</span>Portrait<br><span style="font-size:.48rem;color:var(--muted)">8×10</span></button>
+            <button class="ratio-btn" data-w="1024" data-h="1024" onclick="setRatio(this,'wa')"><span class="ratio-icon">⬜</span>Square<br><span style="font-size:.48rem;color:var(--muted)">8×8</span></button>
+            <button class="ratio-btn" data-w="1792" data-h="1024" onclick="setRatio(this,'wa')"><span class="ratio-icon">📐</span>Landscape<br><span style="font-size:.48rem;color:var(--muted)">10×8</span></button>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="wa-btn" onclick="generateWallArt()">🖼️ Create Wall Art</button>
+      </div>
+      <div class="result-area" id="wa-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_08</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="wa-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── PRODUCT MOCKUP ── -->
+    <div class="tool-panel" id="panel-mockup">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>🛍️ Product Mockup</h2><p>Generate product lifestyle images — show your digital or physical products in beautiful scenes.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_09</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>What product are you showcasing?</label><input type="text" id="mk-product" placeholder="e.g. Digital planner, journal, mug, t-shirt, tote bag…"></div>
+        <div class="field"><label>Scene / Setting</label><textarea id="mk-scene" placeholder="e.g. A cozy desk with candles, flowers, and warm light. Aesthetic and minimal." rows="2"></textarea></div>
+        <div class="field"><label>Mockup Style</label>
+          <div class="style-pills" id="mk-styles">
+            <span class="pill active" data-val="flat lay product photography">Flat Lay</span><span class="pill" data-val="lifestyle product photography, model holding">Lifestyle</span><span class="pill" data-val="desk scene product photography">Desk Scene</span><span class="pill" data-val="outdoor natural light product photography">Outdoor</span><span class="pill" data-val="luxury studio product photography">Studio</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="mk-btn" onclick="generateMockup()">🛍️ Create Mockup</button>
+      </div>
+      <div class="result-area" id="mk-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_09</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="mk-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── IMAGE UPSCALER ── -->
+    <div class="tool-panel" id="panel-upscale">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>⬆️ Image Upscaler</h2><p>Generate at maximum resolution — ideal for print-quality output and large-format products.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_10</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Describe the image you want at high resolution</label><textarea id="up-prompt" placeholder="e.g. Elegant Black woman in a garden, golden hour light, ultra-detailed, photorealistic…" rows="3"></textarea></div>
+        <div class="field"><label>Enhancement level</label>
+          <div class="style-pills" id="up-enhance">
+            <span class="pill active" data-val="highly detailed, sharp, 4k">4K Detail</span><span class="pill" data-val="ultra detailed, 8k, professional photography">8K Ultra</span><span class="pill" data-val="cinematic, dramatic, award winning photography">Cinematic</span><span class="pill" data-val="studio quality, perfect lighting, magazine cover">Studio Quality</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="up-btn" onclick="generateUpscale()">⬆️ Generate High-Res</button>
+      </div>
+      <div class="result-area" id="up-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_10</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="up-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── BACKGROUND REMOVER ── -->
+    <div class="tool-panel" id="panel-bgremove">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>✂️ Background Remover</h2><p>Generate a clean subject image on your chosen background — perfect for product photos and brand graphics.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_11</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Describe your subject</label><textarea id="bg-prompt" placeholder="e.g. A luxury perfume bottle, gold and glass, product shot, clean subject…" rows="3"></textarea></div>
+        <div class="field"><label>Subject Type</label>
+          <div class="style-pills" id="bg-type">
+            <span class="pill active" data-val="product on white background, clean edges, studio lighting">Product</span><span class="pill" data-val="person portrait on white background, clean cutout">Person</span><span class="pill" data-val="object on white background, isolated, clean">Object</span><span class="pill" data-val="food on white background, clean, studio">Food</span>
+          </div>
+        </div>
+        <div class="field"><label>Replace background with</label>
+          <div class="style-pills" id="bg-replace">
+            <span class="pill active" data-val="pure white background">White</span><span class="pill" data-val="soft blush pink gradient background">Blush Pink</span><span class="pill" data-val="warm cream background">Cream</span><span class="pill" data-val="sage green gradient background">Sage Green</span><span class="pill" data-val="soft gold gradient background">Gold</span><span class="pill" data-val="dark ink black background">Black</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="bg-btn" onclick="generateBgRemove()">✂️ Remove Background</button>
+      </div>
+      <div class="result-area" id="bg-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_11</span></span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="bg-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── ADD WATERMARK ── -->
+    <div class="tool-panel" id="panel-watermark">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>🔏 Add Watermark</h2><p>Generate an image with your brand watermark built in — protect your work before sharing or selling.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_12</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Describe your image</label><textarea id="wm-prompt" placeholder="e.g. A Black woman sitting at a luxury vanity, editorial beauty shot, warm gold tones…" rows="3"></textarea></div>
+        <div class="field"><label>Your watermark text</label><input type="text" id="wm-text" placeholder="e.g. © ZenSereniTee  |  @yourbrand  |  www.yoursite.com"></div>
+        <div class="field"><label>Watermark Style</label>
+          <div class="style-pills" id="wm-style">
+            <span class="pill active" data-val="subtle diagonal watermark text overlay, semi-transparent">Subtle Diagonal</span>
+            <span class="pill" data-val="bottom right corner watermark text, small, elegant">Corner Logo</span>
+            <span class="pill" data-val="centered watermark text overlay, large, semi-transparent">Center Bold</span>
+            <span class="pill" data-val="tiled repeating watermark pattern across the image">Tiled Pattern</span>
+          </div>
+        </div>
+        <div class="field"><label>Watermark Color</label>
+          <div class="style-pills" id="wm-color">
+            <span class="pill active" data-val="white watermark text">White</span>
+            <span class="pill" data-val="black watermark text">Black</span>
+            <span class="pill" data-val="gold colored watermark text">Gold</span>
+            <span class="pill" data-val="blush pink watermark text">Blush</span>
+          </div>
+        </div>
+        <div class="field"><label>Image Style</label>
+          <div class="style-pills" id="wm-imgstyle">
+            <span class="pill active" data-val="photorealistic">Photorealistic</span>
+            <span class="pill" data-val="digital art">Digital Art</span>
+            <span class="pill" data-val="watercolor">Watercolor</span>
+            <span class="pill" data-val="minimalist">Minimalist</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="wm-btn" onclick="generateWatermark()">🔏 Generate Watermarked Image</button>
+      </div>
+      <div class="result-area" id="wm-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_12</span></span><span>·</span><span>Watermark baked in</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="wm-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── REMOVE WATERMARK ── -->
+    <div class="tool-panel" id="panel-rmwatermark">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>🧹 Remove Watermark</h2><p>Describe the clean version of an image you need — regenerate it fresh without any watermarks or overlays.</p></div>
+        <div class="node-badge"><span class="nd"></span>NODE IMG_13</div>
+      </div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Describe the image you want clean</label><textarea id="rw-prompt" placeholder="e.g. A luxury skincare product flatlay on a marble surface, soft natural light, no text, no overlays, clean…" rows="3"></textarea></div>
+        <div class="field"><label>Image Style</label>
+          <div class="style-pills" id="rw-style">
+            <span class="pill active" data-val="photorealistic, clean, no text, no watermark, no overlay">Photorealistic</span>
+            <span class="pill" data-val="digital art, clean, no text, no watermark">Digital Art</span>
+            <span class="pill" data-val="watercolor illustration, clean, no text">Watercolor</span>
+            <span class="pill" data-val="flat illustration, clean, no text, no overlay">Flat Illustration</span>
+            <span class="pill" data-val="minimalist, clean background, no text">Minimalist</span>
+          </div>
+        </div>
+        <div class="field"><label>Output quality</label>
+          <div class="style-pills" id="rw-quality">
+            <span class="pill active" data-val="high quality, sharp, professional">Standard</span>
+            <span class="pill" data-val="highly detailed, 8k, ultra sharp, professional">High Detail</span>
+            <span class="pill" data-val="cinematic lighting, award winning, magazine quality">Cinematic</span>
+          </div>
+        </div>
+        <div class="field"><label>Aspect ratio</label>
+          <div class="ratio-grid">
+            <button class="ratio-btn active" data-w="1024" data-h="1024" onclick="setRatio(this,'rw')"><span class="ratio-icon">⬜</span>1:1<br><span style="font-size:.5rem;color:var(--muted)">Post</span></button>
+            <button class="ratio-btn" data-w="1024" data-h="1792" onclick="setRatio(this,'rw')"><span class="ratio-icon">📱</span>9:16<br><span style="font-size:.5rem;color:var(--muted)">Reel</span></button>
+            <button class="ratio-btn" data-w="1792" data-h="1024" onclick="setRatio(this,'rw')"><span class="ratio-icon">🖥️</span>16:9<br><span style="font-size:.5rem;color:var(--muted)">Banner</span></button>
+            <button class="ratio-btn" data-w="1024" data-h="1280" onclick="setRatio(this,'rw')"><span class="ratio-icon">📌</span>4:5<br><span style="font-size:.5rem;color:var(--muted)">Feed</span></button>
+          </div>
+        </div>
+        <hr class="divider">
+        <button class="gen-btn" id="rw-btn" onclick="generateRemoveWatermark()">🧹 Generate Clean Image</button>
+      </div>
+      <div class="result-area" id="rw-result">
+        <div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_13</span></span><span>·</span><span>Clean — no overlays</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="result-imgs" id="rw-imgs" style="margin-top:.6rem;"></div>
+      </div>
+    </div>
+
+    <!-- ── GALLERY ── -->
+    <div class="tool-panel" id="panel-gallery">
+      <div class="glass-panel panel-head">
+        <div class="panel-head-left"><h2>🗂️ My Gallery</h2><p>All your saved images — stored in your browser. Download any image to your device anytime.</p></div>
+        <div class="node-badge"><span class="nd"></span>LIBRARY</div>
+      </div>
+      <div class="gallery-empty" id="gallery-empty">
+        <div class="ge-icon">🖼️</div>
+        <p>No saved images yet.<br>Generate something and tap <strong>Save</strong> to add it here.</p>
+      </div>
+      <div class="gallery-grid" id="gallery-grid" style="display:none"></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ── State ─────────────────────────────────────────────────
+const ratios={ig:{w:1024,h:1024},wa:{w:1024,h:1280},rw:{w:1024,h:1024}};
+let genCount=0;
+let gallery=[];
+try{gallery=JSON.parse(localStorage.getItem('cvs_gallery')||'[]');}catch(e){}
+
+const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',
+  cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',
+  mockup:'IMG_09',upscale:'IMG_10',bgremove:'IMG_11',
+  watermark:'IMG_12',rmwatermark:'IMG_13',gallery:'LIB_01'};
+
+// ── Init ──────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  updateGalleryCount();
+  initPills();
+  initSwatches();
+  updateLatency();
+  const goto=sessionStorage.getItem('gotoPanel');
+  if(goto){sessionStorage.removeItem('gotoPanel');switchTool(goto);}
+  else{const h=location.hash.replace('#','');if(h)switchTool(h);}
+});
+
+// Simulated latency readout (Convergence telemetry feel)
+function updateLatency(){
+  const el=document.getElementById('latencyVal');
+  if(el){el.textContent=(Math.random()*0.04+0.01).toFixed(2)+'ms';}
+  setTimeout(updateLatency,3000);
+}
+
+// ── Tool switching ────────────────────────────────────────
+function switchTool(id){
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
+  const panel=document.getElementById('panel-'+id);
+  const btn=document.getElementById('btn-'+id);
+  if(panel)panel.classList.add('active');
+  if(btn)btn.classList.add('active');
+  const nodeEl=document.getElementById('activeNode');
+  if(nodeEl&&nodeMap[id])nodeEl.textContent=nodeMap[id];
+  if(id==='gallery')renderGallery();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── Pills ─────────────────────────────────────────────────
+function initPills(){
+  document.querySelectorAll('.style-pills').forEach(group=>{
+    group.querySelectorAll('.pill').forEach(pill=>{
+      pill.addEventListener('click',()=>{
+        group.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+        pill.classList.add('active');
+      });
+    });
+  });
+}
+function getActivePill(id){return document.getElementById(id)?.querySelector('.pill.active')?.dataset.val||'';}
+
+// ── Swatches ──────────────────────────────────────────────
+function initSwatches(){
+  document.querySelectorAll('.swatch-row').forEach(row=>{
+    row.querySelectorAll('.swatch').forEach(sw=>{
+      sw.addEventListener('click',()=>{
+        row.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+        sw.classList.add('active');
+      });
+    });
+  });
+}
+function getActiveSwatch(id){return document.getElementById(id)?.querySelector('.swatch.active')?.dataset.val||'';}
+
+// ── Ratio ─────────────────────────────────────────────────
+function setRatio(btn,key){
+  btn.closest('.ratio-grid').querySelectorAll('.ratio-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(ratios[key]){ratios[key].w=parseInt(btn.dataset.w);ratios[key].h=parseInt(btn.dataset.h);}
+}
+
+// ── Pollinations ──────────────────────────────────────────
+async function fetchImage(prompt,w,h){
+  const seed=Math.floor(Math.random()*99999);
+  const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=${w}&height=${h}&seed=${seed}&nologo=true&enhance=true`;
+  const res=await fetch(url);
+  const blob=await res.blob();
+  return URL.createObjectURL(blob);
+}
+
+async function generateBatch(prompts,imgsEl,resultEl,btnId,label){
+  const btn=document.getElementById(btnId);
+  btn.disabled=true;btn.textContent='⏳ Generating…';
+  resultEl.classList.add('show');
+  imgsEl.innerHTML='';
+  prompts.forEach(()=>{const s=document.createElement('div');s.className='shimmer';imgsEl.appendChild(s);});
+  const t0=Date.now();
+  const results=await Promise.allSettled(prompts.map(p=>fetchImage(p.prompt,p.w,p.h)));
+  const ms=Date.now()-t0;
+  document.getElementById('latencyVal').textContent=(ms/1000).toFixed(2)+'s';
+  imgsEl.innerHTML='';
+  results.forEach((r,i)=>{
+    if(r.status==='fulfilled')addImageResult(imgsEl,r.value,prompts[i].prompt);
+    else{
+      const e=document.createElement('div');e.className='shimmer';
+      e.style.cssText='display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);aspect-ratio:1;';
+      e.textContent='Failed — try again';imgsEl.appendChild(e);
+    }
+  });
+  genCount+=prompts.length;
+  const gc=document.getElementById('genCount');
+  if(gc)gc.textContent=genCount;
+  btn.disabled=false;btn.textContent=label;
+}
+
+function addImageResult(container,blobUrl,prompt){
+  const wrap=document.createElement('div');wrap.className='result-img-wrap';
+  const img=document.createElement('img');img.src=blobUrl;img.alt=prompt;img.loading='lazy';
+  const actions=document.createElement('div');actions.className='img-actions';
+  const dlBtn=document.createElement('button');dlBtn.className='img-act-btn dl';dlBtn.textContent='⬇️';
+  dlBtn.onclick=()=>downloadImage(blobUrl);
+  const saveBtn=document.createElement('button');saveBtn.className='img-act-btn save';saveBtn.textContent='💾 Save';
+  saveBtn.onclick=()=>saveImage(blobUrl,prompt,saveBtn);
+  actions.appendChild(dlBtn);actions.appendChild(saveBtn);
+  wrap.appendChild(img);wrap.appendChild(actions);container.appendChild(wrap);
+}
+
+// ── Save / Download ───────────────────────────────────────
+function saveImage(blobUrl,prompt,btn){
+  const id=Date.now()+Math.random();
+  gallery.unshift({id,url:blobUrl,prompt,date:new Date().toLocaleDateString()});
+  if(gallery.length>100)gallery.pop();
+  const img=new Image();
+  img.onload=()=>{
+    const c=document.createElement('canvas');c.width=img.width;c.height=img.height;
+    c.getContext('2d').drawImage(img,0,0);
+    const dataUrl=c.toDataURL('image/png');
+    const idx=gallery.findIndex(g=>g.id===id);
+    if(idx!==-1){gallery[idx].dataUrl=dataUrl;persistGallery();}
+  };
+  img.onerror=persistGallery;
+  img.src=blobUrl;
+  downloadImage(blobUrl);
+  btn.textContent='✅ Saved!';btn.style.background='var(--sage)';
+  setTimeout(()=>{btn.textContent='💾 Save';btn.style.background='';},2200);
+  updateGalleryCount();
+  toast('Saved to gallery + downloading to device 🪷');
+}
+
+function downloadImage(blobUrl){
+  const a=document.createElement('a');a.href=blobUrl;
+  a.download=`cre8ive-vib3s-${Date.now()}.png`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+}
+
+function persistGallery(){
+  try{
+    const toSave=gallery.filter(g=>g.dataUrl).map(g=>({...g,url:g.dataUrl}));
+    localStorage.setItem('cvs_gallery',JSON.stringify(toSave.slice(0,50)));
+  }catch(e){}
+}
+
+function updateGalleryCount(){
+  const n=gallery.length;
+  document.getElementById('galleryCount').textContent=n;
+  const gnc=document.getElementById('galleryNodeCount');
+  if(gnc)gnc.textContent=n;
+}
+
+// ── Gallery render ────────────────────────────────────────
+function renderGallery(){
+  const grid=document.getElementById('gallery-grid');
+  const empty=document.getElementById('gallery-empty');
+  if(!gallery.length){grid.style.display='none';empty.style.display='';return;}
+  grid.style.display='grid';empty.style.display='none';grid.innerHTML='';
+  gallery.forEach((item,idx)=>{
+    const wrap=document.createElement('div');wrap.className='gallery-item';
+    const img=document.createElement('img');img.src=item.dataUrl||item.url;img.alt=item.prompt||'Saved image';
+    const acts=document.createElement('div');acts.className='gallery-item-actions';
+    const dl=document.createElement('button');dl.className='gact dl';dl.textContent='⬇️';dl.title='Download';
+    dl.onclick=()=>downloadImage(item.dataUrl||item.url);
+    const del=document.createElement('button');del.className='gact del';del.textContent='🗑️';del.title='Delete';
+    del.onclick=()=>{gallery.splice(idx,1);persistGallery();updateGalleryCount();renderGallery();};
+    acts.appendChild(dl);acts.appendChild(del);
+    wrap.appendChild(img);wrap.appendChild(acts);grid.appendChild(wrap);
+  });
+}
+
+// ── Generate functions ────────────────────────────────────
+async function generateImages(){
+  const prompt=document.getElementById('ig-prompt').value.trim();
+  if(!prompt){toast('Describe your image first');return;}
+  const style=getActivePill('ig-styles'),quality=document.getElementById('ig-quality').value;
+  const count=parseInt(document.getElementById('ig-count').value);
+  const {w,h}=ratios.ig;
+  const full=[prompt,style,quality].filter(Boolean).join(', ');
+  await generateBatch(Array.from({length:count},()=>({prompt:full,w,h})),
+    document.getElementById('ig-imgs'),document.getElementById('ig-result'),'ig-btn','✨ Generate Images');
+}
+
+async function generateColoring(){
+  const prompt=document.getElementById('cb-prompt').value.trim();
+  if(!prompt){toast('Describe what the page should show');return;}
+  const theme=getActivePill('cb-themes'),complexity=document.getElementById('cb-complexity').value;
+  const count=parseInt(document.getElementById('cb-count').value);
+  const full=`black and white coloring book page, ${prompt}, ${theme} theme, ${complexity}, clean outlines, no color fills, white background, printable`;
+  await generateBatch(Array.from({length:count},()=>({prompt:full,w:1024,h:1280})),
+    document.getElementById('cb-imgs'),document.getElementById('cb-result'),'cb-btn','🖍️ Create Coloring Pages');
+}
+
+async function generateStickers(){
+  const prompt=document.getElementById('st-prompt').value.trim();
+  if(!prompt){toast('Describe your sticker first');return;}
+  const style=getActivePill('st-styles'),bg=document.getElementById('st-bg').value;
+  const count=parseInt(document.getElementById('st-count').value);
+  const full=`${prompt}, ${style}, ${bg}, high quality, vibrant, print ready`;
+  await generateBatch(Array.from({length:count},()=>({prompt:full,w:1024,h:1024})),
+    document.getElementById('st-imgs'),document.getElementById('st-result'),'st-btn','⭐ Create Stickers');
+}
+
+async function generateThumbnails(){
+  const topic=document.getElementById('th-topic').value.trim();
+  if(!topic){toast('Enter your content topic first');return;}
+  const platform=getActivePill('th-platform'),mood=getActivePill('th-mood');
+  const full=`${platform}, topic: "${topic}", ${mood} mood, eye-catching, professional`;
+  await generateBatch([{prompt:full,w:1792,h:1024},{prompt:full+', alternate version',w:1792,h:1024}],
+    document.getElementById('th-imgs'),document.getElementById('th-result'),'th-btn','🖼️ Create Thumbnails');
+}
+
+async function generateCartoon(){
+  const prompt=document.getElementById('car-prompt').value.trim();
+  if(!prompt){toast('Describe the person or character first');return;}
+  const style=getActivePill('car-styles'),bg=document.getElementById('car-bg').value;
+  const count=parseInt(document.getElementById('car-count').value);
+  const full=`${prompt}, ${style}, ${bg}, high quality illustration`;
+  await generateBatch(Array.from({length:count},()=>({prompt:full,w:1024,h:1024})),
+    document.getElementById('car-imgs'),document.getElementById('car-result'),'car-btn','🧑‍🎨 Create Cartoon');
+}
+
+async function generateSuperhero(){
+  const prompt=document.getElementById('sh-prompt').value.trim();
+  if(!prompt){toast('Describe your superhero first');return;}
+  const style=getActivePill('sh-styles'),power=getActivePill('sh-powers');
+  const full=`${prompt}, ${power}, ${style}, dynamic pose, heroic, high quality`;
+  await generateBatch([{prompt:full,w:1024,h:1280},{prompt:full+', different pose',w:1024,h:1280}],
+    document.getElementById('sh-imgs'),document.getElementById('sh-result'),'sh-btn','🦸 Create Superhero');
+}
+
+async function generateFashion(){
+  const prompt=document.getElementById('fa-prompt').value.trim();
+  if(!prompt){toast('Describe the outfit first');return;}
+  const style=getActivePill('fa-styles'),color=getActiveSwatch('fa-colors');
+  const full=`${prompt}, ${style}, ${color}, high quality fashion photography, professional`;
+  await generateBatch([{prompt:full,w:1024,h:1280},{prompt:full+', alternate angle',w:1024,h:1280}],
+    document.getElementById('fa-imgs'),document.getElementById('fa-result'),'fa-btn','👗 Design Outfit');
+}
+
+async function generateWallArt(){
+  const prompt=document.getElementById('wa-prompt').value.trim();
+  if(!prompt){toast('Describe your wall art first');return;}
+  const style=getActivePill('wa-styles');
+  const {w,h}=ratios.wa;
+  const full=`${prompt}, ${style}, printable art, high resolution, professional quality`;
+  await generateBatch([{prompt:full,w,h},{prompt:full+', alternate design',w,h}],
+    document.getElementById('wa-imgs'),document.getElementById('wa-result'),'wa-btn','🖼️ Create Wall Art');
+}
+
+async function generateMockup(){
+  const product=document.getElementById('mk-product').value.trim();
+  if(!product){toast('Enter your product name first');return;}
+  const scene=document.getElementById('mk-scene').value.trim();
+  const style=getActivePill('mk-styles');
+  const full=`${product} product photo, ${scene}, ${style}, commercial photography, professional, high quality`;
+  await generateBatch([{prompt:full,w:1024,h:1024},{prompt:full+', different angle',w:1024,h:1024}],
+    document.getElementById('mk-imgs'),document.getElementById('mk-result'),'mk-btn','🛍️ Create Mockup');
+}
+
+async function generateUpscale(){
+  const prompt=document.getElementById('up-prompt').value.trim();
+  if(!prompt){toast('Describe the image first');return;}
+  const enhance=getActivePill('up-enhance');
+  const full=`${prompt}, ${enhance}, maximum resolution, ultra sharp, professional quality`;
+  await generateBatch([{prompt:full,w:1792,h:1792}],
+    document.getElementById('up-imgs'),document.getElementById('up-result'),'up-btn','⬆️ Generate High-Res');
+}
+
+async function generateBgRemove(){
+  const prompt=document.getElementById('bg-prompt').value.trim();
+  if(!prompt){toast('Describe your subject first');return;}
+  const type=getActivePill('bg-type'),replace=getActivePill('bg-replace');
+  const full=`${prompt}, ${type}, ${replace}, isolated subject, clean edges, commercial quality`;
+  await generateBatch([{prompt:full,w:1024,h:1024},{prompt:full+', alternate lighting',w:1024,h:1024}],
+    document.getElementById('bg-imgs'),document.getElementById('bg-result'),'bg-btn','✂️ Remove Background');
+}
+
+async function generateWatermark(){
+  const prompt=document.getElementById('wm-prompt').value.trim();
+  const wmText=document.getElementById('wm-text').value.trim();
+  if(!prompt){toast('Describe your image first');return;}
+  const style=getActivePill('wm-style');
+  const color=getActivePill('wm-color');
+  const imgStyle=getActivePill('wm-imgstyle');
+  const wm=wmText?`, with "${wmText}" as ${style}, ${color}`:', with subtle brand watermark overlay';
+  const full=`${prompt}, ${imgStyle}${wm}, professional, high quality`;
+  await generateBatch([{prompt:full,w:1024,h:1024},{prompt:full+', alternate composition',w:1024,h:1024}],
+    document.getElementById('wm-imgs'),document.getElementById('wm-result'),'wm-btn','🔏 Generate Watermarked Image');
+}
+
+async function generateRemoveWatermark(){
+  const prompt=document.getElementById('rw-prompt').value.trim();
+  if(!prompt){toast('Describe the clean image you need');return;}
+  const style=getActivePill('rw-style');
+  const quality=getActivePill('rw-quality');
+  const {w,h}=ratios.rw;
+  const full=`${prompt}, ${style}, ${quality}, no watermark, no text overlay, no logo, pristine clean image`;
+  await generateBatch([{prompt:full,w,h},{prompt:full+', alternate version',w,h}],
+    document.getElementById('rw-imgs'),document.getElementById('rw-result'),'rw-btn','🧹 Generate Clean Image');
+}
+
+// ── Toast ─────────────────────────────────────────────────
+function toast(m){
+  const t=document.getElementById('toast');
+  t.textContent=m;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+</script>
+</body>
+</html>
