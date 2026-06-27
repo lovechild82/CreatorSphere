@@ -998,6 +998,7 @@ async function fetchImagePollinations(prompt,w,h){const seed=Math.floor(Math.ran
 async function fetchImagePuter(prompt,w,h){
   if(typeof puter==='undefined'){toast('Switching to Standard engine…');return fetchImagePollinations(prompt,w,h);}
   const imgEl=await puter.ai.txt2img(prompt,{model:'flux'});
+  if(!imgEl||!imgEl.src){throw new Error('Studio Pro returned no image');}
   return imgEl.src;
 }
 async function fetchImage(prompt,w,h,modelKey){
@@ -1043,7 +1044,38 @@ async function uploadToTempHost(dataUrl){
   if(!upRes.ok)throw new Error('Upload failed');
   return (await upRes.text()).trim();
 }
-async function generateBatch(prompts,imgsEl,resultEl,btnId,label,modelKey){const btn=document.getElementById(btnId);btn.disabled=true;btn.textContent='⏳ Generating…';resultEl.classList.add('show');imgsEl.innerHTML='';prompts.forEach(()=>{const s=document.createElement('div');s.className='shimmer';imgsEl.appendChild(s);});const t0=Date.now();const results=await Promise.allSettled(prompts.map(p=>fetchImage(p.prompt,p.w,p.h,modelKey)));const ms=Date.now()-t0;const lv=document.getElementById('latencyVal');if(lv)lv.textContent=(ms/1000).toFixed(2)+'s';imgsEl.innerHTML='';results.forEach((r,i)=>{if(r.status==='fulfilled')addImageResult(imgsEl,r.value,prompts[i].prompt);else{const e=document.createElement('div');e.className='shimmer';e.style.cssText='display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);aspect-ratio:1;';e.textContent='Failed — try again';imgsEl.appendChild(e);}});genCount+=prompts.length;const gc=document.getElementById('genCount');if(gc)gc.textContent=genCount;btn.disabled=false;btn.textContent=label;}
+async function generateBatch(prompts,imgsEl,resultEl,btnId,label,modelKey){
+  const btn=document.getElementById(btnId);btn.disabled=true;btn.textContent='⏳ Generating…';
+  resultEl.classList.add('show');imgsEl.innerHTML='';
+  prompts.forEach(()=>{const s=document.createElement('div');s.className='shimmer';imgsEl.appendChild(s);});
+  const t0=Date.now();
+  const isPuter=modelKey&&activeModel[modelKey]==='puter';
+  let results;
+  if(isPuter){
+    // Puter does not handle concurrent generations reliably — run sequentially
+    results=[];
+    for(const p of prompts){
+      try{results.push({status:'fulfilled',value:await fetchImage(p.prompt,p.w,p.h,modelKey)});}
+      catch(e){results.push({status:'rejected',reason:e});}
+    }
+  }else{
+    results=await Promise.allSettled(prompts.map(p=>fetchImage(p.prompt,p.w,p.h,modelKey)));
+  }
+  const ms=Date.now()-t0;
+  const lv=document.getElementById('latencyVal');if(lv)lv.textContent=(ms/1000).toFixed(2)+'s';
+  imgsEl.innerHTML='';
+  results.forEach((r,i)=>{
+    if(r.status==='fulfilled')addImageResult(imgsEl,r.value,prompts[i].prompt);
+    else{
+      const e=document.createElement('div');e.className='shimmer';
+      e.style.cssText='display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);aspect-ratio:1;';
+      e.textContent='Failed — try again';imgsEl.appendChild(e);
+    }
+  });
+  genCount+=prompts.length;
+  const gc=document.getElementById('genCount');if(gc)gc.textContent=genCount;
+  btn.disabled=false;btn.textContent=label;
+}
 function addImageResult(container,blobUrl,prompt){const wrap=document.createElement('div');wrap.className='result-img-wrap';const img=document.createElement('img');img.src=blobUrl;img.alt=prompt;img.loading='lazy';const actions=document.createElement('div');actions.className='img-actions';const dlBtn=document.createElement('button');dlBtn.className='img-act-btn dl';dlBtn.textContent='⬇️';dlBtn.onclick=()=>downloadImage(blobUrl);const saveBtn=document.createElement('button');saveBtn.className='img-act-btn save';saveBtn.textContent='💾 Save';saveBtn.onclick=()=>saveImage(blobUrl,prompt,saveBtn);actions.appendChild(dlBtn);actions.appendChild(saveBtn);wrap.appendChild(img);wrap.appendChild(actions);container.appendChild(wrap);}
 function saveImage(blobUrl,prompt,btn){const id=Date.now()+Math.random();gallery.unshift({id,url:blobUrl,prompt,date:new Date().toLocaleDateString()});if(gallery.length>100)gallery.pop();const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=img.width;c.height=img.height;c.getContext('2d').drawImage(img,0,0);const dataUrl=c.toDataURL('image/png');const idx=gallery.findIndex(g=>g.id===id);if(idx!==-1){gallery[idx].dataUrl=dataUrl;persistGallery();}};img.onerror=persistGallery;img.src=blobUrl;downloadImage(blobUrl);btn.textContent='✅ Saved!';btn.style.background='var(--sage)';setTimeout(()=>{btn.textContent='💾 Save';btn.style.background='';},2200);updateGalleryCount();toast('Saved to gallery + downloading 🪷');}
 function downloadImage(blobUrl){const a=document.createElement('a');a.href=blobUrl;a.download=`cre8ive-vib3s-${Date.now()}.png`;document.body.appendChild(a);a.click();document.body.removeChild(a);}
