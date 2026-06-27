@@ -155,7 +155,8 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
   .studio-layout{grid-template-columns:1fr;}
   .sidebar{position:fixed;bottom:0;left:0;right:0;top:auto;height:auto;display:flex;overflow-x:auto;flex-direction:row;border-right:none;border-top:1px solid var(--border);z-index:100;padding:0;background:rgba(250,246,240,0.97);backdrop-filter:blur(16px);}
   .sidebar::-webkit-scrollbar{display:none;}
-  .sidebar-label{display:none;}
+  .sidebar-label{display:flex;align-items:center;justify-content:center;font-size:.42rem;letter-spacing:.06em;padding:.3rem .15rem;min-width:22px;white-space:nowrap;border-right:1px solid var(--border);flex-shrink:0;writing-mode:vertical-rl;text-orientation:mixed;color:var(--gold);font-weight:500;}
+  .sidebar-label::after{display:none;}
   .tool-btn{flex-direction:column;gap:.1rem;padding:.42rem .45rem;font-size:.52rem;min-width:52px;border-right:none;border-top:2px solid transparent;}
   .tool-btn.active{border-right:none;border-top:2px solid var(--gold);}
   .tool-btn.active::before{display:none;}
