@@ -246,6 +246,11 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <button class="tool-btn" onclick="switchTool('changeexpression')" id="btn-changeexpression"><span class="ti">😊</span>Change Expression<span class="tool-node">IMG_30</span></button>
     <button class="tool-btn" onclick="switchTool('addaccessories')" id="btn-addaccessories"><span class="ti">💍</span>Add Accessories<span class="tool-node">IMG_31</span></button>
     <button class="tool-btn" onclick="switchTool('changeskintan')" id="btn-changeskintan"><span class="ti">☀️</span>Change Skin Tan<span class="tool-node">IMG_32</span></button>
+    <div class="sidebar-label">Backgrounds & Scenes</div>
+    <button class="tool-btn" onclick="switchTool('changebg')" id="btn-changebg"><span class="ti">🏞️</span>Change Background<span class="tool-node">IMG_33</span></button>
+    <button class="tool-btn" onclick="switchTool('skychanger')" id="btn-skychanger"><span class="ti">🌅</span>Sky Changer<span class="tool-node">IMG_34</span></button>
+    <button class="tool-btn" onclick="switchTool('addobject')" id="btn-addobject"><span class="ti">➕</span>Add Object<span class="tool-node">IMG_35</span></button>
+    <button class="tool-btn" onclick="switchTool('removeobject')" id="btn-removeobject"><span class="ti">➖</span>Remove Object<span class="tool-node">IMG_36</span></button>
     <button class="tool-btn" onclick="switchTool('faceswap')" id="btn-faceswap"><span class="ti">🔄</span>Face Swap<span class="tool-node">IMG_20</span></button>
     <button class="tool-btn" onclick="switchTool('watermark')" id="btn-watermark"><span class="ti">🔏</span>Add Watermark<span class="tool-node">IMG_21</span></button>
     <button class="tool-btn" onclick="switchTool('rmwatermark')" id="btn-rmwatermark"><span class="ti">🧹</span>Remove Watermark<span class="tool-node">IMG_22</span></button>
@@ -939,6 +944,101 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
       <div class="result-area" id="st2-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_32</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="st2-imgs" style="margin-top:.6rem;"></div></div>
     </div>
 
+    <!-- CHANGE BACKGROUND -->
+    <div class="tool-panel" id="panel-changebg">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🏞️ Change Background</h2><p>Upload a photo and swap the background entirely — keep your subject, change the world around them.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_33</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="cbg-dropzone" onclick="document.getElementById('cbg-file').click()">
+            <input type="file" id="cbg-file" accept="image/*" onchange="handleUpload(this,'cbg')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="cbg-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>New background</label>
+          <div class="style-pills" id="cbg-scene">
+            <span class="pill active" data-val="cozy aesthetic home interior, soft natural light">Cozy Home</span>
+            <span class="pill" data-val="modern minimalist studio background">Studio</span>
+            <span class="pill" data-val="lush green garden, botanical scenery">Garden</span>
+            <span class="pill" data-val="urban city street, golden hour">City Street</span>
+            <span class="pill" data-val="sandy beach, ocean horizon">Beach</span>
+            <span class="pill" data-val="elegant cafe interior, warm lighting">Café</span>
+            <span class="pill" data-val="solid soft color background, professional">Solid Color</span>
+          </div>
+        </div>
+        <div class="field"><label>Or describe a custom scene</label><textarea id="cbg-custom" placeholder="e.g. A sunlit library with tall bookshelves and warm wood tones…" rows="2"></textarea></div>
+        <hr class="divider"><button class="gen-btn" id="cbg-btn" onclick="generateChangeBg()">🏞️ Change Background</button>
+      </div>
+      <div class="result-area" id="cbg-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_33</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="cbg-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- SKY CHANGER -->
+    <div class="tool-panel" id="panel-skychanger">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🌅 Sky Changer</h2><p>Upload an outdoor photo and transform the sky — golden sunsets, dramatic clouds, starry nights.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_34</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="sky-dropzone" onclick="document.getElementById('sky-file').click()">
+            <input type="file" id="sky-file" accept="image/*" onchange="handleUpload(this,'sky')">
+            <div class="uz-icon">📤</div><p>Tap to upload an outdoor photo</p>
+            <img id="sky-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>New sky</label>
+          <div class="style-pills" id="sky-type">
+            <span class="pill active" data-val="golden hour sunset sky, warm orange and pink clouds">Golden Sunset</span>
+            <span class="pill" data-val="dramatic stormy sky with dark clouds">Dramatic Storm</span>
+            <span class="pill" data-val="clear bright blue sky with soft white clouds">Clear Blue</span>
+            <span class="pill" data-val="starry night sky with visible milky way">Starry Night</span>
+            <span class="pill" data-val="pastel pink and purple sunrise sky">Pastel Sunrise</span>
+            <span class="pill" data-val="northern lights aurora sky">Aurora</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="sky-btn" onclick="generateSkyChanger()">🌅 Change Sky</button>
+      </div>
+      <div class="result-area" id="sky-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_34</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="sky-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- ADD OBJECT -->
+    <div class="tool-panel" id="panel-addobject">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>➕ Add Object</h2><p>Upload a photo and add something to the scene — props, decor, or creative elements.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_35</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="ao-dropzone" onclick="document.getElementById('ao-file').click()">
+            <input type="file" id="ao-file" accept="image/*" onchange="handleUpload(this,'ao')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="ao-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>What to add</label><textarea id="ao-prompt" placeholder="e.g. A bouquet of fresh peonies on the table, a cup of coffee, string lights in the background…" rows="3"></textarea></div>
+        <div class="field"><label>Placement</label>
+          <div class="style-pills" id="ao-placement">
+            <span class="pill active" data-val="naturally placed in the scene, fitting the composition">Natural Fit</span>
+            <span class="pill" data-val="in the foreground, prominent">Foreground</span>
+            <span class="pill" data-val="in the background, subtle">Background</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="ao-btn" onclick="generateAddObject()">➕ Add Object</button>
+      </div>
+      <div class="result-area" id="ao-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_35</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="ao-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- REMOVE OBJECT -->
+    <div class="tool-panel" id="panel-removeobject">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>➖ Remove Object</h2><p>Upload a photo and remove something unwanted — clutter, distractions, or anything else.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_36</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="ro-dropzone" onclick="document.getElementById('ro-file').click()">
+            <input type="file" id="ro-file" accept="image/*" onchange="handleUpload(this,'ro')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="ro-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>What to remove</label><textarea id="ro-prompt" placeholder="e.g. The trash can in the corner, the power lines in the sky, the person in the background…" rows="3"></textarea></div>
+        <hr class="divider"><button class="gen-btn" id="ro-btn" onclick="generateRemoveObject()">➖ Remove Object</button>
+      </div>
+      <div class="result-area" id="ro-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_36</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="ro-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
     <!-- ADD WATERMARK -->
     <div class="tool-panel" id="panel-watermark">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🔏 Add Watermark</h2><p>Generate an image with your brand watermark built in — protect your work.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_21</div></div>
@@ -984,7 +1084,7 @@ const uploadedImages={};
 let genCount=0;
 let gallery=[];
 try{gallery=JSON.parse(localStorage.getItem('cvs_gallery')||'[]');}catch(e){}
-const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
+const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
 document.addEventListener('DOMContentLoaded',()=>{updateGalleryCount();initPills();initSwatches();updateLatency();const goto=sessionStorage.getItem('gotoPanel');if(goto){sessionStorage.removeItem('gotoPanel');switchTool(goto);}else{const h=location.hash.replace('#','');if(h)switchTool(h);}});
 function updateLatency(){const el=document.getElementById('latencyVal');if(el){el.textContent=(Math.random()*0.04+0.01).toFixed(2)+'ms';}setTimeout(updateLatency,3000);}
 function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));const panel=document.getElementById('panel-'+id);const btn=document.getElementById('btn-'+id);if(panel)panel.classList.add('active');if(btn)btn.classList.add('active');const nodeEl=document.getElementById('activeNode');if(nodeEl&&nodeMap[id])nodeEl.textContent=nodeMap[id];if(id==='gallery')renderGallery();window.scrollTo({top:0,behavior:'smooth'});}
@@ -1238,6 +1338,34 @@ async function generateChangeSkinTan(){
   const level=getActivePill('st2-level');
   const prompt=`adjust the skin tone: ${level}, keep the same person, same outfit, same pose, same face, natural and realistic, high quality`;
   await runKontextEdit('st2',prompt,1024,1280,'st2','☀️ Adjust Skin Tone');
+}
+
+async function generateChangeBg(){
+  const custom=document.getElementById('cbg-custom').value.trim();
+  const scene=custom||getActivePill('cbg-scene');
+  const prompt=`change the background to: ${scene}, keep the same subject, same pose, same lighting on the subject, seamless and natural, high quality`;
+  await runKontextEdit('cbg',prompt,1024,1280,'cbg','🏞️ Change Background');
+}
+
+async function generateSkyChanger(){
+  const sky=getActivePill('sky-type');
+  const prompt=`replace the sky with: ${sky}, keep everything else in the photo the same, realistic lighting adjustment to match the new sky, high quality`;
+  await runKontextEdit('sky',prompt,1792,1024,'sky','🌅 Change Sky');
+}
+
+async function generateAddObject(){
+  const obj=document.getElementById('ao-prompt').value.trim();
+  if(!obj){toast('Describe what to add first');return;}
+  const placement=getActivePill('ao-placement');
+  const prompt=`add this to the photo: ${obj}, ${placement}, keep everything else in the original photo unchanged, seamless and realistic, high quality`;
+  await runKontextEdit('ao',prompt,1024,1024,'ao','➕ Add Object');
+}
+
+async function generateRemoveObject(){
+  const obj=document.getElementById('ro-prompt').value.trim();
+  if(!obj){toast('Describe what to remove first');return;}
+  const prompt=`remove this from the photo: ${obj}, fill in naturally with the surrounding background, keep everything else in the original photo unchanged, seamless and realistic, high quality`;
+  await runKontextEdit('ro',prompt,1024,1024,'ro','➖ Remove Object');
 }
 
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
