@@ -40,7 +40,7 @@ a{text-decoration:none;color:inherit;}
 .nl{padding:.32rem .65rem;border-radius:7px;font-size:.7rem;color:var(--ink2);transition:all .15s;white-space:nowrap;border:1px solid transparent;}
 .nl:hover{background:var(--gold2);border-color:var(--border);}
 .nl.active{background:linear-gradient(135deg,rgba(242,196,206,.15),var(--gold2));color:var(--ink);font-weight:500;border-color:var(--border);}
-.node-statusbar{background:linear-gradient(135deg,rgba(253,248,243,0.92),rgba(245,237,224,0.92));backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.42rem 1.25rem;display:flex;align-items:center;gap:1rem;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);overflow-x:auto;position:sticky;top:60px;z-index:190;}
+.node-statusbar{background:linear-gradient(135deg,rgba(253,248,243,0.92),rgba(245,237,224,0.92));backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.32rem 1rem;display:flex;align-items:center;gap:1rem;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);overflow-x:auto;position:sticky;top:60px;z-index:190;}
 .node-statusbar::-webkit-scrollbar{display:none;}
 .status-item{display:flex;align-items:center;gap:.3rem;white-space:nowrap;}
 .status-dot{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;flex-shrink:0;}
@@ -50,12 +50,12 @@ a{text-decoration:none;color:inherit;}
 .progress-bar{height:3px;background:rgba(212,175,110,0.12);border-radius:2px;overflow:hidden;margin:.3rem 0;}
 .progress-fill{height:100%;background:var(--progress-fill);border-radius:2px;box-shadow:0 0 6px rgba(212,175,110,.4);}
 .studio-layout{display:grid;grid-template-columns:200px 1fr;min-height:calc(100dvh - 88px);position:relative;z-index:1;}
-.sidebar{background:rgba(255,255,255,0.65);backdrop-filter:blur(18px);border-right:1px solid var(--border);padding:.75rem 0;position:sticky;top:88px;height:calc(100dvh - 88px);overflow-y:auto;}
+.sidebar{background:rgba(255,255,255,0.65);backdrop-filter:blur(18px);border-right:1px solid var(--border);padding:.5rem 0;position:sticky;top:88px;height:calc(100dvh - 88px);overflow-y:auto;}
 .sidebar::-webkit-scrollbar{width:3px;}
 .sidebar::-webkit-scrollbar-thumb{background:var(--border);}
-.sidebar-label{font-family:'DM Mono',monospace;font-size:.47rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:.55rem 1rem .25rem;display:flex;align-items:center;gap:.4rem;}
+.sidebar-label{font-family:'DM Mono',monospace;font-size:.47rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:.4rem 1rem .2rem;display:flex;align-items:center;gap:.4rem;}
 .sidebar-label::after{content:'';flex:1;height:1px;background:var(--border);}
-.tool-btn{display:flex;align-items:center;gap:.5rem;width:100%;padding:.5rem .9rem;border:none;background:transparent;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.73rem;color:var(--ink2);text-align:left;position:relative;transition:transform 75ms cubic-bezier(0.4,0,0.2,1),background 200ms ease;}
+.tool-btn{display:flex;align-items:center;gap:.45rem;width:100%;padding:.4rem .85rem;border:none;background:transparent;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.73rem;color:var(--ink2);text-align:left;position:relative;transition:transform 75ms cubic-bezier(0.4,0,0.2,1),background 200ms ease;}
 .tool-btn:active{transform:scale(0.98);}
 .tool-btn:hover{background:var(--gold2);}
 .tool-btn.active{background:linear-gradient(90deg,rgba(242,196,206,.2),var(--gold2));color:var(--ink);font-weight:500;border-right:2px solid var(--gold);}
@@ -63,26 +63,26 @@ a{text-decoration:none;color:inherit;}
 .tool-btn .ti{font-size:.9rem;width:18px;text-align:center;flex-shrink:0;}
 .tool-node{font-family:'DM Mono',monospace;font-size:.4rem;color:var(--muted);margin-left:auto;letter-spacing:.05em;opacity:.7;}
 .count-badge{font-family:'DM Mono',monospace;font-size:.44rem;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.1rem .35rem;border-radius:6px;margin-left:.35rem;}
-.main{padding:1.2rem;max-width:860px;}
+.main{padding:.85rem;max-width:860px;}
 .tool-panel{display:none;}
 .tool-panel.active{display:block;}
 .glass-panel{background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);box-shadow:var(--glass-shadow);border-radius:14px;transition:all 300ms ease-out;}
 .glass-panel:hover{box-shadow:0 8px 32px rgba(212,175,110,.15);}
-.panel-head{padding:1rem 1.2rem;margin-bottom:.9rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;}
+.panel-head{padding:.75rem .9rem;margin-bottom:.6rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;}
 .panel-head-left h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;margin-bottom:.2rem;line-height:1.2;}
 .panel-head-left p{font-size:.74rem;color:var(--muted);line-height:1.5;max-width:400px;}
 .node-badge{font-family:'DM Mono',monospace;font-size:.47rem;letter-spacing:.12em;text-transform:uppercase;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.22rem .55rem;border-radius:8px;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:.3rem;}
 .node-badge .nd{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;}
-.telemetry{display:flex;align-items:center;gap:.9rem;padding:.38rem .7rem;background:rgba(255,255,255,0.35);border:1px solid var(--border);border-radius:8px;margin-bottom:.65rem;font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.telemetry{display:flex;align-items:center;gap:.7rem;padding:.3rem .6rem;background:rgba(255,255,255,0.35);border:1px solid var(--border);border-radius:8px;margin-bottom:.45rem;font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
 .t-dot{width:4px;height:4px;border-radius:50%;background:var(--sage);animation:pulse-dot 2s infinite;flex-shrink:0;}
 .t-val{color:var(--gold);}
-.sys-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-bottom:.9rem;}
-.stat-cell{background:rgba(255,255,255,0.4);border:1px solid var(--border);border-radius:10px;padding:.6rem .7rem;text-align:center;}
+.sys-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.6rem;}
+.stat-cell{background:rgba(255,255,255,0.4);border:1px solid var(--border);border-radius:10px;padding:.45rem .6rem;text-align:center;}
 .stat-label{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem;}
 .stat-value{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);line-height:1;}
 .stat-unit{font-family:'DM Mono',monospace;font-size:.42rem;color:var(--muted);}
-.form-panel{padding:1.1rem;}
-.field{margin-bottom:.85rem;}
+.form-panel{padding:.85rem;}
+.field{margin-bottom:.6rem;}
 .field label{display:block;font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink2);margin-bottom:.3rem;}
 textarea,input[type=text],input[type=number],select{width:100%;border:1px solid var(--border);border-radius:10px;padding:.58rem .85rem;font-family:'Outfit',sans-serif;font-size:.82rem;color:var(--ink);background:rgba(250,246,240,0.8);outline:none;transition:border-color .15s,box-shadow .15s;}
 textarea{resize:vertical;min-height:82px;line-height:1.55;}
@@ -113,7 +113,7 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
 .gen-btn:disabled{opacity:.5;cursor:not-allowed;}
 .shimmer{border-radius:10px;aspect-ratio:1;background:linear-gradient(90deg,#f0e8e0 25%,#e8ddd5 50%,#f0e8e0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.result-area{margin-top:.9rem;display:none;}
+.result-area{margin-top:.6rem;display:none;}
 .result-area.show{display:block;}
 .result-imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.6rem;}
 .result-img-wrap{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--white);transition:all 300ms ease-out;}
@@ -137,7 +137,18 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
 .gact.del{background:rgba(200,80,80,.85);color:#fff;}
 .gallery-empty{text-align:center;padding:3rem 1rem;border:1px dashed var(--border);border-radius:14px;color:var(--muted);font-size:.78rem;}
 .gallery-empty .ge-icon{font-size:2.2rem;margin-bottom:.5rem;}
-.divider{border:none;border-top:1px solid var(--border);margin:.9rem 0;}
+.divider{border:none;border-top:1px solid var(--border);margin:.6rem 0;}
+.upload-zone{border:2px dashed var(--border);border-radius:12px;padding:1.4rem;text-align:center;cursor:pointer;transition:all .18s;background:rgba(255,255,255,0.5);}
+.upload-zone:hover{border-color:var(--gold);background:var(--gold2);}
+.upload-zone input{display:none;}
+.upload-zone .uz-icon{font-size:1.8rem;}
+.upload-zone p{font-size:.75rem;color:var(--muted);margin-top:.4rem;line-height:1.5;}
+.upload-preview{max-width:100%;max-height:180px;border-radius:10px;margin-top:.7rem;display:none;object-fit:cover;}
+.model-switch{display:flex;gap:.4rem;margin-top:.3rem;}
+.model-pill{flex:1;padding:.5rem .6rem;border-radius:10px;border:1px solid var(--border);background:var(--white);cursor:pointer;text-align:center;font-size:.68rem;color:var(--ink2);transition:transform 75ms cubic-bezier(0.4,0,0.2,1),background 200ms ease;}
+.model-pill:active{transform:scale(0.96);}
+.model-pill.active{background:linear-gradient(135deg,rgba(242,196,206,.25),var(--gold2));border-color:var(--gold);color:var(--ink);font-weight:500;}
+.model-pill .mp-eng{display:block;font-family:'DM Mono',monospace;font-size:.5rem;color:var(--muted);margin-top:.1rem;}
 .toast{position:fixed;bottom:1.2rem;right:1.2rem;background:var(--ink);color:var(--gold);font-family:'DM Mono',monospace;font-size:.62rem;padding:.45rem .85rem;border-radius:9px;border:1px solid var(--gold);z-index:9999;opacity:0;transition:opacity .28s;pointer-events:none;max-width:260px;}
 .toast.show{opacity:1;}
 @media(max-width:680px){
@@ -160,6 +171,7 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
   .size-row{grid-template-columns:1fr auto 1fr;}
 }
 </style>
+<script src="https://js.puter.com/v2/"></script>
 </head>
 <body>
 <div class="dot-grid"></div>
@@ -190,7 +202,7 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
   <span class="status-sep">·</span>
   <div class="status-item">Node: <span class="status-val" id="activeNode">IMG_01</span></div>
   <span class="status-sep">·</span>
-  <div class="status-item">Engine: <span class="status-val">Pollinations AI</span></div>
+  <div class="status-item">Engine: <span class="status-val">CreatorSphere AI</span></div>
   <span class="status-sep">·</span>
   <div class="status-item">Status: <span class="status-val">ONLINE</span></div>
   <span class="status-sep">·</span>
@@ -223,6 +235,17 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <div class="sidebar-label">Enhance</div>
     <button class="tool-btn" onclick="switchTool('upscale')" id="btn-upscale"><span class="ti">⬆️</span>Upscaler<span class="tool-node">IMG_18</span></button>
     <button class="tool-btn" onclick="switchTool('bgremove')" id="btn-bgremove"><span class="ti">✂️</span>BG Remover<span class="tool-node">IMG_19</span></button>
+    <button class="tool-btn" onclick="switchTool('img2img')" id="btn-img2img"><span class="ti">🖼️</span>Image to Image<span class="tool-node">IMG_23</span></button>
+    <button class="tool-btn" onclick="switchTool('doubleexp')" id="btn-doubleexp"><span class="ti">🌗</span>Double Exposure<span class="tool-node">IMG_24</span></button>
+    <div class="sidebar-label">People Editing</div>
+    <button class="tool-btn" onclick="switchTool('changepose')" id="btn-changepose"><span class="ti">🤸</span>Change Pose<span class="tool-node">IMG_25</span></button>
+    <button class="tool-btn" onclick="switchTool('changeoutfit')" id="btn-changeoutfit"><span class="ti">👕</span>Change Outfit<span class="tool-node">IMG_26</span></button>
+    <button class="tool-btn" onclick="switchTool('changehair')" id="btn-changehair"><span class="ti">💇</span>Change Hairstyle<span class="tool-node">IMG_27</span></button>
+    <button class="tool-btn" onclick="switchTool('changeage')" id="btn-changeage"><span class="ti">⏳</span>Change Age<span class="tool-node">IMG_28</span></button>
+    <button class="tool-btn" onclick="switchTool('removebgpeople')" id="btn-removebgpeople"><span class="ti">🧍</span>Remove BG (People)<span class="tool-node">IMG_29</span></button>
+    <button class="tool-btn" onclick="switchTool('changeexpression')" id="btn-changeexpression"><span class="ti">😊</span>Change Expression<span class="tool-node">IMG_30</span></button>
+    <button class="tool-btn" onclick="switchTool('addaccessories')" id="btn-addaccessories"><span class="ti">💍</span>Add Accessories<span class="tool-node">IMG_31</span></button>
+    <button class="tool-btn" onclick="switchTool('changeskintan')" id="btn-changeskintan"><span class="ti">☀️</span>Change Skin Tan<span class="tool-node">IMG_32</span></button>
     <button class="tool-btn" onclick="switchTool('faceswap')" id="btn-faceswap"><span class="ti">🔄</span>Face Swap<span class="tool-node">IMG_20</span></button>
     <button class="tool-btn" onclick="switchTool('watermark')" id="btn-watermark"><span class="ti">🔏</span>Add Watermark<span class="tool-node">IMG_21</span></button>
     <button class="tool-btn" onclick="switchTool('rmwatermark')" id="btn-rmwatermark"><span class="ti">🧹</span>Remove Watermark<span class="tool-node">IMG_22</span></button>
@@ -243,6 +266,12 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
         <div class="stat-cell glass-panel"><div class="stat-label">Uptime</div><div class="stat-value">99.9</div><div class="stat-unit">% STABLE</div></div>
       </div>
       <div class="glass-panel form-panel">
+        <div class="field"><label>AI Model</label>
+          <div class="model-switch" id="ig-model">
+            <div class="model-pill active" data-val="pollinations" onclick="setModel(this,'ig')">🌸 Standard<span class="mp-eng">Fast · Free</span></div>
+            <div class="model-pill" data-val="puter" onclick="setModel(this,'ig')">✨ Studio Pro<span class="mp-eng">High Quality · Free</span></div>
+          </div>
+        </div>
         <div class="field"><label>Describe your image</label><textarea id="ig-prompt" placeholder="e.g. A calm Black woman journaling at a café window, golden hour light, watercolor style, soft blush tones…" rows="4"></textarea></div>
         <div class="field"><label>Style</label>
           <div class="style-pills" id="ig-styles">
@@ -376,6 +405,12 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <div class="tool-panel" id="panel-fashion">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>👗 Fashion Designer</h2><p>Design outfits, lookbooks, virtual try-on scenes, and clothing concepts.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_07</div></div>
       <div class="glass-panel form-panel">
+        <div class="field"><label>AI Model</label>
+          <div class="model-switch" id="fa-model">
+            <div class="model-pill active" data-val="pollinations" onclick="setModel(this,'fa')">🌸 Standard<span class="mp-eng">Fast · Free</span></div>
+            <div class="model-pill" data-val="puter" onclick="setModel(this,'fa')">✨ Studio Pro<span class="mp-eng">High Quality · Free</span></div>
+          </div>
+        </div>
         <div class="field"><label>Describe the outfit or fashion concept</label><textarea id="fa-prompt" placeholder="e.g. A Black woman wearing an elegant cream linen set with gold accessories, editorial fashion shoot…" rows="3"></textarea></div>
         <div class="field"><label>Fashion Style</label><div class="style-pills" id="fa-styles"><span class="pill active" data-val="editorial fashion photography">Editorial</span><span class="pill" data-val="streetwear fashion">Streetwear</span><span class="pill" data-val="bohemian style fashion">Boho</span><span class="pill" data-val="luxury couture fashion">Luxury Couture</span><span class="pill" data-val="business professional fashion">Business</span><span class="pill" data-val="casual everyday fashion">Casual</span><span class="pill" data-val="fashion illustration flat lay">Flat Lay</span><span class="pill" data-val="virtual try-on model fashion photography">Virtual Try-On</span><span class="pill" data-val="African traditional fashion editorial">African Traditional</span></div></div>
         <div class="field"><label>Color Palette</label>
@@ -432,6 +467,12 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <div class="tool-panel" id="panel-logo">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>✦ Logo Creator</h2><p>Generate logo concepts for your brand — download and refine in Canva.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_10</div></div>
       <div class="glass-panel form-panel">
+        <div class="field"><label>AI Model</label>
+          <div class="model-switch" id="lo-model">
+            <div class="model-pill active" data-val="pollinations" onclick="setModel(this,'lo')">🌸 Standard<span class="mp-eng">Fast · Free</span></div>
+            <div class="model-pill" data-val="puter" onclick="setModel(this,'lo')">✨ Studio Pro<span class="mp-eng">High Quality · Free</span></div>
+          </div>
+        </div>
         <div class="field"><label>Brand name</label><input type="text" id="lo-name" placeholder="e.g. ZenSereniTee, Lumina Beauty, The Calm Co…"></div>
         <div class="field"><label>What does your brand do?</label><input type="text" id="lo-desc" placeholder="e.g. Mindfulness digital products for women entrepreneurs"></div>
         <div class="field"><label>Logo Style</label><div class="style-pills" id="lo-styles"><span class="pill active" data-val="minimalist modern logo design">Minimalist</span><span class="pill" data-val="elegant luxury logo design">Elegant Luxury</span><span class="pill" data-val="bold geometric logo design">Bold Geometric</span><span class="pill" data-val="vintage retro logo design">Vintage / Retro</span><span class="pill" data-val="handwritten script logo design">Script / Handwritten</span><span class="pill" data-val="monogram letter logo design">Monogram</span><span class="pill" data-val="abstract symbol logo design">Abstract Symbol</span><span class="pill" data-val="botanical nature logo design">Botanical</span></div></div>
@@ -457,6 +498,12 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <div class="tool-panel" id="panel-quote">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>💬 Quote Graphics</h2><p>Generate beautiful quote images for social media, digital products, and content.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_11</div></div>
       <div class="glass-panel form-panel">
+        <div class="field"><label>AI Model</label>
+          <div class="model-switch" id="qg-model">
+            <div class="model-pill active" data-val="pollinations" onclick="setModel(this,'qg')">🌸 Standard<span class="mp-eng">Fast · Free</span></div>
+            <div class="model-pill" data-val="puter" onclick="setModel(this,'qg')">✨ Studio Pro<span class="mp-eng">High Quality · Free</span></div>
+          </div>
+        </div>
         <div class="field"><label>Your quote or affirmation</label><textarea id="qg-quote" placeholder="e.g. She believed she could so she did. Be patient, be intentional, be profitable." rows="3"></textarea></div>
         <div class="field"><label>Background Style</label><div class="style-pills" id="qg-bg"><span class="pill active" data-val="soft watercolor background with flowers">Floral Watercolor</span><span class="pill" data-val="minimal clean gradient background">Clean Gradient</span><span class="pill" data-val="dark moody background with gold accents">Dark & Gold</span><span class="pill" data-val="boho abstract background">Boho Abstract</span><span class="pill" data-val="marble texture background">Marble</span><span class="pill" data-val="celestial stars and moon background">Celestial</span><span class="pill" data-val="tropical leaves background">Tropical</span></div></div>
         <div class="field"><label>Text Style</label><div class="style-pills" id="qg-text"><span class="pill active" data-val="elegant serif typography">Elegant Serif</span><span class="pill" data-val="bold modern sans-serif typography">Bold Modern</span><span class="pill" data-val="handwritten script typography">Handwritten Script</span><span class="pill" data-val="minimalist clean typography">Minimalist</span></div></div>
@@ -601,6 +648,297 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
       <div class="result-area" id="fs-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_20</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="fs-imgs" style="margin-top:.6rem;"></div></div>
     </div>
 
+    <!-- IMAGE TO IMAGE -->
+    <div class="tool-panel" id="panel-img2img">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🖼️ Image to Image</h2><p>Upload a photo and transform it with AI — restyle, recolor, or reimagine it completely.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_23</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field">
+          <label>Upload your photo</label>
+          <div class="upload-zone" id="i2i-dropzone" onclick="document.getElementById('i2i-file').click()">
+            <input type="file" id="i2i-file" accept="image/*" onchange="handleUpload(this,'i2i')">
+            <div class="uz-icon">📤</div>
+            <p>Tap to upload a photo<br><span style="font-size:.68rem;">JPG or PNG, up to 10MB</span></p>
+            <img id="i2i-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Describe the transformation</label><textarea id="i2i-prompt" placeholder="e.g. Turn this into a soft watercolor painting with blush and gold tones…" rows="3"></textarea></div>
+        <div class="field"><label>Transformation Style</label>
+          <div class="style-pills" id="i2i-styles">
+            <span class="pill active" data-val="watercolor painting style">Watercolor</span>
+            <span class="pill" data-val="oil painting style">Oil Painting</span>
+            <span class="pill" data-val="anime illustration style">Anime</span>
+            <span class="pill" data-val="cartoon illustration style">Cartoon</span>
+            <span class="pill" data-val="pencil sketch style">Sketch</span>
+            <span class="pill" data-val="vintage retro film photo style">Vintage Film</span>
+            <span class="pill" data-val="cyberpunk neon digital art style">Cyberpunk</span>
+            <span class="pill" data-val="fantasy art style">Fantasy</span>
+            <span class="pill" data-val="black and white fine art photography">B&W Fine Art</span>
+          </div>
+        </div>
+        <div class="field"><label>Strength</label>
+          <div class="style-pills" id="i2i-strength">
+            <span class="pill" data-val="subtle, light touch transformation, preserve most original details">Subtle</span>
+            <span class="pill active" data-val="balanced transformation, moderate stylization">Balanced</span>
+            <span class="pill" data-val="dramatic, bold reimagining, heavy stylization">Dramatic</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="i2i-btn" onclick="generateImg2Img()">🖼️ Transform Image</button>
+      </div>
+      <div class="result-area" id="i2i-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_23</span></span><span>·</span><span>Powered by CreatorSphere AI</span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="i2i-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- DOUBLE EXPOSURE -->
+    <div class="tool-panel" id="panel-doubleexp">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🌗 Double Exposure</h2><p>Blend a portrait with a second scene for a layered, artistic double-exposure effect.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_24</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field">
+          <label>Upload your portrait photo</label>
+          <div class="upload-zone" id="de-dropzone" onclick="document.getElementById('de-file').click()">
+            <input type="file" id="de-file" accept="image/*" onchange="handleUpload(this,'de')">
+            <div class="uz-icon">🧍</div>
+            <p>Tap to upload a portrait<br><span style="font-size:.68rem;">Side profile or silhouette works best</span></p>
+            <img id="de-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Blend with this scene</label>
+          <div class="style-pills" id="de-scene">
+            <span class="pill active" data-val="dense forest with tall trees and sunlight filtering through">Forest</span>
+            <span class="pill" data-val="city skyline at night with lights">City Skyline</span>
+            <span class="pill" data-val="ocean waves and seascape">Ocean</span>
+            <span class="pill" data-val="galaxy and stars in deep space">Galaxy / Space</span>
+            <span class="pill" data-val="mountain range at sunset">Mountains</span>
+            <span class="pill" data-val="blooming flowers and botanical garden">Florals</span>
+            <span class="pill" data-val="desert dunes at golden hour">Desert</span>
+          </div>
+        </div>
+        <div class="field"><label>Or describe a custom scene</label><textarea id="de-custom" placeholder="Leave blank to use the scene selected above, or describe your own…" rows="2"></textarea></div>
+        <div class="field"><label>Color Tone</label>
+          <div class="style-pills" id="de-tone">
+            <span class="pill active" data-val="black and white monochrome">Black & White</span>
+            <span class="pill" data-val="warm sepia tones">Sepia</span>
+            <span class="pill" data-val="cool blue tones">Cool Blue</span>
+            <span class="pill" data-val="full vibrant color">Vibrant Color</span>
+            <span class="pill" data-val="gold and blush tones">Gold & Blush</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="de-btn" onclick="generateDoubleExposure()">🌗 Create Double Exposure</button>
+      </div>
+      <div class="result-area" id="de-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_24</span></span><span>·</span><span>Powered by CreatorSphere AI</span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="de-imgs" style="margin-top:.6rem;"></div>
+    </div>
+
+    <!-- CHANGE POSE -->
+    <div class="tool-panel" id="panel-changepose">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🤸 Change Pose</h2><p>Upload a photo and describe a new pose — AI regenerates the subject in a different stance.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_25</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="cp-dropzone" onclick="document.getElementById('cp-file').click()">
+            <input type="file" id="cp-file" accept="image/*" onchange="handleUpload(this,'cp')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="cp-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>New pose</label>
+          <div class="style-pills" id="cp-pose">
+            <span class="pill active" data-val="standing confidently, hands on hips">Confident Stand</span>
+            <span class="pill" data-val="walking pose, mid-stride">Walking</span>
+            <span class="pill" data-val="sitting relaxed pose">Sitting</span>
+            <span class="pill" data-val="dynamic action pose, dramatic movement">Dynamic Action</span>
+            <span class="pill" data-val="leaning casually against a wall">Leaning</span>
+            <span class="pill" data-val="arms crossed, powerful stance">Arms Crossed</span>
+          </div>
+        </div>
+        <div class="field"><label>Or describe a custom pose</label><textarea id="cp-custom" placeholder="Leave blank to use the pose above, or describe your own…" rows="2"></textarea></div>
+        <hr class="divider"><button class="gen-btn" id="cp-btn" onclick="generateChangePose()">🤸 Change Pose</button>
+      </div>
+      <div class="result-area" id="cp-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_25</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="cp-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- CHANGE OUTFIT -->
+    <div class="tool-panel" id="panel-changeoutfit">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>👕 Change Outfit</h2><p>Upload a photo and describe a new outfit — perfect for trying styles before a shoot.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_26</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="co-dropzone" onclick="document.getElementById('co-file').click()">
+            <input type="file" id="co-file" accept="image/*" onchange="handleUpload(this,'co')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="co-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>New outfit</label>
+          <div class="style-pills" id="co-outfit">
+            <span class="pill active" data-val="elegant business professional outfit">Business Professional</span>
+            <span class="pill" data-val="casual chic everyday outfit">Casual Chic</span>
+            <span class="pill" data-val="elegant evening gown">Evening Gown</span>
+            <span class="pill" data-val="bohemian flowy outfit">Boho</span>
+            <span class="pill" data-val="streetwear urban outfit">Streetwear</span>
+            <span class="pill" data-val="athletic activewear outfit">Activewear</span>
+          </div>
+        </div>
+        <div class="field"><label>Or describe a custom outfit</label><textarea id="co-custom" placeholder="e.g. A cream linen wrap dress with gold jewelry…" rows="2"></textarea></div>
+        <hr class="divider"><button class="gen-btn" id="co-btn" onclick="generateChangeOutfit()">👕 Change Outfit</button>
+      </div>
+      <div class="result-area" id="co-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_26</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="co-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- CHANGE HAIRSTYLE -->
+    <div class="tool-panel" id="panel-changehair">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>💇 Change Hairstyle</h2><p>Upload a photo and try a new hairstyle or color before committing in real life.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_27</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="ch-dropzone" onclick="document.getElementById('ch-file').click()">
+            <input type="file" id="ch-file" accept="image/*" onchange="handleUpload(this,'ch')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="ch-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>New hairstyle</label>
+          <div class="style-pills" id="ch-style">
+            <span class="pill active" data-val="long natural curls">Long Natural Curls</span>
+            <span class="pill" data-val="short pixie cut">Pixie Cut</span>
+            <span class="pill" data-val="braids, box braids">Box Braids</span>
+            <span class="pill" data-val="sleek straight bob">Sleek Bob</span>
+            <span class="pill" data-val="natural afro">Natural Afro</span>
+            <span class="pill" data-val="long locs">Locs</span>
+          </div>
+        </div>
+        <div class="field"><label>Hair Color</label>
+          <div class="style-pills" id="ch-color">
+            <span class="pill active" data-val="">Keep Current Color</span>
+            <span class="pill" data-val="jet black hair color">Jet Black</span>
+            <span class="pill" data-val="warm brown hair color">Warm Brown</span>
+            <span class="pill" data-val="honey blonde hair color">Honey Blonde</span>
+            <span class="pill" data-val="auburn red hair color">Auburn Red</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="ch-btn" onclick="generateChangeHair()">💇 Change Hairstyle</button>
+      </div>
+      <div class="result-area" id="ch-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_27</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="ch-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- CHANGE AGE -->
+    <div class="tool-panel" id="panel-changeage">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>⏳ Change Age</h2><p>Upload a photo and see a younger or older version — fun for content or curiosity.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_28</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="ca-dropzone" onclick="document.getElementById('ca-file').click()">
+            <input type="file" id="ca-file" accept="image/*" onchange="handleUpload(this,'ca')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="ca-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Age direction</label>
+          <div class="style-pills" id="ca-dir">
+            <span class="pill active" data-val="appearing 10 years younger, smoother skin, youthful">Younger</span>
+            <span class="pill" data-val="appearing 20 years older, aged skin, gray hair">Older</span>
+            <span class="pill" data-val="appearing as a child, youthful innocent features">As a Child</span>
+            <span class="pill" data-val="appearing elderly, wise and aged">Elderly</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="ca-btn" onclick="generateChangeAge()">⏳ Change Age</button>
+      </div>
+      <div class="result-area" id="ca-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_28</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="ca-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- REMOVE BACKGROUND PEOPLE -->
+    <div class="tool-panel" id="panel-removebgpeople">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🧍 Remove Background People</h2><p>Upload a group photo and keep only the main subject — extra people removed cleanly.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_29</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="rb-dropzone" onclick="document.getElementById('rb-file').click()">
+            <input type="file" id="rb-file" accept="image/*" onchange="handleUpload(this,'rb')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo with multiple people</p>
+            <img id="rb-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>New background</label>
+          <div class="style-pills" id="rb-bg">
+            <span class="pill active" data-val="keep the original background, only remove other people">Keep Original BG</span>
+            <span class="pill" data-val="replace with a clean studio background">Clean Studio</span>
+            <span class="pill" data-val="replace with a soft blurred bokeh background">Blurred Bokeh</span>
+            <span class="pill" data-val="replace with a solid white background">Solid White</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="rb-btn" onclick="generateRemoveBgPeople()">🧍 Remove Other People</button>
+      </div>
+      <div class="result-area" id="rb-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_29</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="rb-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- CHANGE EXPRESSION -->
+    <div class="tool-panel" id="panel-changeexpression">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>😊 Change Expression</h2><p>Upload a photo and change the facial expression — perfect for fixing an awkward shot.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_30</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="ce-dropzone" onclick="document.getElementById('ce-file').click()">
+            <input type="file" id="ce-file" accept="image/*" onchange="handleUpload(this,'ce')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="ce-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>New expression</label>
+          <div class="style-pills" id="ce-expr">
+            <span class="pill active" data-val="warm genuine smile, happy expression">Warm Smile</span>
+            <span class="pill" data-val="confident serious expression">Confident / Serious</span>
+            <span class="pill" data-val="joyful laughing expression">Laughing</span>
+            <span class="pill" data-val="calm peaceful serene expression">Calm & Serene</span>
+            <span class="pill" data-val="surprised expression">Surprised</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="ce-btn" onclick="generateChangeExpression()">😊 Change Expression</button>
+      </div>
+      <div class="result-area" id="ce-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_30</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="ce-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- ADD ACCESSORIES -->
+    <div class="tool-panel" id="panel-addaccessories">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>💍 Add Accessories</h2><p>Upload a photo and add jewelry, glasses, hats, or other accessories.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_31</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="aa-dropzone" onclick="document.getElementById('aa-file').click()">
+            <input type="file" id="aa-file" accept="image/*" onchange="handleUpload(this,'aa')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="aa-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Accessory to add</label>
+          <div class="style-pills" id="aa-type">
+            <span class="pill active" data-val="elegant gold jewelry, necklace and earrings">Gold Jewelry</span>
+            <span class="pill" data-val="stylish sunglasses">Sunglasses</span>
+            <span class="pill" data-val="elegant hat">Hat</span>
+            <span class="pill" data-val="designer handbag">Handbag</span>
+            <span class="pill" data-val="statement earrings">Statement Earrings</span>
+            <span class="pill" data-val="scarf elegantly draped">Scarf</span>
+          </div>
+        </div>
+        <div class="field"><label>Or describe a custom accessory</label><textarea id="aa-custom" placeholder="e.g. A delicate gold chain necklace with a pearl pendant…" rows="2"></textarea></div>
+        <hr class="divider"><button class="gen-btn" id="aa-btn" onclick="generateAddAccessories()">💍 Add Accessories</button>
+      </div>
+      <div class="result-area" id="aa-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_31</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="aa-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- CHANGE SKIN TAN -->
+    <div class="tool-panel" id="panel-changeskintan">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>☀️ Change Skin Tan</h2><p>Upload a photo and adjust the skin tone — subtle and natural-looking results.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_32</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="st2-dropzone" onclick="document.getElementById('st2-file').click()">
+            <input type="file" id="st2-file" accept="image/*" onchange="handleUpload(this,'st2')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="st2-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Tan level</label>
+          <div class="style-pills" id="st2-level">
+            <span class="pill active" data-val="slightly deeper, sun-kissed skin tone">Sun-Kissed</span>
+            <span class="pill" data-val="noticeably deeper, bronzed skin tone">Bronzed</span>
+            <span class="pill" data-val="lighter, fairer skin tone">Lighter</span>
+            <span class="pill" data-val="natural even skin tone, no change in shade, just smoother">Even Out Only</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="st2-btn" onclick="generateChangeSkinTan()">☀️ Adjust Skin Tone</button>
+      </div>
+      <div class="result-area" id="st2-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_32</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="st2-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
     <!-- ADD WATERMARK -->
     <div class="tool-panel" id="panel-watermark">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🔏 Add Watermark</h2><p>Generate an image with your brand watermark built in — protect your work.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_21</div></div>
@@ -641,10 +979,12 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
 </div>
 <script>
 const ratios={ig:{w:1024,h:1024},wa:{w:1024,h:1280},rw:{w:1024,h:1024}};
+const activeModel={ig:'pollinations',lo:'pollinations',qg:'pollinations',fa:'pollinations'};
+const uploadedImages={};
 let genCount=0;
 let gallery=[];
 try{gallery=JSON.parse(localStorage.getItem('cvs_gallery')||'[]');}catch(e){}
-const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
+const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
 document.addEventListener('DOMContentLoaded',()=>{updateGalleryCount();initPills();initSwatches();updateLatency();const goto=sessionStorage.getItem('gotoPanel');if(goto){sessionStorage.removeItem('gotoPanel');switchTool(goto);}else{const h=location.hash.replace('#','');if(h)switchTool(h);}});
 function updateLatency(){const el=document.getElementById('latencyVal');if(el){el.textContent=(Math.random()*0.04+0.01).toFixed(2)+'ms';}setTimeout(updateLatency,3000);}
 function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));const panel=document.getElementById('panel-'+id);const btn=document.getElementById('btn-'+id);if(panel)panel.classList.add('active');if(btn)btn.classList.add('active');const nodeEl=document.getElementById('activeNode');if(nodeEl&&nodeMap[id])nodeEl.textContent=nodeMap[id];if(id==='gallery')renderGallery();window.scrollTo({top:0,behavior:'smooth'});}
@@ -654,25 +994,73 @@ function initSwatches(){document.querySelectorAll('.swatch-row').forEach(row=>{r
 function getActiveSwatch(id){return document.getElementById(id)?.querySelector('.swatch.active')?.dataset.val||'';}
 function setRatio(btn,key){btn.closest('.ratio-grid').querySelectorAll('.ratio-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(ratios[key]){ratios[key].w=parseInt(btn.dataset.w);ratios[key].h=parseInt(btn.dataset.h);const wEl=document.getElementById(key+'-w');const hEl=document.getElementById(key+'-h');if(wEl)wEl.value=btn.dataset.w;if(hEl)hEl.value=btn.dataset.h;}}
 function applyCustomSize(key){const w=parseInt(document.getElementById(key+'-w').value)||1024;const h=parseInt(document.getElementById(key+'-h').value)||1024;const cw=Math.min(Math.max(w,256),1792);const ch=Math.min(Math.max(h,256),1792);if(ratios[key]){ratios[key].w=cw;ratios[key].h=ch;}document.querySelectorAll('#panel-'+key+' .ratio-btn').forEach(b=>b.classList.remove('active'));toast(`Custom size: ${cw}×${ch}px ✓`);}
-async function fetchImage(prompt,w,h){const seed=Math.floor(Math.random()*99999);const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=${w}&height=${h}&seed=${seed}&nologo=true&enhance=true`;const res=await fetch(url);const blob=await res.blob();return URL.createObjectURL(blob);}
-async function generateBatch(prompts,imgsEl,resultEl,btnId,label){const btn=document.getElementById(btnId);btn.disabled=true;btn.textContent='⏳ Generating…';resultEl.classList.add('show');imgsEl.innerHTML='';prompts.forEach(()=>{const s=document.createElement('div');s.className='shimmer';imgsEl.appendChild(s);});const t0=Date.now();const results=await Promise.allSettled(prompts.map(p=>fetchImage(p.prompt,p.w,p.h)));const ms=Date.now()-t0;const lv=document.getElementById('latencyVal');if(lv)lv.textContent=(ms/1000).toFixed(2)+'s';imgsEl.innerHTML='';results.forEach((r,i)=>{if(r.status==='fulfilled')addImageResult(imgsEl,r.value,prompts[i].prompt);else{const e=document.createElement('div');e.className='shimmer';e.style.cssText='display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);aspect-ratio:1;';e.textContent='Failed — try again';imgsEl.appendChild(e);}});genCount+=prompts.length;const gc=document.getElementById('genCount');if(gc)gc.textContent=genCount;btn.disabled=false;btn.textContent=label;}
+async function fetchImagePollinations(prompt,w,h){const seed=Math.floor(Math.random()*99999);const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=${w}&height=${h}&seed=${seed}&nologo=true&enhance=true`;const res=await fetch(url);const blob=await res.blob();return URL.createObjectURL(blob);}
+async function fetchImagePuter(prompt,w,h){
+  if(typeof puter==='undefined'){toast('Switching to Standard engine…');return fetchImagePollinations(prompt,w,h);}
+  const imgEl=await puter.ai.txt2img(prompt,{model:'flux'});
+  return imgEl.src;
+}
+async function fetchImage(prompt,w,h,modelKey){
+  const model=modelKey?activeModel[modelKey]:'pollinations';
+  if(model==='puter'){
+    try{return await fetchImagePuter(prompt,w,h);}
+    catch(e){console.error('Puter failed, falling back:',e);return fetchImagePollinations(prompt,w,h);}
+  }
+  return fetchImagePollinations(prompt,w,h);
+}
+function setModel(el,toolKey){
+  el.closest('.model-switch').querySelectorAll('.model-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  activeModel[toolKey]=el.dataset.val;
+  toast(el.dataset.val==='puter' ? 'Switched to ✨ Studio Pro' : 'Switched to 🌸 Standard');
+}
+function handleUpload(input,key){
+  const file=input.files[0];
+  if(!file)return;
+  if(file.size>10*1024*1024){toast('Image too large — please use under 10MB');return;}
+  const reader=new FileReader();
+  reader.onload=(e)=>{
+    uploadedImages[key]=e.target.result;
+    const preview=document.getElementById(key+'-preview');
+    if(preview){preview.src=e.target.result;preview.style.display='block';}
+    const zone=document.getElementById(key+'-dropzone');
+    if(zone){
+      const icon=zone.querySelector('.uz-icon');
+      const txt=zone.querySelector('p');
+      if(icon)icon.textContent='✅';
+      if(txt)txt.innerHTML='Photo uploaded — tap to change';
+    }
+  };
+  reader.readAsDataURL(file);
+}
+async function uploadToTempHost(dataUrl){
+  // Convert dataURL to blob and upload to a temporary image host so Pollinations kontext can fetch it by URL
+  const res=await fetch(dataUrl);
+  const blob=await res.blob();
+  const form=new FormData();
+  form.append('image',blob,'upload.png');
+  const upRes=await fetch('https://0x0.st',{method:'POST',body:form});
+  if(!upRes.ok)throw new Error('Upload failed');
+  return (await upRes.text()).trim();
+}
+async function generateBatch(prompts,imgsEl,resultEl,btnId,label,modelKey){const btn=document.getElementById(btnId);btn.disabled=true;btn.textContent='⏳ Generating…';resultEl.classList.add('show');imgsEl.innerHTML='';prompts.forEach(()=>{const s=document.createElement('div');s.className='shimmer';imgsEl.appendChild(s);});const t0=Date.now();const results=await Promise.allSettled(prompts.map(p=>fetchImage(p.prompt,p.w,p.h,modelKey)));const ms=Date.now()-t0;const lv=document.getElementById('latencyVal');if(lv)lv.textContent=(ms/1000).toFixed(2)+'s';imgsEl.innerHTML='';results.forEach((r,i)=>{if(r.status==='fulfilled')addImageResult(imgsEl,r.value,prompts[i].prompt);else{const e=document.createElement('div');e.className='shimmer';e.style.cssText='display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);aspect-ratio:1;';e.textContent='Failed — try again';imgsEl.appendChild(e);}});genCount+=prompts.length;const gc=document.getElementById('genCount');if(gc)gc.textContent=genCount;btn.disabled=false;btn.textContent=label;}
 function addImageResult(container,blobUrl,prompt){const wrap=document.createElement('div');wrap.className='result-img-wrap';const img=document.createElement('img');img.src=blobUrl;img.alt=prompt;img.loading='lazy';const actions=document.createElement('div');actions.className='img-actions';const dlBtn=document.createElement('button');dlBtn.className='img-act-btn dl';dlBtn.textContent='⬇️';dlBtn.onclick=()=>downloadImage(blobUrl);const saveBtn=document.createElement('button');saveBtn.className='img-act-btn save';saveBtn.textContent='💾 Save';saveBtn.onclick=()=>saveImage(blobUrl,prompt,saveBtn);actions.appendChild(dlBtn);actions.appendChild(saveBtn);wrap.appendChild(img);wrap.appendChild(actions);container.appendChild(wrap);}
 function saveImage(blobUrl,prompt,btn){const id=Date.now()+Math.random();gallery.unshift({id,url:blobUrl,prompt,date:new Date().toLocaleDateString()});if(gallery.length>100)gallery.pop();const img=new Image();img.onload=()=>{const c=document.createElement('canvas');c.width=img.width;c.height=img.height;c.getContext('2d').drawImage(img,0,0);const dataUrl=c.toDataURL('image/png');const idx=gallery.findIndex(g=>g.id===id);if(idx!==-1){gallery[idx].dataUrl=dataUrl;persistGallery();}};img.onerror=persistGallery;img.src=blobUrl;downloadImage(blobUrl);btn.textContent='✅ Saved!';btn.style.background='var(--sage)';setTimeout(()=>{btn.textContent='💾 Save';btn.style.background='';},2200);updateGalleryCount();toast('Saved to gallery + downloading 🪷');}
 function downloadImage(blobUrl){const a=document.createElement('a');a.href=blobUrl;a.download=`cre8ive-vib3s-${Date.now()}.png`;document.body.appendChild(a);a.click();document.body.removeChild(a);}
 function persistGallery(){try{const toSave=gallery.filter(g=>g.dataUrl).map(g=>({...g,url:g.dataUrl}));localStorage.setItem('cvs_gallery',JSON.stringify(toSave.slice(0,50)));}catch(e){}}
 function updateGalleryCount(){const n=gallery.length;document.getElementById('galleryCount').textContent=n;const gnc=document.getElementById('galleryNodeCount');if(gnc)gnc.textContent=n;}
 function renderGallery(){const grid=document.getElementById('gallery-grid');const empty=document.getElementById('gallery-empty');if(!gallery.length){grid.style.display='none';empty.style.display='';return;}grid.style.display='grid';empty.style.display='none';grid.innerHTML='';gallery.forEach((item,idx)=>{const wrap=document.createElement('div');wrap.className='gallery-item';const img=document.createElement('img');img.src=item.dataUrl||item.url;img.alt=item.prompt||'Saved image';const acts=document.createElement('div');acts.className='gallery-item-actions';const dl=document.createElement('button');dl.className='gact dl';dl.textContent='⬇️';dl.title='Download';dl.onclick=()=>downloadImage(item.dataUrl||item.url);const del=document.createElement('button');del.className='gact del';del.textContent='🗑️';del.title='Delete';del.onclick=()=>{gallery.splice(idx,1);persistGallery();updateGalleryCount();renderGallery();};acts.appendChild(dl);acts.appendChild(del);wrap.appendChild(img);wrap.appendChild(acts);grid.appendChild(wrap);});}
-async function generateImages(){const prompt=document.getElementById('ig-prompt').value.trim();if(!prompt){toast('Describe your image first');return;}const style=getActivePill('ig-styles'),mood=getActivePill('ig-mood'),quality=document.getElementById('ig-quality').value,count=parseInt(document.getElementById('ig-count').value);const{w,h}=ratios.ig;const full=[prompt,style,mood,quality].filter(Boolean).join(', ');await generateBatch(Array.from({length:count},()=>({prompt:full,w,h})),document.getElementById('ig-imgs'),document.getElementById('ig-result'),'ig-btn','✨ Generate Images');}
+async function generateImages(){const prompt=document.getElementById('ig-prompt').value.trim();if(!prompt){toast('Describe your image first');return;}const style=getActivePill('ig-styles'),mood=getActivePill('ig-mood'),quality=document.getElementById('ig-quality').value,count=parseInt(document.getElementById('ig-count').value);const{w,h}=ratios.ig;const full=[prompt,style,mood,quality].filter(Boolean).join(', ');await generateBatch(Array.from({length:count},()=>({prompt:full,w,h})),document.getElementById('ig-imgs'),document.getElementById('ig-result'),'ig-btn','✨ Generate Images','ig');}
 async function generateColoring(){const prompt=document.getElementById('cb-prompt').value.trim();if(!prompt){toast('Describe what the page should show');return;}const theme=getActivePill('cb-themes'),complexity=document.getElementById('cb-complexity').value,count=parseInt(document.getElementById('cb-count').value);const full=`black and white coloring book page, ${prompt}, ${theme} theme, ${complexity}, clean outlines, no color fills, white background, printable`;await generateBatch(Array.from({length:count},()=>({prompt:full,w:1024,h:1280})),document.getElementById('cb-imgs'),document.getElementById('cb-result'),'cb-btn','🖍️ Create Coloring Pages');}
 async function generateStickers(){const prompt=document.getElementById('st-prompt').value.trim();if(!prompt){toast('Describe your sticker first');return;}const style=getActivePill('st-styles'),bg=document.getElementById('st-bg').value,count=parseInt(document.getElementById('st-count').value);const full=`${prompt}, ${style}, ${bg}, high quality, vibrant, print ready`;await generateBatch(Array.from({length:count},()=>({prompt:full,w:1024,h:1024})),document.getElementById('st-imgs'),document.getElementById('st-result'),'st-btn','⭐ Create Stickers');}
 async function generateThumbnails(){const topic=document.getElementById('th-topic').value.trim();if(!topic){toast('Enter your content topic first');return;}const platform=getActivePill('th-platform'),mood=getActivePill('th-mood');const full=`${platform}, topic: "${topic}", ${mood} mood, eye-catching, professional`;await generateBatch([{prompt:full,w:1792,h:1024},{prompt:full+', alternate version',w:1792,h:1024}],document.getElementById('th-imgs'),document.getElementById('th-result'),'th-btn','🖼️ Create Thumbnails');}
 async function generateCartoon(){const prompt=document.getElementById('car-prompt').value.trim();if(!prompt){toast('Describe the person or character first');return;}const style=getActivePill('car-styles'),bg=document.getElementById('car-bg').value,count=parseInt(document.getElementById('car-count').value);const full=`${prompt}, ${style}, ${bg}, high quality illustration`;await generateBatch(Array.from({length:count},()=>({prompt:full,w:1024,h:1024})),document.getElementById('car-imgs'),document.getElementById('car-result'),'car-btn','🧑‍🎨 Create Cartoon');}
 async function generateSuperhero(){const prompt=document.getElementById('sh-prompt').value.trim();if(!prompt){toast('Describe your superhero first');return;}const style=getActivePill('sh-styles'),power=getActivePill('sh-powers');const full=`${prompt}, ${power}, ${style}, dynamic pose, heroic, high quality`;await generateBatch([{prompt:full,w:1024,h:1280},{prompt:full+', different pose',w:1024,h:1280}],document.getElementById('sh-imgs'),document.getElementById('sh-result'),'sh-btn','🦸 Create Superhero');}
-async function generateFashion(){const prompt=document.getElementById('fa-prompt').value.trim();if(!prompt){toast('Describe the outfit first');return;}const style=getActivePill('fa-styles'),color=getActiveSwatch('fa-colors');const full=`${prompt}, ${style}, ${color}, high quality fashion photography, professional`;await generateBatch([{prompt:full,w:1024,h:1280},{prompt:full+', alternate angle',w:1024,h:1280}],document.getElementById('fa-imgs'),document.getElementById('fa-result'),'fa-btn','👗 Design Outfit');}
+async function generateFashion(){const prompt=document.getElementById('fa-prompt').value.trim();if(!prompt){toast('Describe the outfit first');return;}const style=getActivePill('fa-styles'),color=getActiveSwatch('fa-colors');const full=`${prompt}, ${style}, ${color}, high quality fashion photography, professional`;await generateBatch([{prompt:full,w:1024,h:1280},{prompt:full+', alternate angle',w:1024,h:1280}],document.getElementById('fa-imgs'),document.getElementById('fa-result'),'fa-btn','👗 Design Outfit','fa');}
 async function generateWallArt(){const prompt=document.getElementById('wa-prompt').value.trim();if(!prompt){toast('Describe your wall art first');return;}const style=getActivePill('wa-styles'),{w,h}=ratios.wa;const full=`${prompt}, ${style}, printable art, high resolution, professional quality`;await generateBatch([{prompt:full,w,h},{prompt:full+', alternate design',w,h}],document.getElementById('wa-imgs'),document.getElementById('wa-result'),'wa-btn','🖼️ Create Wall Art');}
 async function generateMockup(){const product=document.getElementById('mk-product').value.trim();if(!product){toast('Enter your product name first');return;}const scene=document.getElementById('mk-scene').value.trim(),style=getActivePill('mk-styles');const full=`${product} product photo, ${scene}, ${style}, commercial photography, professional, high quality`;await generateBatch([{prompt:full,w:1024,h:1024},{prompt:full+', different angle',w:1024,h:1024}],document.getElementById('mk-imgs'),document.getElementById('mk-result'),'mk-btn','🛍️ Create Mockup');}
-async function generateLogo(){const name=document.getElementById('lo-name').value.trim(),desc=document.getElementById('lo-desc').value.trim();if(!name){toast('Enter your brand name first');return;}const style=getActivePill('lo-styles'),color=getActiveSwatch('lo-colors'),bg=getActivePill('lo-bg');const full=`professional logo design for "${name}", ${desc}, ${style}, ${color} color palette, ${bg}, vector style, clean, high quality`;await generateBatch([{prompt:full,w:1024,h:1024},{prompt:full+', alternate concept',w:1024,h:1024},{prompt:full+', third concept',w:1024,h:1024}],document.getElementById('lo-imgs'),document.getElementById('lo-result'),'lo-btn','✦ Generate Logo Concepts');}
-async function generateQuote(){const quote=document.getElementById('qg-quote').value.trim();if(!quote){toast('Enter your quote first');return;}const bg=getActivePill('qg-bg'),text=getActivePill('qg-text'),format=getActivePill('qg-format');const dims=format.includes('story')?{w:1024,h:1792}:format.includes('horizontal')?{w:1792,h:1024}:{w:1024,h:1024};const full=`quote graphic with text "${quote}", ${bg}, ${text}, ${format}, beautiful typography, professional social media graphic`;await generateBatch([{prompt:full,...dims},{prompt:full+', alternate design',...dims}],document.getElementById('qg-imgs'),document.getElementById('qg-result'),'qg-btn','💬 Create Quote Graphic');}
+async function generateLogo(){const name=document.getElementById('lo-name').value.trim(),desc=document.getElementById('lo-desc').value.trim();if(!name){toast('Enter your brand name first');return;}const style=getActivePill('lo-styles'),color=getActiveSwatch('lo-colors'),bg=getActivePill('lo-bg');const full=`professional logo design for "${name}", ${desc}, ${style}, ${color} color palette, ${bg}, vector style, clean, high quality`;await generateBatch([{prompt:full,w:1024,h:1024},{prompt:full+', alternate concept',w:1024,h:1024},{prompt:full+', third concept',w:1024,h:1024}],document.getElementById('lo-imgs'),document.getElementById('lo-result'),'lo-btn','✦ Generate Logo Concepts','lo');}
+async function generateQuote(){const quote=document.getElementById('qg-quote').value.trim();if(!quote){toast('Enter your quote first');return;}const bg=getActivePill('qg-bg'),text=getActivePill('qg-text'),format=getActivePill('qg-format');const dims=format.includes('story')?{w:1024,h:1792}:format.includes('horizontal')?{w:1792,h:1024}:{w:1024,h:1024};const full=`quote graphic with text "${quote}", ${bg}, ${text}, ${format}, beautiful typography, professional social media graphic`;await generateBatch([{prompt:full,...dims},{prompt:full+', alternate design',...dims}],document.getElementById('qg-imgs'),document.getElementById('qg-result'),'qg-btn','💬 Create Quote Graphic','qg');}
 async function generateBizCard(){const name=document.getElementById('bc-name').value.trim();if(!name){toast('Enter your name or brand first');return;}const title=document.getElementById('bc-title').value.trim(),style=getActivePill('bc-styles'),color=getActiveSwatch('bc-colors');const full=`professional business card design, name: "${name}", title: "${title}", ${style}, ${color} color scheme, horizontal layout, high quality print design`;await generateBatch([{prompt:full,w:1792,h:1024},{prompt:full+', alternate layout',w:1792,h:1024}],document.getElementById('bc-imgs'),document.getElementById('bc-result'),'bc-btn','💼 Generate Business Card');}
 async function generateFlyer(){const event=document.getElementById('fl-event').value.trim();if(!event){toast('Enter your event or occasion first');return;}const details=document.getElementById('fl-details').value.trim(),style=getActivePill('fl-styles'),format=getActivePill('fl-format');const dims=format.includes('vertical')?{w:1024,h:1280}:format.includes('square')?{w:1024,h:1024}:{w:1792,h:1024};const full=`${style} for "${event}", details: ${details}, ${format}, beautiful design, high quality print ready`;await generateBatch([{prompt:full,...dims},{prompt:full+', alternate design',...dims}],document.getElementById('fl-imgs'),document.getElementById('fl-result'),'fl-btn','📄 Create Invitation / Flyer');}
 async function generatePattern(){const prompt=document.getElementById('pt-prompt').value.trim();if(!prompt){toast('Describe your pattern first');return;}const type=getActivePill('pt-type'),color=getActiveSwatch('pt-colors');const full=`${prompt}, ${type}, ${color} color palette, seamless repeating tile, high resolution, professional textile design`;await generateBatch([{prompt:full,w:1024,h:1024},{prompt:full+', variation',w:1024,h:1024}],document.getElementById('pt-imgs'),document.getElementById('pt-result'),'pt-btn','🔷 Create Pattern');}
@@ -684,6 +1072,142 @@ async function generateBgRemove(){const prompt=document.getElementById('bg-promp
 async function generateFaceSwap(){const prompt=document.getElementById('fs-prompt').value.trim();if(!prompt){toast('Describe the person in detail first');return;}const style=getActivePill('fs-styles'),bg=getActivePill('fs-bg'),shot=document.getElementById('fs-shot').value,count=parseInt(document.getElementById('fs-count').value);const full=`${prompt}, ${shot}, ${style}, ${bg}, professional, high quality, detailed`;await generateBatch(Array.from({length:count},()=>({prompt:full,w:1024,h:1280})),document.getElementById('fs-imgs'),document.getElementById('fs-result'),'fs-btn','🔄 Generate Portrait');}
 async function generateWatermark(){const prompt=document.getElementById('wm-prompt').value.trim(),wmText=document.getElementById('wm-text').value.trim();if(!prompt){toast('Describe your image first');return;}const style=getActivePill('wm-style'),color=getActivePill('wm-color'),imgStyle=getActivePill('wm-imgstyle');const wm=wmText?`, with "${wmText}" as ${style}, ${color}`:', with subtle brand watermark overlay';const full=`${prompt}, ${imgStyle}${wm}, professional, high quality`;await generateBatch([{prompt:full,w:1024,h:1024},{prompt:full+', alternate composition',w:1024,h:1024}],document.getElementById('wm-imgs'),document.getElementById('wm-result'),'wm-btn','🔏 Generate Watermarked Image');}
 async function generateRemoveWatermark(){const prompt=document.getElementById('rw-prompt').value.trim();if(!prompt){toast('Describe the clean image you need');return;}const style=getActivePill('rw-style'),quality=getActivePill('rw-quality'),{w,h}=ratios.rw;const full=`${prompt}, ${style}, ${quality}, no watermark, no text overlay, no logo, pristine clean image`;await generateBatch([{prompt:full,w,h},{prompt:full+', alternate version',w,h}],document.getElementById('rw-imgs'),document.getElementById('rw-result'),'rw-btn','🧹 Generate Clean Image');}
+async function fetchKontextImage(imageUrl,prompt,w,h){
+  const seed=Math.floor(Math.random()*99999);
+  const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=${w}&height=${h}&seed=${seed}&nologo=true&model=kontext&image=${encodeURIComponent(imageUrl)}`;
+  const res=await fetch(url);
+  if(!res.ok)throw new Error('Kontext generation failed');
+  const blob=await res.blob();
+  return URL.createObjectURL(blob);
+}
+async function generateImg2Img(){
+  const dataUrl=uploadedImages['i2i'];
+  if(!dataUrl){toast('Please upload a photo first');return;}
+  const prompt=document.getElementById('i2i-prompt').value.trim();
+  if(!prompt){toast('Describe the transformation first');return;}
+  const style=getActivePill('i2i-styles'),strength=getActivePill('i2i-strength');
+  const full=`${prompt}, ${style}, ${strength}, high quality`;
+  const btn=document.getElementById('i2i-btn');
+  btn.disabled=true;btn.textContent='⏳ Uploading & Transforming…';
+  const imgsEl=document.getElementById('i2i-imgs');
+  document.getElementById('i2i-result').classList.add('show');
+  imgsEl.innerHTML='<div class="shimmer"></div>';
+  try{
+    const hostedUrl=await uploadToTempHost(dataUrl);
+    const result=await fetchKontextImage(hostedUrl,full,1024,1024);
+    imgsEl.innerHTML='';
+    addImageResult(imgsEl,result,full);
+    genCount+=1;
+    const gc=document.getElementById('genCount');if(gc)gc.textContent=genCount;
+  }catch(e){
+    console.error(e);
+    imgsEl.innerHTML='<div class="shimmer" style="display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);">Transform failed — try again</div>';
+    toast('Something went wrong — please try again');
+  }
+  btn.disabled=false;btn.textContent='🖼️ Transform Image';
+}
+async function generateDoubleExposure(){
+  const dataUrl=uploadedImages['de'];
+  if(!dataUrl){toast('Please upload a portrait photo first');return;}
+  const sceneCustom=document.getElementById('de-custom').value.trim();
+  const scene=sceneCustom||getActivePill('de-scene');
+  const tone=getActivePill('de-tone');
+  const full=`double exposure effect, portrait silhouette blended with ${scene}, ${tone}, artistic, layered composition, high quality`;
+  const btn=document.getElementById('de-btn');
+  btn.disabled=true;btn.textContent='⏳ Uploading & Blending…';
+  const imgsEl=document.getElementById('de-imgs');
+  document.getElementById('de-result').classList.add('show');
+  imgsEl.innerHTML='<div class="shimmer"></div>';
+  try{
+    const hostedUrl=await uploadToTempHost(dataUrl);
+    const result=await fetchKontextImage(hostedUrl,full,1024,1280);
+    imgsEl.innerHTML='';
+    addImageResult(imgsEl,result,full);
+    genCount+=1;
+    const gc=document.getElementById('genCount');if(gc)gc.textContent=genCount;
+  }catch(e){
+    console.error(e);
+    imgsEl.innerHTML='<div class="shimmer" style="display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);">Blend failed — try again</div>';
+    toast('Something went wrong — please try again');
+  }
+  btn.disabled=false;btn.textContent='🌗 Create Double Exposure';
+}
+async function runKontextEdit(uploadKey,prompt,w,h,resultIdsPrefix,btnLabel){
+  const dataUrl=uploadedImages[uploadKey];
+  if(!dataUrl){toast('Please upload a photo first');return;}
+  const btn=document.getElementById(resultIdsPrefix+'-btn');
+  const imgsEl=document.getElementById(resultIdsPrefix+'-imgs');
+  const resultEl=document.getElementById(resultIdsPrefix+'-result');
+  btn.disabled=true;btn.textContent='⏳ Uploading & Editing…';
+  resultEl.classList.add('show');
+  imgsEl.innerHTML='<div class="shimmer"></div>';
+  try{
+    const hostedUrl=await uploadToTempHost(dataUrl);
+    const result=await fetchKontextImage(hostedUrl,prompt,w,h);
+    imgsEl.innerHTML='';
+    addImageResult(imgsEl,result,prompt);
+    genCount+=1;
+    const gc=document.getElementById('genCount');if(gc)gc.textContent=genCount;
+  }catch(e){
+    console.error(e);
+    imgsEl.innerHTML='<div class="shimmer" style="display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);">Edit failed — try again</div>';
+    toast('Something went wrong — please try again');
+  }
+  btn.disabled=false;btn.textContent=btnLabel;
+}
+
+async function generateChangePose(){
+  const custom=document.getElementById('cp-custom').value.trim();
+  const pose=custom||getActivePill('cp-pose');
+  const prompt=`change the pose to: ${pose}, keep the same person, same outfit, same face, high quality`;
+  await runKontextEdit('cp',prompt,1024,1280,'cp','🤸 Change Pose');
+}
+
+async function generateChangeOutfit(){
+  const custom=document.getElementById('co-custom').value.trim();
+  const outfit=custom||getActivePill('co-outfit');
+  const prompt=`change the outfit to: ${outfit}, keep the same person, same pose, same face, high quality`;
+  await runKontextEdit('co',prompt,1024,1280,'co','👕 Change Outfit');
+}
+
+async function generateChangeHair(){
+  const style=getActivePill('ch-style');
+  const color=getActivePill('ch-color');
+  const prompt=`change the hairstyle to: ${style}${color?', '+color:''}, keep the same person, same face, same outfit, high quality`;
+  await runKontextEdit('ch',prompt,1024,1280,'ch','💇 Change Hairstyle');
+}
+
+async function generateChangeAge(){
+  const dir=getActivePill('ca-dir');
+  const prompt=`change the age of the person, ${dir}, keep the same person's identity recognizable, high quality`;
+  await runKontextEdit('ca',prompt,1024,1280,'ca','⏳ Change Age');
+}
+
+async function generateRemoveBgPeople(){
+  const bg=getActivePill('rb-bg');
+  const prompt=`remove all other people from the photo except the main subject, ${bg}, clean, natural, high quality`;
+  await runKontextEdit('rb',prompt,1024,1280,'rb','🧍 Remove Other People');
+}
+
+async function generateChangeExpression(){
+  const expr=getActivePill('ce-expr');
+  const prompt=`change the facial expression to: ${expr}, keep the same person, same outfit, same pose, high quality`;
+  await runKontextEdit('ce',prompt,1024,1280,'ce','😊 Change Expression');
+}
+
+async function generateAddAccessories(){
+  const custom=document.getElementById('aa-custom').value.trim();
+  const accessory=custom||getActivePill('aa-type');
+  const prompt=`add this accessory to the person: ${accessory}, keep the same person, same outfit, same pose, natural and realistic, high quality`;
+  await runKontextEdit('aa',prompt,1024,1280,'aa','💍 Add Accessories');
+}
+
+async function generateChangeSkinTan(){
+  const level=getActivePill('st2-level');
+  const prompt=`adjust the skin tone: ${level}, keep the same person, same outfit, same pose, same face, natural and realistic, high quality`;
+  await runKontextEdit('st2',prompt,1024,1280,'st2','☀️ Adjust Skin Tone');
+}
+
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 </script>
 </body>
