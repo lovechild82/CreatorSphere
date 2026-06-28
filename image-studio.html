@@ -105,6 +105,15 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
 .ratio-icon{font-size:.8rem;display:block;margin-bottom:.12rem;}
 .swatch-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.25rem;}
 .swatch{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 75ms cubic-bezier(0.4,0,0.2,1),border-color 150ms ease;flex-shrink:0;}
+.adj-slider-row{margin-bottom:.7rem;}
+.adj-slider-label{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-bottom:.25rem;}
+.adj-slider-val{color:var(--gold);font-weight:500;}
+.adj-slider{width:100%;height:4px;border-radius:4px;background:var(--border);outline:none;-webkit-appearance:none;appearance:none;}
+.adj-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 1px 4px rgba(212,175,110,.5);}
+.adj-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;border:none;}
+.adj-preview-wrap{background:rgba(255,255,255,0.4);border:1px solid var(--border);border-radius:12px;padding:.6rem;margin-bottom:.7rem;text-align:center;}
+.adj-preview-wrap canvas{max-width:100%;border-radius:8px;display:block;margin:0 auto;}
+.adj-reset-btn{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted);background:none;border:1px solid var(--border);border-radius:8px;padding:.3rem .6rem;cursor:pointer;margin-top:.3rem;}
 .swatch:active{transform:scale(0.88);}
 .swatch.active{border-color:var(--ink);transform:scale(1.18);}
 .gen-btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.78rem;border-radius:11px;border:none;background:linear-gradient(135deg,#c9956a,var(--gold));color:var(--ink);font-family:'Outfit',sans-serif;font-size:.87rem;font-weight:600;cursor:pointer;margin-top:.15rem;transition:transform 75ms cubic-bezier(0.4,0,0.2,1),box-shadow 200ms ease;}
@@ -264,6 +273,8 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <button class="tool-btn" onclick="switchTool('fantasyavatar')" id="btn-fantasyavatar"><span class="ti">🧙</span>Fantasy Avatar<span class="tool-node">IMG_44</span></button>
     <button class="tool-btn" onclick="switchTool('animestyle')" id="btn-animestyle"><span class="ti">🎌</span>Anime / Ghibli Style<span class="tool-node">IMG_45</span></button>
     <button class="tool-btn" onclick="switchTool('cyberpunkavatar')" id="btn-cyberpunkavatar"><span class="ti">🤖</span>Cyberpunk Avatar<span class="tool-node">IMG_46</span></button>
+    <div class="sidebar-label">Photo Adjustments</div>
+    <button class="tool-btn" onclick="switchTool('adjustments')" id="btn-adjustments"><span class="ti">🎛️</span>Adjust Photo<span class="tool-node">IMG_47</span></button>
     <button class="tool-btn" onclick="switchTool('faceswap')" id="btn-faceswap"><span class="ti">🔄</span>Face Swap<span class="tool-node">IMG_20</span></button>
     <button class="tool-btn" onclick="switchTool('watermark')" id="btn-watermark"><span class="ti">🔏</span>Add Watermark<span class="tool-node">IMG_21</span></button>
     <button class="tool-btn" onclick="switchTool('rmwatermark')" id="btn-rmwatermark"><span class="ti">🧹</span>Remove Watermark<span class="tool-node">IMG_22</span></button>
@@ -1301,6 +1312,51 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
       <div class="result-area" id="cp2-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_46</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="cp2-imgs" style="margin-top:.6rem;"></div></div>
     </div>
 
+    <!-- PHOTO ADJUSTMENTS -->
+    <div class="tool-panel" id="panel-adjustments">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🎛️ Adjust Photo</h2><p>Upload a photo and fine-tune it instantly — brightness, contrast, saturation, temperature, blur, and vignette, all live, no waiting.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_47</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="adj-dropzone" onclick="document.getElementById('adj-file').click()">
+            <input type="file" id="adj-file" accept="image/*" onchange="handleAdjUpload(this)">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+          </div>
+        </div>
+        <div class="adj-preview-wrap" id="adjPreviewWrap" style="display:none;">
+          <canvas id="adjCanvas"></canvas>
+        </div>
+        <div id="adjControls" style="display:none;">
+          <div class="adj-slider-row">
+            <div class="adj-slider-label"><span>Brightness</span><span class="adj-slider-val" id="adjBrightnessVal">100%</span></div>
+            <input type="range" class="adj-slider" id="adjBrightness" min="0" max="200" value="100" oninput="applyAdjustments()">
+          </div>
+          <div class="adj-slider-row">
+            <div class="adj-slider-label"><span>Contrast</span><span class="adj-slider-val" id="adjContrastVal">100%</span></div>
+            <input type="range" class="adj-slider" id="adjContrast" min="0" max="200" value="100" oninput="applyAdjustments()">
+          </div>
+          <div class="adj-slider-row">
+            <div class="adj-slider-label"><span>Saturation</span><span class="adj-slider-val" id="adjSaturationVal">100%</span></div>
+            <input type="range" class="adj-slider" id="adjSaturation" min="0" max="200" value="100" oninput="applyAdjustments()">
+          </div>
+          <div class="adj-slider-row">
+            <div class="adj-slider-label"><span>Temperature</span><span class="adj-slider-val" id="adjTemperatureVal">0</span></div>
+            <input type="range" class="adj-slider" id="adjTemperature" min="-100" max="100" value="0" oninput="applyAdjustments()">
+          </div>
+          <div class="adj-slider-row">
+            <div class="adj-slider-label"><span>Blur</span><span class="adj-slider-val" id="adjBlurVal">0px</span></div>
+            <input type="range" class="adj-slider" id="adjBlur" min="0" max="20" value="0" oninput="applyAdjustments()">
+          </div>
+          <div class="adj-slider-row">
+            <div class="adj-slider-label"><span>Vignette</span><span class="adj-slider-val" id="adjVignetteVal">0%</span></div>
+            <input type="range" class="adj-slider" id="adjVignette" min="0" max="100" value="0" oninput="applyAdjustments()">
+          </div>
+          <button class="adj-reset-btn" onclick="resetAdjustments()">↺ Reset All</button>
+          <hr class="divider">
+          <button class="gen-btn" id="adj-btn" onclick="saveAdjustedPhoto()">🎛️ Save Adjusted Photo</button>
+        </div>
+      </div>
+    </div>
+
     <!-- ADD WATERMARK -->
     <div class="tool-panel" id="panel-watermark">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🔏 Add Watermark</h2><p>Generate an image with your brand watermark built in — protect your work.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_21</div></div>
@@ -1346,7 +1402,7 @@ const uploadedImages={};
 let genCount=0;
 let gallery=[];
 try{gallery=JSON.parse(localStorage.getItem('cvs_gallery')||'[]');}catch(e){}
-const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',restorephoto:'IMG_37',colorize:'IMG_38',fixeyes:'IMG_39',fixhands:'IMG_40',removeredeye:'IMG_41',headshot:'IMG_42',avataravatar:'IMG_43',fantasyavatar:'IMG_44',animestyle:'IMG_45',cyberpunkavatar:'IMG_46',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
+const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',restorephoto:'IMG_37',colorize:'IMG_38',fixeyes:'IMG_39',fixhands:'IMG_40',removeredeye:'IMG_41',headshot:'IMG_42',avataravatar:'IMG_43',fantasyavatar:'IMG_44',animestyle:'IMG_45',cyberpunkavatar:'IMG_46',adjustments:'IMG_47',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
 document.addEventListener('DOMContentLoaded',()=>{updateGalleryCount();initPills();initSwatches();updateLatency();const goto=sessionStorage.getItem('gotoPanel');if(goto){sessionStorage.removeItem('gotoPanel');switchTool(goto);}else{const h=location.hash.replace('#','');if(h)switchTool(h);}});
 function updateLatency(){const el=document.getElementById('latencyVal');if(el){el.textContent=(Math.random()*0.04+0.01).toFixed(2)+'ms';}setTimeout(updateLatency,3000);}
 function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));const panel=document.getElementById('panel-'+id);const btn=document.getElementById('btn-'+id);if(panel)panel.classList.add('active');if(btn)btn.classList.add('active');const nodeEl=document.getElementById('activeNode');if(nodeEl&&nodeMap[id])nodeEl.textContent=nodeMap[id];if(id==='gallery')renderGallery();window.scrollTo({top:0,behavior:'smooth'});}
@@ -1689,6 +1745,95 @@ async function generateCyberpunkAvatar(){
   const style=getActivePill('cp2-style');
   const prompt=`transform this person into a ${style}, keep the same person's face recognizable, futuristic and striking, high quality`;
   await runKontextEdit('cp2',prompt,1024,1280,'cp2','🤖 Create Cyberpunk Avatar');
+}
+
+/* ── Photo Adjustments (instant Canvas-based filters, no API) ── */
+let adjImage=null;
+function handleAdjUpload(input){
+  const file=input.files[0];
+  if(!file)return;
+  if(file.size>10*1024*1024){toast('Image too large — please use under 10MB');return;}
+  const reader=new FileReader();
+  reader.onload=(e)=>{
+    const img=new Image();
+    img.onload=()=>{
+      adjImage=img;
+      document.getElementById('adjPreviewWrap').style.display='block';
+      document.getElementById('adjControls').style.display='block';
+      resetAdjustments();
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function applyAdjustments(){
+  if(!adjImage)return;
+  const canvas=document.getElementById('adjCanvas');
+  const maxDim=700;
+  let w=adjImage.width,h=adjImage.height;
+  if(w>maxDim||h>maxDim){
+    const scale=maxDim/Math.max(w,h);
+    w=Math.round(w*scale);h=Math.round(h*scale);
+  }
+  canvas.width=w;canvas.height=h;
+  const ctx=canvas.getContext('2d');
+
+  const brightness=document.getElementById('adjBrightness').value;
+  const contrast=document.getElementById('adjContrast').value;
+  const saturation=document.getElementById('adjSaturation').value;
+  const temperature=parseInt(document.getElementById('adjTemperature').value);
+  const blur=document.getElementById('adjBlur').value;
+  const vignette=parseInt(document.getElementById('adjVignette').value);
+
+  document.getElementById('adjBrightnessVal').textContent=brightness+'%';
+  document.getElementById('adjContrastVal').textContent=contrast+'%';
+  document.getElementById('adjSaturationVal').textContent=saturation+'%';
+  document.getElementById('adjTemperatureVal').textContent=temperature;
+  document.getElementById('adjBlurVal').textContent=blur+'px';
+  document.getElementById('adjVignetteVal').textContent=vignette+'%';
+
+  ctx.filter=`brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) blur(${blur}px)`;
+  ctx.drawImage(adjImage,0,0,w,h);
+  ctx.filter='none';
+
+  // Temperature: warm (positive) adds orange overlay, cool (negative) adds blue overlay
+  if(temperature!==0){
+    ctx.globalCompositeOperation='overlay';
+    const alpha=Math.abs(temperature)/100*0.35;
+    ctx.fillStyle=temperature>0?`rgba(255,160,60,${alpha})`:`rgba(60,140,255,${alpha})`;
+    ctx.fillRect(0,0,w,h);
+    ctx.globalCompositeOperation='source-over';
+  }
+
+  // Vignette: radial gradient darkening edges
+  if(vignette>0){
+    const grad=ctx.createRadialGradient(w/2,h/2,Math.min(w,h)*0.3,w/2,h/2,Math.max(w,h)*0.7);
+    grad.addColorStop(0,'rgba(0,0,0,0)');
+    grad.addColorStop(1,`rgba(0,0,0,${vignette/100*0.75})`);
+    ctx.fillStyle=grad;
+    ctx.fillRect(0,0,w,h);
+  }
+}
+function resetAdjustments(){
+  document.getElementById('adjBrightness').value=100;
+  document.getElementById('adjContrast').value=100;
+  document.getElementById('adjSaturation').value=100;
+  document.getElementById('adjTemperature').value=0;
+  document.getElementById('adjBlur').value=0;
+  document.getElementById('adjVignette').value=0;
+  applyAdjustments();
+}
+function saveAdjustedPhoto(){
+  if(!adjImage){toast('Upload a photo first');return;}
+  const canvas=document.getElementById('adjCanvas');
+  const dataUrl=canvas.toDataURL('image/png');
+  const id=Date.now()+Math.random();
+  gallery.unshift({id,url:dataUrl,dataUrl,prompt:'Adjusted photo',date:new Date().toLocaleDateString()});
+  if(gallery.length>100)gallery.pop();
+  persistGallery();
+  updateGalleryCount();
+  downloadImage(dataUrl);
+  toast('Saved to gallery + downloading to device 🪷');
 }
 
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
