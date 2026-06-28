@@ -275,6 +275,12 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <button class="tool-btn" onclick="switchTool('cyberpunkavatar')" id="btn-cyberpunkavatar"><span class="ti">🤖</span>Cyberpunk Avatar<span class="tool-node">IMG_46</span></button>
     <div class="sidebar-label">Photo Adjustments</div>
     <button class="tool-btn" onclick="switchTool('adjustments')" id="btn-adjustments"><span class="ti">🎛️</span>Adjust Photo<span class="tool-node">IMG_47</span></button>
+    <div class="sidebar-label">Creative Effects</div>
+    <button class="tool-btn" onclick="switchTool('plushie')" id="btn-plushie"><span class="ti">🧸</span>Plushie Version<span class="tool-node">IMG_48</span></button>
+    <button class="tool-btn" onclick="switchTool('amigurumi')" id="btn-amigurumi"><span class="ti">🧶</span>Crochet Amigurumi<span class="tool-node">IMG_49</span></button>
+    <button class="tool-btn" onclick="switchTool('claymation')" id="btn-claymation"><span class="ti">🎬</span>Claymation Style<span class="tool-node">IMG_50</span></button>
+    <button class="tool-btn" onclick="switchTool('vectorize')" id="btn-vectorize"><span class="ti">📐</span>Vectorize<span class="tool-node">IMG_51</span></button>
+    <button class="tool-btn" onclick="switchTool('pixelart')" id="btn-pixelart"><span class="ti">👾</span>Pixel Art<span class="tool-node">IMG_52</span></button>
     <button class="tool-btn" onclick="switchTool('faceswap')" id="btn-faceswap"><span class="ti">🔄</span>Face Swap<span class="tool-node">IMG_20</span></button>
     <button class="tool-btn" onclick="switchTool('watermark')" id="btn-watermark"><span class="ti">🔏</span>Add Watermark<span class="tool-node">IMG_21</span></button>
     <button class="tool-btn" onclick="switchTool('rmwatermark')" id="btn-rmwatermark"><span class="ti">🧹</span>Remove Watermark<span class="tool-node">IMG_22</span></button>
@@ -1357,6 +1363,124 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
       </div>
     </div>
 
+    <!-- PLUSHIE VERSION -->
+    <div class="tool-panel" id="panel-plushie">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🧸 Plushie Version</h2><p>Upload a photo of a person, pet, or character and turn it into an adorable plush toy.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_48</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="pl-dropzone" onclick="document.getElementById('pl-file').click()">
+            <input type="file" id="pl-file" accept="image/*" onchange="handleUpload(this,'pl')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="pl-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Plushie Style</label>
+          <div class="style-pills" id="pl-style">
+            <span class="pill active" data-val="soft cute plush toy, fabric texture, stitched seams">Classic Soft Plush</span>
+            <span class="pill" data-val="fluffy stuffed animal style, oversized and huggable">Fluffy Stuffed Animal</span>
+            <span class="pill" data-val="kawaii chibi plush toy style, big eyes">Kawaii Chibi</span>
+            <span class="pill" data-val="felt fabric plush toy, embroidered details">Felt Fabric</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="pl-btn" onclick="generatePlushie()">🧸 Create Plushie</button>
+      </div>
+      <div class="result-area" id="pl-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_48</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="pl-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- CROCHET AMIGURUMI -->
+    <div class="tool-panel" id="panel-amigurumi">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🧶 Crochet Amigurumi</h2><p>Upload a photo and transform it into a cute handmade crochet amigurumi doll style.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_49</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="ami-dropzone" onclick="document.getElementById('ami-file').click()">
+            <input type="file" id="ami-file" accept="image/*" onchange="handleUpload(this,'ami')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="ami-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Yarn Style</label>
+          <div class="style-pills" id="ami-style">
+            <span class="pill active" data-val="soft pastel yarn colors, handmade crochet texture">Pastel Yarn</span>
+            <span class="pill" data-val="bold vibrant yarn colors, handmade crochet texture">Vibrant Yarn</span>
+            <span class="pill" data-val="neutral earthy yarn tones, cozy handmade texture">Earthy Tones</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="ami-btn" onclick="generateAmigurumi()">🧶 Create Amigurumi</button>
+      </div>
+      <div class="result-area" id="ami-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_49</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="ami-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- CLAYMATION STYLE -->
+    <div class="tool-panel" id="panel-claymation">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🎬 Claymation Style</h2><p>Upload a photo and transform it into a charming stop-motion claymation character.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_50</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="clay-dropzone" onclick="document.getElementById('clay-file').click()">
+            <input type="file" id="clay-file" accept="image/*" onchange="handleUpload(this,'clay')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="clay-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Claymation Mood</label>
+          <div class="style-pills" id="clay-mood">
+            <span class="pill active" data-val="whimsical claymation character, soft studio lighting">Whimsical</span>
+            <span class="pill" data-val="quirky stop-motion claymation style, exaggerated features">Quirky</span>
+            <span class="pill" data-val="classic vintage claymation style, textured clay surface">Vintage Classic</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="clay-btn" onclick="generateClaymation()">🎬 Create Claymation</button>
+      </div>
+      <div class="result-area" id="clay-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_50</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="clay-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- VECTORIZE -->
+    <div class="tool-panel" id="panel-vectorize">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>📐 Vectorize</h2><p>Upload a photo and convert it into a clean, flat vector-style illustration — great for logos and prints.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_51</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="vec-dropzone" onclick="document.getElementById('vec-file').click()">
+            <input type="file" id="vec-file" accept="image/*" onchange="handleUpload(this,'vec')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="vec-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Vector Style</label>
+          <div class="style-pills" id="vec-style">
+            <span class="pill active" data-val="clean flat vector illustration, bold simple shapes, minimal colors">Flat Minimal</span>
+            <span class="pill" data-val="detailed vector illustration, gradient shading">Detailed Gradient</span>
+            <span class="pill" data-val="line art vector illustration, single color outline">Line Art Outline</span>
+            <span class="pill" data-val="geometric vector illustration, angular shapes">Geometric</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="vec-btn" onclick="generateVectorize()">📐 Vectorize Image</button>
+      </div>
+      <div class="result-area" id="vec-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_51</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="vec-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- PIXEL ART -->
+    <div class="tool-panel" id="panel-pixelart">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>👾 Pixel Art</h2><p>Upload a photo and transform it into retro pixel art — perfect for game-themed content.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_52</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="px-dropzone" onclick="document.getElementById('px-file').click()">
+            <input type="file" id="px-file" accept="image/*" onchange="handleUpload(this,'px')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="px-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Pixel Art Style</label>
+          <div class="style-pills" id="px-style">
+            <span class="pill active" data-val="16-bit retro pixel art style, vibrant colors">16-Bit Retro</span>
+            <span class="pill" data-val="8-bit classic pixel art style, limited color palette">8-Bit Classic</span>
+            <span class="pill" data-val="detailed isometric pixel art style">Isometric</span>
+            <span class="pill" data-val="pixel art portrait style, clean and modern">Pixel Portrait</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="px-btn" onclick="generatePixelArt()">👾 Create Pixel Art</button>
+      </div>
+      <div class="result-area" id="px-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_52</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="px-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
     <!-- ADD WATERMARK -->
     <div class="tool-panel" id="panel-watermark">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🔏 Add Watermark</h2><p>Generate an image with your brand watermark built in — protect your work.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_21</div></div>
@@ -1402,7 +1526,7 @@ const uploadedImages={};
 let genCount=0;
 let gallery=[];
 try{gallery=JSON.parse(localStorage.getItem('cvs_gallery')||'[]');}catch(e){}
-const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',restorephoto:'IMG_37',colorize:'IMG_38',fixeyes:'IMG_39',fixhands:'IMG_40',removeredeye:'IMG_41',headshot:'IMG_42',avataravatar:'IMG_43',fantasyavatar:'IMG_44',animestyle:'IMG_45',cyberpunkavatar:'IMG_46',adjustments:'IMG_47',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
+const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',restorephoto:'IMG_37',colorize:'IMG_38',fixeyes:'IMG_39',fixhands:'IMG_40',removeredeye:'IMG_41',headshot:'IMG_42',avataravatar:'IMG_43',fantasyavatar:'IMG_44',animestyle:'IMG_45',cyberpunkavatar:'IMG_46',adjustments:'IMG_47',plushie:'IMG_48',amigurumi:'IMG_49',claymation:'IMG_50',vectorize:'IMG_51',pixelart:'IMG_52',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
 document.addEventListener('DOMContentLoaded',()=>{updateGalleryCount();initPills();initSwatches();updateLatency();const goto=sessionStorage.getItem('gotoPanel');if(goto){sessionStorage.removeItem('gotoPanel');switchTool(goto);}else{const h=location.hash.replace('#','');if(h)switchTool(h);}});
 function updateLatency(){const el=document.getElementById('latencyVal');if(el){el.textContent=(Math.random()*0.04+0.01).toFixed(2)+'ms';}setTimeout(updateLatency,3000);}
 function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));const panel=document.getElementById('panel-'+id);const btn=document.getElementById('btn-'+id);if(panel)panel.classList.add('active');if(btn)btn.classList.add('active');const nodeEl=document.getElementById('activeNode');if(nodeEl&&nodeMap[id])nodeEl.textContent=nodeMap[id];if(id==='gallery')renderGallery();window.scrollTo({top:0,behavior:'smooth'});}
@@ -1834,6 +1958,36 @@ function saveAdjustedPhoto(){
   updateGalleryCount();
   downloadImage(dataUrl);
   toast('Saved to gallery + downloading to device 🪷');
+}
+
+async function generatePlushie(){
+  const style=getActivePill('pl-style');
+  const prompt=`transform this into a ${style}, keep the same subject recognizable, adorable and high quality product photography style`;
+  await runKontextEdit('pl',prompt,1024,1024,'pl','🧸 Create Plushie');
+}
+
+async function generateAmigurumi(){
+  const style=getActivePill('ami-style');
+  const prompt=`transform this into a crochet amigurumi doll, ${style}, keep the same subject recognizable, handmade craft photography style, high quality`;
+  await runKontextEdit('ami',prompt,1024,1024,'ami','🧶 Create Amigurumi');
+}
+
+async function generateClaymation(){
+  const mood=getActivePill('clay-mood');
+  const prompt=`transform this into a claymation stop-motion character, ${mood}, keep the same subject recognizable, high quality`;
+  await runKontextEdit('clay',prompt,1024,1024,'clay','🎬 Create Claymation');
+}
+
+async function generateVectorize(){
+  const style=getActivePill('vec-style');
+  const prompt=`transform this into a ${style}, clean vector graphic, keep the same subject recognizable, high quality`;
+  await runKontextEdit('vec',prompt,1024,1024,'vec','📐 Vectorize Image');
+}
+
+async function generatePixelArt(){
+  const style=getActivePill('px-style');
+  const prompt=`transform this into ${style}, keep the same subject recognizable, retro game aesthetic, high quality`;
+  await runKontextEdit('px',prompt,1024,1024,'px','👾 Create Pixel Art');
 }
 
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
