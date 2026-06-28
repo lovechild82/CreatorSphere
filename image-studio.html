@@ -252,6 +252,18 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <button class="tool-btn" onclick="switchTool('skychanger')" id="btn-skychanger"><span class="ti">🌅</span>Sky Changer<span class="tool-node">IMG_34</span></button>
     <button class="tool-btn" onclick="switchTool('addobject')" id="btn-addobject"><span class="ti">➕</span>Add Object<span class="tool-node">IMG_35</span></button>
     <button class="tool-btn" onclick="switchTool('removeobject')" id="btn-removeobject"><span class="ti">➖</span>Remove Object<span class="tool-node">IMG_36</span></button>
+    <div class="sidebar-label">Restoration & Fixes</div>
+    <button class="tool-btn" onclick="switchTool('restorephoto')" id="btn-restorephoto"><span class="ti">🕰️</span>Restore Old Photo<span class="tool-node">IMG_37</span></button>
+    <button class="tool-btn" onclick="switchTool('colorize')" id="btn-colorize"><span class="ti">🎨</span>Colorize B&W<span class="tool-node">IMG_38</span></button>
+    <button class="tool-btn" onclick="switchTool('fixeyes')" id="btn-fixeyes"><span class="ti">👁️</span>Fix Eyes<span class="tool-node">IMG_39</span></button>
+    <button class="tool-btn" onclick="switchTool('fixhands')" id="btn-fixhands"><span class="ti">✋</span>Fix Hands<span class="tool-node">IMG_40</span></button>
+    <button class="tool-btn" onclick="switchTool('removeredeye')" id="btn-removeredeye"><span class="ti">👀</span>Remove Red Eye<span class="tool-node">IMG_41</span></button>
+    <div class="sidebar-label">Avatars & Portraits</div>
+    <button class="tool-btn" onclick="switchTool('headshot')" id="btn-headshot"><span class="ti">💼</span>Pro Headshot<span class="tool-node">IMG_42</span></button>
+    <button class="tool-btn" onclick="switchTool('avataravatar')" id="btn-avataravatar"><span class="ti">🦹</span>Hero / Villain Avatar<span class="tool-node">IMG_43</span></button>
+    <button class="tool-btn" onclick="switchTool('fantasyavatar')" id="btn-fantasyavatar"><span class="ti">🧙</span>Fantasy Avatar<span class="tool-node">IMG_44</span></button>
+    <button class="tool-btn" onclick="switchTool('animestyle')" id="btn-animestyle"><span class="ti">🎌</span>Anime / Ghibli Style<span class="tool-node">IMG_45</span></button>
+    <button class="tool-btn" onclick="switchTool('cyberpunkavatar')" id="btn-cyberpunkavatar"><span class="ti">🤖</span>Cyberpunk Avatar<span class="tool-node">IMG_46</span></button>
     <button class="tool-btn" onclick="switchTool('faceswap')" id="btn-faceswap"><span class="ti">🔄</span>Face Swap<span class="tool-node">IMG_20</span></button>
     <button class="tool-btn" onclick="switchTool('watermark')" id="btn-watermark"><span class="ti">🔏</span>Add Watermark<span class="tool-node">IMG_21</span></button>
     <button class="tool-btn" onclick="switchTool('rmwatermark')" id="btn-rmwatermark"><span class="ti">🧹</span>Remove Watermark<span class="tool-node">IMG_22</span></button>
@@ -1040,6 +1052,255 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
       <div class="result-area" id="ro-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_36</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="ro-imgs" style="margin-top:.6rem;"></div></div>
     </div>
 
+    <!-- RESTORE OLD PHOTO -->
+    <div class="tool-panel" id="panel-restorephoto">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🕰️ Restore Old Photo</h2><p>Upload a damaged, faded, or scratched photo — AI repairs and sharpens it for you.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_37</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your old photo</label>
+          <div class="upload-zone" id="rp-dropzone" onclick="document.getElementById('rp-file').click()">
+            <input type="file" id="rp-file" accept="image/*" onchange="handleUpload(this,'rp')">
+            <div class="uz-icon">📤</div><p>Tap to upload an old or damaged photo</p>
+            <img id="rp-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Restoration focus</label>
+          <div class="style-pills" id="rp-focus">
+            <span class="pill active" data-val="repair scratches, creases, and damage, restore faded colors and sharpness">Full Restoration</span>
+            <span class="pill" data-val="repair scratches and creases only, keep original tones">Repair Damage Only</span>
+            <span class="pill" data-val="sharpen and enhance clarity, reduce blur and noise">Sharpen & Clarify</span>
+            <span class="pill" data-val="restore faded colors to vibrant natural tones">Restore Faded Color</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="rp-btn" onclick="generateRestorePhoto()">🕰️ Restore Photo</button>
+      </div>
+      <div class="result-area" id="rp-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_37</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="rp-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- COLORIZE B&W -->
+    <div class="tool-panel" id="panel-colorize">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🎨 Colorize Black & White</h2><p>Upload a black-and-white photo and bring it to life with natural, realistic color.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_38</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your black & white photo</label>
+          <div class="upload-zone" id="cz-dropzone" onclick="document.getElementById('cz-file').click()">
+            <input type="file" id="cz-file" accept="image/*" onchange="handleUpload(this,'cz')">
+            <div class="uz-icon">📤</div><p>Tap to upload a black & white photo</p>
+            <img id="cz-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Color style</label>
+          <div class="style-pills" id="cz-style">
+            <span class="pill active" data-val="natural realistic skin tones and colors">Natural & Realistic</span>
+            <span class="pill" data-val="warm vintage film color palette">Warm Vintage</span>
+            <span class="pill" data-val="vibrant saturated modern colors">Vibrant & Bold</span>
+            <span class="pill" data-val="soft muted pastel colors">Soft Pastel</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="cz-btn" onclick="generateColorize()">🎨 Colorize Photo</button>
+      </div>
+      <div class="result-area" id="cz-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_38</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="cz-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- FIX EYES -->
+    <div class="tool-panel" id="panel-fixeyes">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>👁️ Fix Eyes</h2><p>Upload a photo where eyes are closed, blinking, or awkward — AI corrects them naturally.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_39</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="fe-dropzone" onclick="document.getElementById('fe-file').click()">
+            <input type="file" id="fe-file" accept="image/*" onchange="handleUpload(this,'fe')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="fe-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Fix type</label>
+          <div class="style-pills" id="fe-fix">
+            <span class="pill active" data-val="open the eyes naturally, looking forward">Open Closed Eyes</span>
+            <span class="pill" data-val="straighten gaze to look directly at camera">Fix Gaze Direction</span>
+            <span class="pill" data-val="make eyes look bright, clear, and well-rested">Brighten & Clarify</span>
+            <span class="pill" data-val="correct asymmetry, make eyes look natural and even">Fix Asymmetry</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="fe-btn" onclick="generateFixEyes()">👁️ Fix Eyes</button>
+      </div>
+      <div class="result-area" id="fe-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_39</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="fe-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- FIX HANDS -->
+    <div class="tool-panel" id="panel-fixhands">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>✋ Fix Hands</h2><p>Upload a photo with distorted or awkward hands — AI corrects them to look natural.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_40</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="fh-dropzone" onclick="document.getElementById('fh-file').click()">
+            <input type="file" id="fh-file" accept="image/*" onchange="handleUpload(this,'fh')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="fh-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>What to fix</label>
+          <div class="style-pills" id="fh-fix">
+            <span class="pill active" data-val="correct hand shape and finger proportions to look natural and anatomically correct">Fix Proportions</span>
+            <span class="pill" data-val="relax hand position to a natural, comfortable pose">Relax Pose</span>
+            <span class="pill" data-val="smooth and clean up hand details, remove blur">Smooth & Sharpen</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="fh-btn" onclick="generateFixHands()">✋ Fix Hands</button>
+      </div>
+      <div class="result-area" id="fh-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_40</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="fh-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- REMOVE RED EYE -->
+    <div class="tool-panel" id="panel-removeredeye">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>👀 Remove Red Eye</h2><p>Upload a photo with flash-induced red eye — AI restores natural eye color instantly.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_41</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="rre-dropzone" onclick="document.getElementById('rre-file').click()">
+            <input type="file" id="rre-file" accept="image/*" onchange="handleUpload(this,'rre')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo with red eye</p>
+            <img id="rre-preview" class="upload-preview">
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="rre-btn" onclick="generateRemoveRedEye()">👀 Remove Red Eye</button>
+      </div>
+      <div class="result-area" id="rre-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_41</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="rre-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- PROFESSIONAL HEADSHOT -->
+    <div class="tool-panel" id="panel-headshot">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>💼 Professional Headshot</h2><p>Upload a casual photo and get a polished, professional headshot — perfect for LinkedIn, websites, or branding.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_42</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="hs-dropzone" onclick="document.getElementById('hs-file').click()">
+            <input type="file" id="hs-file" accept="image/*" onchange="handleUpload(this,'hs')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="hs-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Headshot Style</label>
+          <div class="style-pills" id="hs-style">
+            <span class="pill active" data-val="corporate professional headshot, neutral studio background, business attire">Corporate</span>
+            <span class="pill" data-val="creative professional headshot, soft natural light, modern background">Creative Professional</span>
+            <span class="pill" data-val="executive headshot, dark sophisticated background, formal attire">Executive</span>
+            <span class="pill" data-val="approachable warm headshot, bright background, smiling">Warm & Approachable</span>
+          </div>
+        </div>
+        <div class="field"><label>Background</label>
+          <div class="style-pills" id="hs-bg">
+            <span class="pill active" data-val="solid neutral gray studio background">Neutral Gray</span>
+            <span class="pill" data-val="soft blurred office background">Blurred Office</span>
+            <span class="pill" data-val="solid white background">White</span>
+            <span class="pill" data-val="warm blush and gold gradient background">Blush & Gold</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="hs-btn" onclick="generateHeadshot()">💼 Create Headshot</button>
+      </div>
+      <div class="result-area" id="hs-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_42</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="hs-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- HERO / VILLAIN AVATAR -->
+    <div class="tool-panel" id="panel-avataravatar">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🦹 Hero / Villain Avatar</h2><p>Upload a photo and transform into a comic book superhero or villain character.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_43</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="hv-dropzone" onclick="document.getElementById('hv-file').click()">
+            <input type="file" id="hv-file" accept="image/*" onchange="handleUpload(this,'hv')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="hv-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Character Type</label>
+          <div class="style-pills" id="hv-type">
+            <span class="pill active" data-val="heroic superhero character, confident powerful pose, cape and costume">Superhero</span>
+            <span class="pill" data-val="dramatic villain character, dark powerful costume, intense expression">Villain</span>
+            <span class="pill" data-val="anti-hero character, edgy costume, brooding expression">Anti-Hero</span>
+          </div>
+        </div>
+        <div class="field"><label>Art Style</label>
+          <div class="style-pills" id="hv-style">
+            <span class="pill active" data-val="Marvel comic book illustration style">Marvel Comic</span>
+            <span class="pill" data-val="DC comic book illustration style">DC Comic</span>
+            <span class="pill" data-val="realistic cinematic movie poster style">Cinematic Realistic</span>
+            <span class="pill" data-val="anime superhero illustration style">Anime</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="hv-btn" onclick="generateHeroVillain()">🦹 Create Avatar</button>
+      </div>
+      <div class="result-area" id="hv-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_43</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="hv-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- FANTASY AVATAR -->
+    <div class="tool-panel" id="panel-fantasyavatar">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🧙 Fantasy Avatar</h2><p>Upload a photo and become a fantasy character — elf, mage, warrior, or mythical being.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_44</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="fya-dropzone" onclick="document.getElementById('fya-file').click()">
+            <input type="file" id="fya-file" accept="image/*" onchange="handleUpload(this,'fya')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="fya-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Fantasy Character</label>
+          <div class="style-pills" id="fya-char">
+            <span class="pill active" data-val="elegant elf with pointed ears, fantasy forest attire">Elf</span>
+            <span class="pill" data-val="powerful mage with mystical robes, glowing magic">Mage / Wizard</span>
+            <span class="pill" data-val="fierce warrior with armor, fantasy battle attire">Warrior</span>
+            <span class="pill" data-val="ethereal fairy with wings, magical glow">Fairy</span>
+            <span class="pill" data-val="mystical sorceress with flowing dark robes">Sorceress</span>
+            <span class="pill" data-val="noble royalty, fantasy crown and regal attire">Royalty</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="fya-btn" onclick="generateFantasyAvatar()">🧙 Create Fantasy Avatar</button>
+      </div>
+      <div class="result-area" id="fya-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_44</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="fya-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- ANIME / GHIBLI STYLE -->
+    <div class="tool-panel" id="panel-animestyle">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🎌 Anime / Ghibli Style</h2><p>Upload a photo and transform it into beautiful anime or Studio Ghibli-inspired art.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_45</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="an-dropzone" onclick="document.getElementById('an-file').click()">
+            <input type="file" id="an-file" accept="image/*" onchange="handleUpload(this,'an')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="an-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Style</label>
+          <div class="style-pills" id="an-style">
+            <span class="pill active" data-val="Studio Ghibli inspired illustration style, soft watercolor backgrounds">Ghibli Style</span>
+            <span class="pill" data-val="modern anime illustration style, vibrant colors">Modern Anime</span>
+            <span class="pill" data-val="classic 90s anime illustration style">90s Anime</span>
+            <span class="pill" data-val="soft shoujo anime illustration style, dreamy pastel tones">Shoujo / Dreamy</span>
+            <span class="pill" data-val="dynamic shonen anime illustration style, bold action lines">Shonen / Action</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="an-btn" onclick="generateAnimeStyle()">🎌 Create Anime Art</button>
+      </div>
+      <div class="result-area" id="an-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_45</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="an-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- CYBERPUNK AVATAR -->
+    <div class="tool-panel" id="panel-cyberpunkavatar">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🤖 Cyberpunk Avatar</h2><p>Upload a photo and transform into a futuristic cyberpunk character with neon and tech aesthetics.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_46</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="cp2-dropzone" onclick="document.getElementById('cp2-file').click()">
+            <input type="file" id="cp2-file" accept="image/*" onchange="handleUpload(this,'cp2')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="cp2-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Cyberpunk Style</label>
+          <div class="style-pills" id="cp2-style">
+            <span class="pill active" data-val="neon-lit cyberpunk character, futuristic tech implants, glowing accents">Neon Tech</span>
+            <span class="pill" data-val="cyberpunk street style, urban dystopian fashion, gritty aesthetic">Street Style</span>
+            <span class="pill" data-val="high-tech cyber augmented character, sleek metallic details">High-Tech Augmented</span>
+            <span class="pill" data-val="cyberpunk hacker character, holographic interface elements">Hacker</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="cp2-btn" onclick="generateCyberpunkAvatar()">🤖 Create Cyberpunk Avatar</button>
+      </div>
+      <div class="result-area" id="cp2-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_46</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="cp2-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
     <!-- ADD WATERMARK -->
     <div class="tool-panel" id="panel-watermark">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🔏 Add Watermark</h2><p>Generate an image with your brand watermark built in — protect your work.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_21</div></div>
@@ -1085,7 +1346,7 @@ const uploadedImages={};
 let genCount=0;
 let gallery=[];
 try{gallery=JSON.parse(localStorage.getItem('cvs_gallery')||'[]');}catch(e){}
-const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
+const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',restorephoto:'IMG_37',colorize:'IMG_38',fixeyes:'IMG_39',fixhands:'IMG_40',removeredeye:'IMG_41',headshot:'IMG_42',avataravatar:'IMG_43',fantasyavatar:'IMG_44',animestyle:'IMG_45',cyberpunkavatar:'IMG_46',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
 document.addEventListener('DOMContentLoaded',()=>{updateGalleryCount();initPills();initSwatches();updateLatency();const goto=sessionStorage.getItem('gotoPanel');if(goto){sessionStorage.removeItem('gotoPanel');switchTool(goto);}else{const h=location.hash.replace('#','');if(h)switchTool(h);}});
 function updateLatency(){const el=document.getElementById('latencyVal');if(el){el.textContent=(Math.random()*0.04+0.01).toFixed(2)+'ms';}setTimeout(updateLatency,3000);}
 function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));const panel=document.getElementById('panel-'+id);const btn=document.getElementById('btn-'+id);if(panel)panel.classList.add('active');if(btn)btn.classList.add('active');const nodeEl=document.getElementById('activeNode');if(nodeEl&&nodeMap[id])nodeEl.textContent=nodeMap[id];if(id==='gallery')renderGallery();window.scrollTo({top:0,behavior:'smooth'});}
@@ -1367,6 +1628,67 @@ async function generateRemoveObject(){
   if(!obj){toast('Describe what to remove first');return;}
   const prompt=`remove this from the photo: ${obj}, fill in naturally with the surrounding background, keep everything else in the original photo unchanged, seamless and realistic, high quality`;
   await runKontextEdit('ro',prompt,1024,1024,'ro','➖ Remove Object');
+}
+
+async function generateRestorePhoto(){
+  const focus=getActivePill('rp-focus');
+  const prompt=`restore this old or damaged photo, ${focus}, keep the original subject and composition exactly the same, professional photo restoration, high quality`;
+  await runKontextEdit('rp',prompt,1024,1024,'rp','🕰️ Restore Photo');
+}
+
+async function generateColorize(){
+  const style=getActivePill('cz-style');
+  const prompt=`colorize this black and white photo, ${style}, keep the same subject and composition, natural and believable, high quality`;
+  await runKontextEdit('cz',prompt,1024,1024,'cz','🎨 Colorize Photo');
+}
+
+async function generateFixEyes(){
+  const fix=getActivePill('fe-fix');
+  const prompt=`fix the eyes in this photo: ${fix}, keep the same person, same expression otherwise, same outfit and pose, natural and realistic, high quality`;
+  await runKontextEdit('fe',prompt,1024,1280,'fe','👁️ Fix Eyes');
+}
+
+async function generateFixHands(){
+  const fix=getActivePill('fh-fix');
+  const prompt=`fix the hands in this photo: ${fix}, keep the same person, same pose otherwise, same outfit, natural and anatomically correct, high quality`;
+  await runKontextEdit('fh',prompt,1024,1280,'fh','✋ Fix Hands');
+}
+
+async function generateRemoveRedEye(){
+  const prompt=`remove red eye effect from this photo, restore natural eye color, keep everything else in the photo exactly the same, high quality`;
+  await runKontextEdit('rre',prompt,1024,1024,'rre','👀 Remove Red Eye');
+}
+
+async function generateHeadshot(){
+  const style=getActivePill('hs-style');
+  const bg=getActivePill('hs-bg');
+  const prompt=`transform this into a ${style}, ${bg}, keep the same person's face recognizable, professional photography lighting, high quality, magazine-grade headshot`;
+  await runKontextEdit('hs',prompt,1024,1280,'hs','💼 Create Headshot');
+}
+
+async function generateHeroVillain(){
+  const type=getActivePill('hv-type');
+  const style=getActivePill('hv-style');
+  const prompt=`transform this person into a ${type}, ${style}, keep the same person's face recognizable, dynamic and dramatic, high quality`;
+  await runKontextEdit('hv',prompt,1024,1280,'hv','🦹 Create Avatar');
+}
+
+async function generateFantasyAvatar(){
+  const char=getActivePill('fya-char');
+  const prompt=`transform this person into a ${char}, fantasy art style, keep the same person's face recognizable, magical and ethereal, high quality`;
+  await runKontextEdit('fya',prompt,1024,1280,'fya','🧙 Create Fantasy Avatar');
+}
+
+async function generateAnimeStyle(){
+  const style=getActivePill('an-style');
+  const prompt=`transform this photo into ${style}, keep the same person's likeness recognizable, beautiful illustration, high quality`;
+  await runKontextEdit('an',prompt,1024,1280,'an','🎌 Create Anime Art');
+}
+
+async function generateCyberpunkAvatar(){
+  const style=getActivePill('cp2-style');
+  const prompt=`transform this person into a ${style}, keep the same person's face recognizable, futuristic and striking, high quality`;
+  await runKontextEdit('cp2',prompt,1024,1280,'cp2','🤖 Create Cyberpunk Avatar');
 }
 
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
