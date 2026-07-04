@@ -281,6 +281,12 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <button class="tool-btn" onclick="switchTool('claymation')" id="btn-claymation"><span class="ti">🎬</span>Claymation Style<span class="tool-node">IMG_50</span></button>
     <button class="tool-btn" onclick="switchTool('vectorize')" id="btn-vectorize"><span class="ti">📐</span>Vectorize<span class="tool-node">IMG_51</span></button>
     <button class="tool-btn" onclick="switchTool('pixelart')" id="btn-pixelart"><span class="ti">👾</span>Pixel Art<span class="tool-node">IMG_52</span></button>
+    <div class="sidebar-label">Product & Mockups</div>
+    <button class="tool-btn" onclick="switchTool('productlifestyle')" id="btn-productlifestyle"><span class="ti">📸</span>Product Lifestyle Shot<span class="tool-node">IMG_53</span></button>
+    <button class="tool-btn" onclick="switchTool('bookmockup')" id="btn-bookmockup"><span class="ti">📖</span>Book Mockup<span class="tool-node">IMG_54</span></button>
+    <button class="tool-btn" onclick="switchTool('devicemockup')" id="btn-devicemockup"><span class="ti">📱</span>Device Mockup<span class="tool-node">IMG_55</span></button>
+    <button class="tool-btn" onclick="switchTool('productshadow')" id="btn-productshadow"><span class="ti">🌑</span>Add Product Shadow<span class="tool-node">IMG_56</span></button>
+    <button class="tool-btn" onclick="switchTool('logotshirt')" id="btn-logotshirt"><span class="ti">👕</span>Logo on T-Shirt<span class="tool-node">IMG_57</span></button>
     <button class="tool-btn" onclick="switchTool('faceswap')" id="btn-faceswap"><span class="ti">🔄</span>Face Swap<span class="tool-node">IMG_20</span></button>
     <button class="tool-btn" onclick="switchTool('watermark')" id="btn-watermark"><span class="ti">🔏</span>Add Watermark<span class="tool-node">IMG_21</span></button>
     <button class="tool-btn" onclick="switchTool('rmwatermark')" id="btn-rmwatermark"><span class="ti">🧹</span>Remove Watermark<span class="tool-node">IMG_22</span></button>
@@ -1481,6 +1487,137 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
       <div class="result-area" id="px-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_52</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="px-imgs" style="margin-top:.6rem;"></div></div>
     </div>
 
+    <!-- PRODUCT LIFESTYLE SHOT -->
+    <div class="tool-panel" id="panel-productlifestyle">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>📸 Product Lifestyle Shot</h2><p>Upload a plain product photo and place it in a beautiful real-world lifestyle scene.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_53</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your product photo</label>
+          <div class="upload-zone" id="prl-dropzone" onclick="document.getElementById('prl-file').click()">
+            <input type="file" id="prl-file" accept="image/*" onchange="handleUpload(this,'prl')">
+            <div class="uz-icon">📤</div><p>Tap to upload a product photo</p>
+            <img id="prl-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Lifestyle Scene</label>
+          <div class="style-pills" id="prl-scene">
+            <span class="pill active" data-val="cozy aesthetic home setting, soft natural light, styled with complementary props">Cozy Home</span>
+            <span class="pill" data-val="elegant marble countertop, minimal luxury styling">Marble Counter</span>
+            <span class="pill" data-val="outdoor garden setting, natural greenery, soft daylight">Outdoor Garden</span>
+            <span class="pill" data-val="modern desk setup, styled with plants and accessories">Desk Setup</span>
+            <span class="pill" data-val="rustic wooden table, warm cafe ambiance">Rustic Café</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="prl-btn" onclick="generateProductLifestyle()">📸 Create Lifestyle Shot</button>
+      </div>
+      <div class="result-area" id="prl-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_53</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="prl-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- BOOK MOCKUP -->
+    <div class="tool-panel" id="panel-bookmockup">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>📖 Book Mockup</h2><p>Upload your book cover design and see it displayed as a realistic physical book or ebook mockup.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_54</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your book cover</label>
+          <div class="upload-zone" id="bm-dropzone" onclick="document.getElementById('bm-file').click()">
+            <input type="file" id="bm-file" accept="image/*" onchange="handleUpload(this,'bm')">
+            <div class="uz-icon">📤</div><p>Tap to upload your book cover design</p>
+            <img id="bm-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Mockup Style</label>
+          <div class="style-pills" id="bm-style">
+            <span class="pill active" data-val="paperback book mockup, lying flat on a styled surface">Paperback Flat Lay</span>
+            <span class="pill" data-val="hardcover book mockup, standing upright on a shelf">Hardcover on Shelf</span>
+            <span class="pill" data-val="ebook displayed on a tablet screen mockup">Ebook on Tablet</span>
+            <span class="pill" data-val="book held in hands, lifestyle reading scene">Held in Hands</span>
+            <span class="pill" data-val="stack of books mockup, styled with props">Stacked Books</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="bm-btn" onclick="generateBookMockup()">📖 Create Book Mockup</button>
+      </div>
+      <div class="result-area" id="bm-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_54</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="bm-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- DEVICE MOCKUP -->
+    <div class="tool-panel" id="panel-devicemockup">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>📱 Device Mockup</h2><p>Upload your app screen, website, or design and see it displayed on a realistic device.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_55</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your screen design</label>
+          <div class="upload-zone" id="dm-dropzone" onclick="document.getElementById('dm-file').click()">
+            <input type="file" id="dm-file" accept="image/*" onchange="handleUpload(this,'dm')">
+            <div class="uz-icon">📤</div><p>Tap to upload your screen design</p>
+            <img id="dm-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Device Type</label>
+          <div class="style-pills" id="dm-device">
+            <span class="pill active" data-val="modern smartphone mockup, held in hand">Smartphone (In Hand)</span>
+            <span class="pill" data-val="smartphone mockup on a clean desk surface">Smartphone (Desk)</span>
+            <span class="pill" data-val="laptop screen mockup on a modern desk setup">Laptop</span>
+            <span class="pill" data-val="tablet screen mockup, propped up on a stand">Tablet</span>
+            <span class="pill" data-val="desktop monitor mockup in an office setting">Desktop Monitor</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="dm-btn" onclick="generateDeviceMockup()">📱 Create Device Mockup</button>
+      </div>
+      <div class="result-area" id="dm-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_55</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="dm-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- ADD PRODUCT SHADOW -->
+    <div class="tool-panel" id="panel-productshadow">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🌑 Add Product Shadow</h2><p>Upload a product photo and add a realistic shadow for a more polished, professional look.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_56</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your product photo</label>
+          <div class="upload-zone" id="psh-dropzone" onclick="document.getElementById('psh-file').click()">
+            <input type="file" id="psh-file" accept="image/*" onchange="handleUpload(this,'psh')">
+            <div class="uz-icon">📤</div><p>Tap to upload a product photo</p>
+            <img id="psh-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Shadow Style</label>
+          <div class="style-pills" id="psh-style">
+            <span class="pill active" data-val="soft natural drop shadow, subtle and realistic">Soft Natural</span>
+            <span class="pill" data-val="dramatic long shadow, studio lighting style">Dramatic Long</span>
+            <span class="pill" data-val="floating shadow effect, soft blur beneath product">Floating Shadow</span>
+            <span class="pill" data-val="hard directional shadow, bright studio light">Hard Directional</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="psh-btn" onclick="generateProductShadow()">🌑 Add Shadow</button>
+      </div>
+      <div class="result-area" id="psh-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_56</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="psh-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- LOGO ON T-SHIRT -->
+    <div class="tool-panel" id="panel-logotshirt">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>👕 Logo on T-Shirt</h2><p>Upload your logo or design and see it applied realistically onto a t-shirt mockup.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_57</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your logo or design</label>
+          <div class="upload-zone" id="lt-dropzone" onclick="document.getElementById('lt-file').click()">
+            <input type="file" id="lt-file" accept="image/*" onchange="handleUpload(this,'lt')">
+            <div class="uz-icon">📤</div><p>Tap to upload your logo or design</p>
+            <img id="lt-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>T-Shirt Color</label>
+          <div class="style-pills" id="lt-color">
+            <span class="pill active" data-val="white t-shirt">White</span>
+            <span class="pill" data-val="black t-shirt">Black</span>
+            <span class="pill" data-val="heather gray t-shirt">Heather Gray</span>
+            <span class="pill" data-val="cream colored t-shirt">Cream</span>
+            <span class="pill" data-val="navy blue t-shirt">Navy</span>
+          </div>
+        </div>
+        <div class="field"><label>Mockup Style</label>
+          <div class="style-pills" id="lt-style">
+            <span class="pill active" data-val="t-shirt worn by a model, lifestyle photography">Worn by Model</span>
+            <span class="pill" data-val="t-shirt flat lay on a clean surface">Flat Lay</span>
+            <span class="pill" data-val="t-shirt on a hanger, studio background">On Hanger</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="lt-btn" onclick="generateLogoTshirt()">👕 Create T-Shirt Mockup</button>
+      </div>
+      <div class="result-area" id="lt-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_57</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="lt-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
     <!-- ADD WATERMARK -->
     <div class="tool-panel" id="panel-watermark">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🔏 Add Watermark</h2><p>Generate an image with your brand watermark built in — protect your work.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_21</div></div>
@@ -1526,7 +1663,7 @@ const uploadedImages={};
 let genCount=0;
 let gallery=[];
 try{gallery=JSON.parse(localStorage.getItem('cvs_gallery')||'[]');}catch(e){}
-const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',restorephoto:'IMG_37',colorize:'IMG_38',fixeyes:'IMG_39',fixhands:'IMG_40',removeredeye:'IMG_41',headshot:'IMG_42',avataravatar:'IMG_43',fantasyavatar:'IMG_44',animestyle:'IMG_45',cyberpunkavatar:'IMG_46',adjustments:'IMG_47',plushie:'IMG_48',amigurumi:'IMG_49',claymation:'IMG_50',vectorize:'IMG_51',pixelart:'IMG_52',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
+const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',restorephoto:'IMG_37',colorize:'IMG_38',fixeyes:'IMG_39',fixhands:'IMG_40',removeredeye:'IMG_41',headshot:'IMG_42',avataravatar:'IMG_43',fantasyavatar:'IMG_44',animestyle:'IMG_45',cyberpunkavatar:'IMG_46',adjustments:'IMG_47',plushie:'IMG_48',amigurumi:'IMG_49',claymation:'IMG_50',vectorize:'IMG_51',pixelart:'IMG_52',productlifestyle:'IMG_53',bookmockup:'IMG_54',devicemockup:'IMG_55',productshadow:'IMG_56',logotshirt:'IMG_57',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
 document.addEventListener('DOMContentLoaded',()=>{updateGalleryCount();initPills();initSwatches();updateLatency();const goto=sessionStorage.getItem('gotoPanel');if(goto){sessionStorage.removeItem('gotoPanel');switchTool(goto);}else{const h=location.hash.replace('#','');if(h)switchTool(h);}});
 function updateLatency(){const el=document.getElementById('latencyVal');if(el){el.textContent=(Math.random()*0.04+0.01).toFixed(2)+'ms';}setTimeout(updateLatency,3000);}
 function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));const panel=document.getElementById('panel-'+id);const btn=document.getElementById('btn-'+id);if(panel)panel.classList.add('active');if(btn)btn.classList.add('active');const nodeEl=document.getElementById('activeNode');if(nodeEl&&nodeMap[id])nodeEl.textContent=nodeMap[id];if(id==='gallery')renderGallery();window.scrollTo({top:0,behavior:'smooth'});}
@@ -1988,6 +2125,37 @@ async function generatePixelArt(){
   const style=getActivePill('px-style');
   const prompt=`transform this into ${style}, keep the same subject recognizable, retro game aesthetic, high quality`;
   await runKontextEdit('px',prompt,1024,1024,'px','👾 Create Pixel Art');
+}
+
+async function generateProductLifestyle(){
+  const scene=getActivePill('prl-scene');
+  const prompt=`place this product in a ${scene}, keep the product exactly as-is, professional commercial photography, high quality`;
+  await runKontextEdit('prl',prompt,1024,1024,'prl','📸 Create Lifestyle Shot');
+}
+
+async function generateBookMockup(){
+  const style=getActivePill('bm-style');
+  const prompt=`display this book cover as a realistic ${style}, keep the cover design exactly as-is, professional publishing mockup, high quality`;
+  await runKontextEdit('bm',prompt,1024,1280,'bm','📖 Create Book Mockup');
+}
+
+async function generateDeviceMockup(){
+  const device=getActivePill('dm-device');
+  const prompt=`display this screen design on a realistic ${device}, keep the screen design exactly as-is, professional tech mockup, high quality`;
+  await runKontextEdit('dm',prompt,1792,1024,'dm','📱 Create Device Mockup');
+}
+
+async function generateProductShadow(){
+  const style=getActivePill('psh-style');
+  const prompt=`add a ${style} to this product, keep the product exactly as-is, professional product photography, white or light background, high quality`;
+  await runKontextEdit('psh',prompt,1024,1024,'psh','🌑 Add Shadow');
+}
+
+async function generateLogoTshirt(){
+  const color=getActivePill('lt-color');
+  const style=getActivePill('lt-style');
+  const prompt=`apply this logo/design onto a ${color}, ${style}, keep the logo/design exactly as-is, realistic fabric texture, professional apparel mockup, high quality`;
+  await runKontextEdit('lt',prompt,1024,1280,'lt','👕 Create T-Shirt Mockup');
 }
 
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
