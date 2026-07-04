@@ -287,6 +287,12 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
     <button class="tool-btn" onclick="switchTool('devicemockup')" id="btn-devicemockup"><span class="ti">📱</span>Device Mockup<span class="tool-node">IMG_55</span></button>
     <button class="tool-btn" onclick="switchTool('productshadow')" id="btn-productshadow"><span class="ti">🌑</span>Add Product Shadow<span class="tool-node">IMG_56</span></button>
     <button class="tool-btn" onclick="switchTool('logotshirt')" id="btn-logotshirt"><span class="ti">👕</span>Logo on T-Shirt<span class="tool-node">IMG_57</span></button>
+    <div class="sidebar-label">Pet & Fun</div>
+    <button class="tool-btn" onclick="switchTool('petportrait')" id="btn-petportrait"><span class="ti">🐾</span>Pet Portrait Styles<span class="tool-node">IMG_58</span></button>
+    <button class="tool-btn" onclick="switchTool('pethumanizer')" id="btn-pethumanizer"><span class="ti">🐶</span>Pet Humanizer<span class="tool-node">IMG_59</span></button>
+    <button class="tool-btn" onclick="switchTool('combinepets')" id="btn-combinepets"><span class="ti">🐱</span>Combine Pets<span class="tool-node">IMG_60</span></button>
+    <button class="tool-btn" onclick="switchTool('funkopop')" id="btn-funkopop"><span class="ti">🎭</span>Funko Pop Style<span class="tool-node">IMG_61</span></button>
+    <button class="tool-btn" onclick="switchTool('tradingcard')" id="btn-tradingcard"><span class="ti">🃏</span>Trading Card<span class="tool-node">IMG_62</span></button>
     <button class="tool-btn" onclick="switchTool('faceswap')" id="btn-faceswap"><span class="ti">🔄</span>Face Swap<span class="tool-node">IMG_20</span></button>
     <button class="tool-btn" onclick="switchTool('watermark')" id="btn-watermark"><span class="ti">🔏</span>Add Watermark<span class="tool-node">IMG_21</span></button>
     <button class="tool-btn" onclick="switchTool('rmwatermark')" id="btn-rmwatermark"><span class="ti">🧹</span>Remove Watermark<span class="tool-node">IMG_22</span></button>
@@ -1618,6 +1624,134 @@ textarea::placeholder,input::placeholder{color:var(--muted);}
       <div class="result-area" id="lt-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_57</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="lt-imgs" style="margin-top:.6rem;"></div></div>
     </div>
 
+    <!-- PET PORTRAIT STYLES -->
+    <div class="tool-panel" id="panel-petportrait">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🐾 Pet Portrait Styles</h2><p>Upload a photo of your pet and transform it into a beautiful artistic portrait.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_58</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your pet photo</label>
+          <div class="upload-zone" id="pp-dropzone" onclick="document.getElementById('pp-file').click()">
+            <input type="file" id="pp-file" accept="image/*" onchange="handleUpload(this,'pp')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo of your pet</p>
+            <img id="pp-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Portrait Style</label>
+          <div class="style-pills" id="pp-style">
+            <span class="pill active" data-val="royal oil painting portrait style, regal background">Royal Oil Painting</span>
+            <span class="pill" data-val="watercolor pet portrait, soft artistic style">Watercolor</span>
+            <span class="pill" data-val="vintage Victorian portrait style, formal attire on pet">Victorian Portrait</span>
+            <span class="pill" data-val="comic book illustration pet portrait">Comic Book</span>
+            <span class="pill" data-val="cute kawaii illustration pet portrait">Kawaii Illustration</span>
+            <span class="pill" data-val="pencil sketch pet portrait, detailed line art">Pencil Sketch</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="pp-btn" onclick="generatePetPortrait()">🐾 Create Pet Portrait</button>
+      </div>
+      <div class="result-area" id="pp-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_58</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="pp-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- PET HUMANIZER -->
+    <div class="tool-panel" id="panel-pethumanizer">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🐶 Pet Humanizer</h2><p>Upload a pet photo and reimagine them as a human character — fun, shareable content.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_59</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your pet photo</label>
+          <div class="upload-zone" id="ph-dropzone" onclick="document.getElementById('ph-file').click()">
+            <input type="file" id="ph-file" accept="image/*" onchange="handleUpload(this,'ph')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo of your pet</p>
+            <img id="ph-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Human Character Style</label>
+          <div class="style-pills" id="ph-style">
+            <span class="pill active" data-val="professional business person, keeping the pet's personality and coloring">Business Professional</span>
+            <span class="pill" data-val="casual everyday person, keeping the pet's personality and coloring">Casual Everyday</span>
+            <span class="pill" data-val="royal noble person, keeping the pet's personality and coloring">Royal Noble</span>
+            <span class="pill" data-val="cartoon animated character, keeping the pet's personality">Cartoon Character</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="ph-btn" onclick="generatePetHumanizer()">🐶 Humanize Pet</button>
+      </div>
+      <div class="result-area" id="ph-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_59</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="ph-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- COMBINE PETS -->
+    <div class="tool-panel" id="panel-combinepets">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🐱 Combine Pets</h2><p>Upload a pet photo and blend it with another animal to create a fun hybrid creature.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_60</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your pet photo</label>
+          <div class="upload-zone" id="cp3-dropzone" onclick="document.getElementById('cp3-file').click()">
+            <input type="file" id="cp3-file" accept="image/*" onchange="handleUpload(this,'cp3')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo of your pet</p>
+            <img id="cp3-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Blend with</label>
+          <div class="style-pills" id="cp3-blend">
+            <span class="pill active" data-val="lion">🦁 Lion</span>
+            <span class="pill" data-val="tiger">🐯 Tiger</span>
+            <span class="pill" data-val="fox">🦊 Fox</span>
+            <span class="pill" data-val="wolf">🐺 Wolf</span>
+            <span class="pill" data-val="rabbit">🐰 Rabbit</span>
+            <span class="pill" data-val="panda">🐼 Panda</span>
+            <span class="pill" data-val="dragon">🐉 Dragon</span>
+            <span class="pill" data-val="unicorn">🦄 Unicorn</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="cp3-btn" onclick="generateCombinePets()">🐱 Combine Pets</button>
+      </div>
+      <div class="result-area" id="cp3-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_60</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="cp3-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- FUNKO POP STYLE -->
+    <div class="tool-panel" id="panel-funkopop">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🎭 Funko Pop Style</h2><p>Upload a photo of a person or pet and transform them into a Funko Pop vinyl figure style.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_61</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="fp-dropzone" onclick="document.getElementById('fp-file').click()">
+            <input type="file" id="fp-file" accept="image/*" onchange="handleUpload(this,'fp')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo of a person or pet</p>
+            <img id="fp-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Funko Style</label>
+          <div class="style-pills" id="fp-style">
+            <span class="pill active" data-val="classic Funko Pop vinyl figure style, big head, small body, glossy finish, in a display box">Classic in Box</span>
+            <span class="pill" data-val="Funko Pop vinyl figure style, big head, small body, glossy finish, no box">Figure Only</span>
+            <span class="pill" data-val="Funko Pop vinyl figure style, superhero outfit, big head, small body">Superhero Funko</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="fp-btn" onclick="generateFunkoPop()">🎭 Create Funko Pop</button>
+      </div>
+      <div class="result-area" id="fp-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_61</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="fp-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
+    <!-- TRADING CARD CREATOR -->
+    <div class="tool-panel" id="panel-tradingcard">
+      <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🃏 Trading Card Creator</h2><p>Upload a photo and turn it into a collectible trading card — perfect for pets, kids, or fun gifts.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_62</div></div>
+      <div class="glass-panel form-panel">
+        <div class="field"><label>Upload your photo</label>
+          <div class="upload-zone" id="tc-dropzone" onclick="document.getElementById('tc-file').click()">
+            <input type="file" id="tc-file" accept="image/*" onchange="handleUpload(this,'tc')">
+            <div class="uz-icon">📤</div><p>Tap to upload a photo</p>
+            <img id="tc-preview" class="upload-preview">
+          </div>
+        </div>
+        <div class="field"><label>Card Name / Title (optional)</label>
+          <input type="text" id="tc-name" placeholder="e.g. Max the Mighty, Luna the Brave…">
+        </div>
+        <div class="field"><label>Card Style</label>
+          <div class="style-pills" id="tc-style">
+            <span class="pill active" data-val="holographic collectible trading card, foil shimmer effect">Holographic</span>
+            <span class="pill" data-val="retro vintage sports trading card style">Vintage Sports</span>
+            <span class="pill" data-val="fantasy RPG character trading card style">Fantasy RPG</span>
+            <span class="pill" data-val="cute kawaii character trading card style">Kawaii</span>
+          </div>
+        </div>
+        <hr class="divider"><button class="gen-btn" id="tc-btn" onclick="generateTradingCard()">🃏 Create Trading Card</button>
+      </div>
+      <div class="result-area" id="tc-result"><div class="telemetry"><span class="t-dot"></span><span>Output ready</span><span>·</span><span>Node: <span class="t-val">IMG_62</span></span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><div class="result-imgs" id="tc-imgs" style="margin-top:.6rem;"></div></div>
+    </div>
+
     <!-- ADD WATERMARK -->
     <div class="tool-panel" id="panel-watermark">
       <div class="glass-panel panel-head"><div class="panel-head-left"><h2>🔏 Add Watermark</h2><p>Generate an image with your brand watermark built in — protect your work.</p></div><div class="node-badge"><span class="nd"></span>NODE IMG_21</div></div>
@@ -1663,7 +1797,7 @@ const uploadedImages={};
 let genCount=0;
 let gallery=[];
 try{gallery=JSON.parse(localStorage.getItem('cvs_gallery')||'[]');}catch(e){}
-const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',restorephoto:'IMG_37',colorize:'IMG_38',fixeyes:'IMG_39',fixhands:'IMG_40',removeredeye:'IMG_41',headshot:'IMG_42',avataravatar:'IMG_43',fantasyavatar:'IMG_44',animestyle:'IMG_45',cyberpunkavatar:'IMG_46',adjustments:'IMG_47',plushie:'IMG_48',amigurumi:'IMG_49',claymation:'IMG_50',vectorize:'IMG_51',pixelart:'IMG_52',productlifestyle:'IMG_53',bookmockup:'IMG_54',devicemockup:'IMG_55',productshadow:'IMG_56',logotshirt:'IMG_57',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
+const nodeMap={imggen:'IMG_01',coloring:'IMG_02',sticker:'IMG_03',thumbnail:'IMG_04',cartoon:'IMG_05',superhero:'IMG_06',fashion:'IMG_07',wallart:'IMG_08',mockup:'IMG_09',logo:'IMG_10',quote:'IMG_11',bizcard:'IMG_12',flyer:'IMG_13',pattern:'IMG_14',bookcover:'IMG_15',albumcover:'IMG_16',visionboard:'IMG_17',upscale:'IMG_18',bgremove:'IMG_19',faceswap:'IMG_20',img2img:'IMG_23',doubleexp:'IMG_24',changepose:'IMG_25',changeoutfit:'IMG_26',changehair:'IMG_27',changeage:'IMG_28',removebgpeople:'IMG_29',changeexpression:'IMG_30',addaccessories:'IMG_31',changeskintan:'IMG_32',changebg:'IMG_33',skychanger:'IMG_34',addobject:'IMG_35',removeobject:'IMG_36',restorephoto:'IMG_37',colorize:'IMG_38',fixeyes:'IMG_39',fixhands:'IMG_40',removeredeye:'IMG_41',headshot:'IMG_42',avataravatar:'IMG_43',fantasyavatar:'IMG_44',animestyle:'IMG_45',cyberpunkavatar:'IMG_46',adjustments:'IMG_47',plushie:'IMG_48',amigurumi:'IMG_49',claymation:'IMG_50',vectorize:'IMG_51',pixelart:'IMG_52',productlifestyle:'IMG_53',bookmockup:'IMG_54',devicemockup:'IMG_55',productshadow:'IMG_56',logotshirt:'IMG_57',petportrait:'IMG_58',pethumanizer:'IMG_59',combinepets:'IMG_60',funkopop:'IMG_61',tradingcard:'IMG_62',watermark:'IMG_21',rmwatermark:'IMG_22',gallery:'LIB_01'};
 document.addEventListener('DOMContentLoaded',()=>{updateGalleryCount();initPills();initSwatches();updateLatency();const goto=sessionStorage.getItem('gotoPanel');if(goto){sessionStorage.removeItem('gotoPanel');switchTool(goto);}else{const h=location.hash.replace('#','');if(h)switchTool(h);}});
 function updateLatency(){const el=document.getElementById('latencyVal');if(el){el.textContent=(Math.random()*0.04+0.01).toFixed(2)+'ms';}setTimeout(updateLatency,3000);}
 function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));const panel=document.getElementById('panel-'+id);const btn=document.getElementById('btn-'+id);if(panel)panel.classList.add('active');if(btn)btn.classList.add('active');const nodeEl=document.getElementById('activeNode');if(nodeEl&&nodeMap[id])nodeEl.textContent=nodeMap[id];if(id==='gallery')renderGallery();window.scrollTo({top:0,behavior:'smooth'});}
@@ -2156,6 +2290,38 @@ async function generateLogoTshirt(){
   const style=getActivePill('lt-style');
   const prompt=`apply this logo/design onto a ${color}, ${style}, keep the logo/design exactly as-is, realistic fabric texture, professional apparel mockup, high quality`;
   await runKontextEdit('lt',prompt,1024,1280,'lt','👕 Create T-Shirt Mockup');
+}
+
+async function generatePetPortrait(){
+  const style=getActivePill('pp-style');
+  const prompt=`transform this pet photo into a ${style}, keep the pet's likeness and coloring recognizable, high quality`;
+  await runKontextEdit('pp',prompt,1024,1280,'pp','🐾 Create Pet Portrait');
+}
+
+async function generatePetHumanizer(){
+  const style=getActivePill('ph-style');
+  const prompt=`transform this pet into a ${style}, anthropomorphic humanized character, keep the pet's color and personality, high quality`;
+  await runKontextEdit('ph',prompt,1024,1280,'ph','🐶 Humanize Pet');
+}
+
+async function generateCombinePets(){
+  const blend=getActivePill('cp3-blend');
+  const prompt=`blend this pet with a ${blend} to create a hybrid creature, keep both animals' features recognizable, creative and fantastical, high quality`;
+  await runKontextEdit('cp3',prompt,1024,1024,'cp3','🐱 Combine Pets');
+}
+
+async function generateFunkoPop(){
+  const style=getActivePill('fp-style');
+  const prompt=`transform this photo into a ${style}, keep the subject's likeness recognizable, high quality product photography`;
+  await runKontextEdit('fp',prompt,1024,1280,'fp','🎭 Create Funko Pop');
+}
+
+async function generateTradingCard(){
+  const name=document.getElementById('tc-name').value.trim();
+  const style=getActivePill('tc-style');
+  const nameText=name?`, card name: "${name}"`:'';
+  const prompt=`transform this photo into a ${style}${nameText}, keep the subject recognizable as the card artwork, professional card design, high quality`;
+  await runKontextEdit('tc',prompt,1024,1280,'tc','🃏 Create Trading Card');
 }
 
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
