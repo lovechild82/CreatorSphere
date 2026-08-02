@@ -2,253 +2,247 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cre8ive Vib3s Studio — Free AI Creative Suite</title>
-<meta name="description" content="Your free unlimited AI creative studio. Generate images, videos, content, digital products, and more. No sign-in required.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CreatorSphere — Free AI Creative Studio</title>
+<meta name="description" content="Free, unlimited AI tools for creators — images, video, writing, design, marketing, and more. No subscription. No limits.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--gold2:rgba(212,175,110,0.12);--cream:#faf6f0;--ink:#1a1410;--ink2:#3d342e;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
+:root{
+  --blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;
+  --gold2:rgba(212,175,110,0.12);--gold3:rgba(212,175,110,0.28);
+  --cream:#faf6f0;--ink:#1a1410;--ink2:#3d342e;
+  --muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;}
+html,body{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;min-height:100dvh;}
 a{text-decoration:none;color:inherit;}
-.topnav{background:linear-gradient(135deg,#fdf8f3,#f5ede0);border-bottom:1px solid var(--border);padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.logo{display:flex;align-items:center;gap:.6rem;}
+
+/* Background */
+.dot-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(212,175,110,0.2) 0.8px,transparent 0.8px);background-size:22px 22px;}
+.orb1{position:fixed;top:-10%;right:-8%;width:500px;height:500px;border-radius:50%;filter:blur(120px);opacity:0.08;background:radial-gradient(circle,var(--blush),var(--gold));pointer-events:none;z-index:0;}
+.orb2{position:fixed;bottom:-15%;left:-8%;width:400px;height:400px;border-radius:50%;filter:blur(100px);opacity:0.06;background:radial-gradient(circle,var(--sage),var(--gold));pointer-events:none;z-index:0;}
+
+/* Nav */
+.topnav{background:linear-gradient(135deg,rgba(253,248,243,0.96),rgba(245,237,224,0.96));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.logo-wrap{display:flex;align-items:center;gap:.6rem;}
 .lotus{font-size:1.5rem;animation:float 4s ease-in-out infinite;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;}
-.bn span{color:var(--gold);}
-.bs{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;}
-.navlinks{display:flex;gap:.3rem;overflow-x:auto;}
-.navlinks::-webkit-scrollbar{display:none;}
-.nl{padding:.35rem .7rem;border-radius:7px;font-size:.72rem;color:var(--ink2);transition:all .15s;white-space:nowrap;border:1px solid transparent;}
-.nl:hover{background:var(--gold2);border-color:var(--border);}
-.nl.active{background:linear-gradient(135deg,rgba(242,196,206,0.15),var(--gold2));color:var(--ink);font-weight:500;border-color:var(--border);}
-.hero{text-align:center;padding:4rem 1.5rem 3rem;background:linear-gradient(135deg,#fdf8f3 0%,#f5ede0 50%,#eee5d5 100%);border-bottom:1px solid var(--border);}
-.hero-lotus{font-size:4rem;margin-bottom:1rem;animation:float 4s ease-in-out infinite;}
-.hero h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(2rem,5vw,3.2rem);margin-bottom:.6rem;line-height:1.2;}
+.logo-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;}
+.logo-text span{color:var(--gold);}
+.nav-badge{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.18rem .45rem;border-radius:6px;}
+
+/* Hero */
+.hero{position:relative;z-index:1;padding:3.5rem 1.5rem 2.5rem;text-align:center;max-width:700px;margin:0 auto;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.5rem;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';flex:1;max-width:40px;height:1px;background:var(--gold);opacity:.4;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(2.2rem,8vw,3.8rem);line-height:1.1;margin-bottom:1rem;color:var(--ink);}
 .hero h1 span{color:var(--gold);}
-.hero p{font-size:.9rem;color:var(--ink2);max-width:500px;margin:0 auto 1.8rem;line-height:1.7;}
-.hero-btns{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;}
-.hbtn{padding:.75rem 1.6rem;border-radius:10px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .25s;border:none;}
-.hbtn.primary{background:linear-gradient(135deg,#c9956a,var(--gold));color:var(--ink);}
-.hbtn.primary:hover{box-shadow:0 5px 20px rgba(212,175,110,.4);transform:translateY(-2px);}
-.hbtn.secondary{background:var(--white);color:var(--ink2);border:1px solid var(--border);}
-.hbtn.secondary:hover{border-color:var(--gold);background:var(--gold2);}
-.stats{display:flex;gap:2rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;}
+.hero p{font-size:clamp(.82rem,3vw,.95rem);color:var(--muted);line-height:1.7;max-width:480px;margin:0 auto 1.8rem;}
+.hero-cta{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{padding:.75rem 1.6rem;border-radius:12px;background:linear-gradient(135deg,#c9956a,var(--gold));color:var(--ink);font-size:.85rem;font-weight:600;font-family:'Outfit',sans-serif;border:none;cursor:pointer;transition:transform 75ms,box-shadow 200ms;}
+.btn-primary:hover{box-shadow:0 5px 20px rgba(212,175,110,.4);transform:translateY(-1px);}
+.btn-secondary{padding:.75rem 1.6rem;border-radius:12px;background:rgba(255,255,255,0.7);color:var(--ink2);font-size:.85rem;font-weight:500;font-family:'Outfit',sans-serif;border:1px solid var(--border);cursor:pointer;}
+.hero-stats{display:flex;gap:2rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;}
 .stat{text-align:center;}
-.stat-n{font-family:'DM Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--gold);}
-.stat-l{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
-.section{padding:2.5rem 1.5rem;max-width:1200px;margin:0 auto;}
-.sec-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.6rem;margin-bottom:.3rem;}
-.sec-sub{font-size:.8rem;color:var(--muted);margin-bottom:1.5rem;}
-.studios-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
-.studio-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.4rem;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;display:block;}
-.studio-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transition:height .2s;}
-.studio-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,175,110,.18);}
-.studio-card:hover::before{height:4px;}
-.sc-icon{font-size:2rem;margin-bottom:.6rem;}
-.sc-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;margin-bottom:.3rem;color:var(--ink);}
-.sc-desc{font-size:.75rem;color:var(--muted);line-height:1.55;}
-.sc-count{position:absolute;top:.8rem;right:.8rem;font-family:'DM Mono',monospace;font-size:.55rem;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.15rem .45rem;border-radius:8px;}
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.6rem;}
-.tool-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:.5rem;}
-.tool-item:hover{border-color:var(--gold);background:var(--gold2);}
-.ti-icon{font-size:1rem;flex-shrink:0;}
-.ti-name{font-size:.73rem;color:var(--ink2);font-weight:400;}
-.badge-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
-.badge{display:inline-block;font-family:'DM Mono',monospace;font-size:.55rem;padding:.2rem .55rem;border-radius:8px;letter-spacing:.07em;text-transform:uppercase;}
-.bf{background:rgba(178,201,173,.18);color:#3d5c38;border:1px solid rgba(178,201,173,.4);}
-.ba{background:rgba(212,175,110,.15);color:#7a5c1e;border:1px solid rgba(212,175,110,.35);}
-.footer{background:var(--ink);color:#e8ddd4;text-align:center;padding:2rem 1.5rem;margin-top:3rem;}
-.footer p{font-size:.75rem;color:var(--muted);margin-top:.4rem;}
-.toast{position:fixed;bottom:1.2rem;right:1.2rem;background:var(--ink);color:var(--gold);font-family:'DM Mono',monospace;font-size:.65rem;padding:.5rem .9rem;border-radius:9px;border:1px solid var(--gold);z-index:9999;opacity:0;transition:opacity .28s;pointer-events:none;}
-.toast.show{opacity:1;}
-@media(max-width:640px){.navlinks .nl{font-size:.65rem;padding:.28rem .5rem;}.hero{padding:2.5rem 1rem 2rem;}.studios-grid{grid-template-columns:1fr 1fr;}.tools-grid{grid-template-columns:1fr 1fr;}}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--gold);line-height:1;}
+.stat-label{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.2rem;}
+
+/* Studios grid */
+.studios-section{position:relative;z-index:1;padding:0 1.25rem 3rem;max-width:900px;margin:0 auto;}
+.section-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.studios-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.85rem;}
+.studio-card{background:rgba(255,255,255,0.88);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.25rem;transition:transform 150ms,box-shadow 200ms,border-color 200ms;cursor:pointer;display:block;}
+.studio-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(212,175,110,.18);border-color:var(--gold3);}
+.studio-card:active{transform:scale(.98);}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.7rem;}
+.card-icon{font-size:1.8rem;line-height:1;}
+.card-badge{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.1em;text-transform:uppercase;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.25);padding:.16rem .4rem;border-radius:6px;}
+.card-badge.new{background:rgba(178,201,173,.2);color:#5a8a6a;border-color:rgba(178,201,173,.4);}
+.card-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;margin-bottom:.3rem;color:var(--ink);}
+.card-desc{font-size:.72rem;color:var(--muted);line-height:1.55;margin-bottom:.8rem;}
+.card-tools{display:flex;flex-wrap:wrap;gap:.28rem;}
+.tool-chip{font-size:.58rem;padding:.16rem .45rem;border-radius:10px;background:var(--gold2);color:var(--ink2);border:1px solid rgba(212,175,110,.18);}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.8rem;padding-top:.7rem;border-top:1px solid var(--border);}
+.card-count{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.08em;color:var(--muted);}
+.card-arrow{font-size:.9rem;color:var(--gold);opacity:.7;}
+
+/* Feature strip */
+.features-strip{position:relative;z-index:1;background:rgba(255,255,255,0.6);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.2rem 1.5rem;margin-bottom:2rem;}
+.features-inner{max-width:900px;margin:0 auto;display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;}
+.feature-item{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--ink2);}
+.feature-item .fi{font-size:1rem;}
+
+/* Footer */
+.footer{position:relative;z-index:1;text-align:center;padding:1.5rem;border-top:1px solid var(--border);}
+.footer p{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.08em;color:var(--muted);}
+.footer p span{color:var(--gold);}
+
+@media(max-width:560px){
+  .hero{padding:2.5rem 1.2rem 2rem;}
+  .studios-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:1.2rem;}
+}
 </style>
 </head>
 <body>
-<div class="toast" id="toast"></div>
+<div class="dot-grid"></div>
+<div class="orb1"></div>
+<div class="orb2"></div>
 
 <nav class="topnav">
-  <div class="logo">
-    <a href="index.html" style="display:flex;align-items:center;gap:.5rem;">
-      <div class="lotus">🪷</div>
-      <div><div class="bn">Cre8ive Vib3s <span>Studio</span></div></div>
-    </a>
+  <div class="logo-wrap">
+    <div class="lotus">🪷</div>
+    <div class="logo-text">Creator<span>Sphere</span></div>
   </div>
-  <div class="navlinks">
-    <a class="nl active" href="index.html">🏠</a>
-    <a class="nl" href="image-studio.html">🎨 Images</a>
-    <a class="nl" href="video-studio.html">🎬 Video</a>
-    <a class="nl" href="writing-studio.html">✍️ Writing</a>
-    <a class="nl" href="design-studio.html">✏️ Design</a>
-    <a class="nl" href="marketing-studio.html">📈 Marketing</a>
-    <a class="nl" href="products-studio.html">📦 Products</a>
-    <a class="nl" href="ai-studio.html">🤖 AI</a>
-    <a class="nl" href="chat.html">💬 Chat</a>
-  </div>
+  <div class="nav-badge">Free · Unlimited · No Login</div>
 </nav>
 
-<div class="hero">
-  <div class="hero-lotus">🪷</div>
-  <h1>Your Free Unlimited<br><span>AI Creative Studio</span></h1>
-  <p>Generate images, videos, content, digital products, presentations, and 200+ more tools. 100% free. No sign-in. No watermark. Works on iPhone.</p>
-  <div class="hero-btns">
-    <button class="hbtn primary" onclick="window.location='image-studio.html'">🎨 Start Creating</button>
-    <button class="hbtn secondary" onclick="window.location='ai-studio.html'">🤖 AI Tools</button>
-    <button class="hbtn secondary" onclick="window.location='chat.html'">💬 AI Chat</button>
+<section class="hero">
+  <div class="hero-eyebrow">AI Creative Studio</div>
+  <h1>Create anything.<br><span>Free, forever.</span></h1>
+  <p>Images, videos, writing, design, marketing, and more — all in one place. No subscription, no limits, no creative blocks.</p>
+  <div class="hero-cta">
+    <a href="image-studio.html"><button class="btn-primary">🎨 Start Creating</button></a>
+    <a href="chat.html"><button class="btn-secondary">💬 Ask AI Anything</button></a>
   </div>
-  <div class="stats">
-    <div class="stat"><div class="stat-n">200+</div><div class="stat-l">Tools</div></div>
-    <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Free</div></div>
-    <div class="stat"><div class="stat-n">0</div><div class="stat-l">Sign-Ins</div></div>
-    <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Generations</div></div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">62</div><div class="stat-label">Image Tools</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Generations</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Cost</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Studios</div></div>
+  </div>
+</section>
+
+<div class="features-strip">
+  <div class="features-inner">
+    <div class="feature-item"><span class="fi">✅</span>No account required</div>
+    <div class="feature-item"><span class="fi">✅</span>No watermarks</div>
+    <div class="feature-item"><span class="fi">✅</span>Saves to your device</div>
+    <div class="feature-item"><span class="fi">✅</span>Works on iPhone</div>
+    <div class="feature-item"><span class="fi">✅</span>Commercial use</div>
+    <div class="feature-item"><span class="fi">✅</span>No time limits</div>
   </div>
 </div>
 
-<div class="section">
-  <div class="badge-row">
-    <span class="badge bf">Free Forever</span>
-    <span class="badge ba">No Watermark</span>
-    <span class="badge bf">iPhone Ready</span>
-    <span class="badge ba">Instant Results</span>
-    <span class="badge bf">Commercial Use</span>
-  </div>
-
-  <h2 class="sec-title">Choose Your Studio</h2>
-  <p class="sec-sub">Each studio has dedicated tools — nothing is combined.</p>
-
+<section class="studios-section">
+  <div class="section-label">Choose Your Studio</div>
   <div class="studios-grid">
-    <a class="studio-card" href="image-studio.html" style="--gradient:linear-gradient(90deg,var(--blush),var(--gold))">
-      <div class="sc-count">60+ tools</div>
-      <div class="sc-icon">🎨</div>
-      <div class="sc-title">Image Studio</div>
-      <div class="sc-desc">Generate any image. Edit photos. Remove backgrounds. Face swap. Virtual try-on. Product mockups. Coloring books. Stickers. Thumbnails. And much more.</div>
-    </a>
-    <a class="studio-card" href="video-studio.html" style="--gradient:linear-gradient(90deg,#c9956a,var(--blush))">
-      <div class="sc-count">15+ tools</div>
-      <div class="sc-icon">🎬</div>
-      <div class="sc-title">Video Studio</div>
-      <div class="sc-desc">Slideshow video maker. Image to video. Text to video. AI video prompts. 5 free video AI tools. Vertical, horizontal, square formats.</div>
-    </a>
-    <a class="studio-card" href="writing-studio.html" style="--gradient:linear-gradient(90deg,var(--sage),#b2c9ad)">
-      <div class="sc-count">40+ tools</div>
-      <div class="sc-icon">✍️</div>
-      <div class="sc-title">Writing Studio</div>
-      <div class="sc-desc">Blog posts. Scripts. Emails. Captions. DM scripts. Ad copy. Sales pages. Product descriptions. Articles. Voiceover scripts. And more.</div>
-    </a>
-    <a class="studio-card" href="design-studio.html" style="--gradient:linear-gradient(90deg,var(--gold),#c9956a)">
-      <div class="sc-count">20+ tools</div>
-      <div class="sc-icon">✏️</div>
-      <div class="sc-title">Design Studio</div>
-      <div class="sc-desc">Canvas editor. Presentation maker. Font studio. Color book. Animations. GIF creator. Pinterest pins. QR codes. Sticker creator. Wall art.</div>
-    </a>
-    <a class="studio-card" href="marketing-studio.html" style="--gradient:linear-gradient(90deg,var(--blush),#c9956a)">
-      <div class="sc-count">25+ tools</div>
-      <div class="sc-icon">📈</div>
-      <div class="sc-title">Marketing Studio</div>
-      <div class="sc-desc">Sales funnels. Content calendars. Ad creator. Campaign builder. Offer checker. Business audit. Keyword research. Landing pages. Email sequences.</div>
-    </a>
-    <a class="studio-card" href="products-studio.html" style="--gradient:linear-gradient(90deg,var(--sage),var(--gold))">
-      <div class="sc-count">30+ tools</div>
-      <div class="sc-icon">📦</div>
-      <div class="sc-title">Products Studio</div>
-      <div class="sc-desc">Digital products. KDP books. Coloring books. Storybooks. Comic books. Superhero creator. PLR/MRR packages. Activity packs. Wall art. Ecards.</div>
-    </a>
-    <a class="studio-card" href="ai-studio.html" style="--gradient:linear-gradient(90deg,#7a5c1e,var(--gold))">
-      <div class="sc-count">20+ tools</div>
-      <div class="sc-icon">🤖</div>
-      <div class="sc-title">AI Studio</div>
-      <div class="sc-desc">Free Claude-like chat. Free Perplexity-like search. Free NotebookLM-like research. AI agents. Chatbot builder. AI twin videos. Automation tools.</div>
-    </a>
-    <a class="studio-card" href="chat.html" style="--gradient:linear-gradient(90deg,var(--blush),var(--sage))">
-      <div class="sc-count">Always free</div>
-      <div class="sc-icon">💬</div>
-      <div class="sc-title">AI Creative Director</div>
-      <div class="sc-desc">Your personal AI creative director. Ask anything. Get professional business sheek responses. Strategies, copy, ideas, and guidance on demand.</div>
-    </a>
-  </div>
-</div>
 
-<div class="section" style="border-top:1px solid var(--border);padding-top:2rem;">
-  <h2 class="sec-title">Quick Access — All Tools</h2>
-  <p class="sec-sub">Tap any tool to jump straight in.</p>
+    <a href="image-studio.html" class="studio-card">
+      <div class="card-top"><span class="card-icon">🎨</span><span class="card-badge">62 Tools</span></div>
+      <div class="card-title">Image Studio</div>
+      <div class="card-desc">Generate, transform, and edit images with AI. Avatars, mockups, portraits, creative effects, and more.</div>
+      <div class="card-tools">
+        <span class="tool-chip">Image Gen</span>
+        <span class="tool-chip">Change Outfit</span>
+        <span class="tool-chip">Avatars</span>
+        <span class="tool-chip">Restore Photos</span>
+        <span class="tool-chip">Pet Fun</span>
+        <span class="tool-chip">+57 more</span>
+      </div>
+      <div class="card-footer"><span class="card-count">62 tools · Free · Unlimited</span><span class="card-arrow">→</span></div>
+    </a>
 
-  <div style="margin-bottom:1rem;font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);">🎨 Image Tools</div>
-  <div class="tools-grid" style="margin-bottom:1.5rem;">
-    <a class="tool-item" href="image-studio.html#imggen"><span class="ti-icon">🎨</span><span class="ti-name">Image Generator</span></a>
-    <a class="tool-item" href="image-studio.html#bgremove"><span class="ti-icon">✂️</span><span class="ti-name">Background Remover</span></a>
-    <a class="tool-item" href="image-studio.html#faceswap"><span class="ti-icon">🔄</span><span class="ti-name">Face Swap</span></a>
-    <a class="tool-item" href="image-studio.html#photoedit"><span class="ti-icon">📸</span><span class="ti-name">Photo Editor</span></a>
-    <a class="tool-item" href="image-studio.html#coloring"><span class="ti-icon">🖍️</span><span class="ti-name">Coloring Book</span></a>
-    <a class="tool-item" href="image-studio.html#sticker"><span class="ti-icon">⭐</span><span class="ti-name">Sticker Creator</span></a>
-    <a class="tool-item" href="image-studio.html#thumbnail"><span class="ti-icon">🖼️</span><span class="ti-name">Thumbnail Creator</span></a>
-    <a class="tool-item" href="image-studio.html#mockup"><span class="ti-icon">🛍️</span><span class="ti-name">Product Mockup</span></a>
-    <a class="tool-item" href="image-studio.html#cartoon"><span class="ti-icon">🧑‍🎨</span><span class="ti-name">Photo to Cartoon</span></a>
-    <a class="tool-item" href="image-studio.html#superhero"><span class="ti-icon">🦸</span><span class="ti-name">Superhero Creator</span></a>
-    <a class="tool-item" href="image-studio.html#fashion"><span class="ti-icon">👗</span><span class="ti-name">Fashion Designer</span></a>
-    <a class="tool-item" href="image-studio.html#upscale"><span class="ti-icon">⬆️</span><span class="ti-name">Image Upscaler</span></a>
-  </div>
+    <a href="video-studio.html" class="studio-card">
+      <div class="card-top"><span class="card-icon">🎬</span><span class="card-badge new">New</span></div>
+      <div class="card-title">Video Studio</div>
+      <div class="card-desc">Build slideshow videos with music, voiceover, and text overlays. Export as MP4 in any format.</div>
+      <div class="card-tools">
+        <span class="tool-chip">9:16 Reels</span>
+        <span class="tool-chip">16:9 YouTube</span>
+        <span class="tool-chip">1:1 Posts</span>
+        <span class="tool-chip">Music</span>
+        <span class="tool-chip">Voiceover</span>
+      </div>
+      <div class="card-footer"><span class="card-count">In-browser · No API needed</span><span class="card-arrow">→</span></div>
+    </a>
 
-  <div style="margin-bottom:1rem;font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);">✍️ Writing Tools</div>
-  <div class="tools-grid" style="margin-bottom:1.5rem;">
-    <a class="tool-item" href="writing-studio.html#captions"><span class="ti-icon">📱</span><span class="ti-name">Social Captions</span></a>
-    <a class="tool-item" href="writing-studio.html#blog"><span class="ti-icon">📝</span><span class="ti-name">Blog Post</span></a>
-    <a class="tool-item" href="writing-studio.html#scripts"><span class="ti-icon">🎙️</span><span class="ti-name">Reel Scripts</span></a>
-    <a class="tool-item" href="writing-studio.html#email"><span class="ti-icon">📧</span><span class="ti-name">Email Templates</span></a>
-    <a class="tool-item" href="writing-studio.html#salespage"><span class="ti-icon">🌐</span><span class="ti-name">Sales Page</span></a>
-    <a class="tool-item" href="writing-studio.html#quotes"><span class="ti-icon">💬</span><span class="ti-name">Quote Creator</span></a>
-    <a class="tool-item" href="writing-studio.html#hashtags"><span class="ti-icon">#️⃣</span><span class="ti-name">Hashtag Generator</span></a>
-    <a class="tool-item" href="writing-studio.html#proddesc"><span class="ti-icon">🏷️</span><span class="ti-name">Product Descriptions</span></a>
-  </div>
+    <a href="writing-studio.html" class="studio-card">
+      <div class="card-top"><span class="card-icon">✍️</span><span class="card-badge new">New</span></div>
+      <div class="card-title">Writing Studio</div>
+      <div class="card-desc">AI-powered writing tools — blog posts, captions, scripts, emails, ebooks, and landing pages.</div>
+      <div class="card-tools">
+        <span class="tool-chip">Blog Posts</span>
+        <span class="tool-chip">Captions</span>
+        <span class="tool-chip">Email Copy</span>
+        <span class="tool-chip">Scripts</span>
+        <span class="tool-chip">eBooks</span>
+      </div>
+      <div class="card-footer"><span class="card-count">Powered by Claude AI</span><span class="card-arrow">→</span></div>
+    </a>
 
-  <div style="margin-bottom:1rem;font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);">📈 Marketing Tools</div>
-  <div class="tools-grid" style="margin-bottom:1.5rem;">
-    <a class="tool-item" href="marketing-studio.html#funnels"><span class="ti-icon">🔻</span><span class="ti-name">Sales Funnels</span></a>
-    <a class="tool-item" href="marketing-studio.html#offercheck"><span class="ti-icon">✅</span><span class="ti-name">Offer Checker</span></a>
-    <a class="tool-item" href="marketing-studio.html#calendar"><span class="ti-icon">📅</span><span class="ti-name">Content Calendar</span></a>
-    <a class="tool-item" href="marketing-studio.html#bizaudit"><span class="ti-icon">🔍</span><span class="ti-name">Business Audit</span></a>
-    <a class="tool-item" href="marketing-studio.html#keywords"><span class="ti-icon">🔑</span><span class="ti-name">Keywords</span></a>
-    <a class="tool-item" href="marketing-studio.html#adcreator"><span class="ti-icon">📣</span><span class="ti-name">Ad Creator</span></a>
-    <a class="tool-item" href="marketing-studio.html#qr"><span class="ti-icon">📲</span><span class="ti-name">QR Code Creator</span></a>
-    <a class="tool-item" href="marketing-studio.html#linktree"><span class="ti-icon">🔗</span><span class="ti-name">Link Creator</span></a>
-  </div>
+    <a href="design-studio.html" class="studio-card">
+      <div class="card-top"><span class="card-icon">✏️</span><span class="card-badge new">New</span></div>
+      <div class="card-title">Design Studio</div>
+      <div class="card-desc">Brand kits, color palettes, font pairings, and mood boards — build your visual identity in minutes.</div>
+      <div class="card-tools">
+        <span class="tool-chip">Brand Kit</span>
+        <span class="tool-chip">Color Palettes</span>
+        <span class="tool-chip">Font Pairings</span>
+        <span class="tool-chip">Mood Board</span>
+      </div>
+      <div class="card-footer"><span class="card-count">AI + Interactive tools</span><span class="card-arrow">→</span></div>
+    </a>
 
-  <div style="margin-bottom:1rem;font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);">📦 Product Tools</div>
-  <div class="tools-grid">
-    <a class="tool-item" href="products-studio.html#kdp"><span class="ti-icon">📚</span><span class="ti-name">KDP Creator</span></a>
-    <a class="tool-item" href="products-studio.html#storybooks"><span class="ti-icon">🧒</span><span class="ti-name">Storybooks</span></a>
-    <a class="tool-item" href="products-studio.html#comic"><span class="ti-icon">💥</span><span class="ti-name">Comic Creator</span></a>
-    <a class="tool-item" href="products-studio.html#activity"><span class="ti-icon">🎯</span><span class="ti-name">Activity Packs</span></a>
-    <a class="tool-item" href="products-studio.html#wallart"><span class="ti-icon">🖼️</span><span class="ti-name">Wall Art</span></a>
-    <a class="tool-item" href="products-studio.html#ecard"><span class="ti-icon">💌</span><span class="ti-name">Ecards</span></a>
-    <a class="tool-item" href="products-studio.html#stamps"><span class="ti-icon">📮</span><span class="ti-name">Stamps Creator</span></a>
-    <a class="tool-item" href="products-studio.html#labels"><span class="ti-icon">🏷️</span><span class="ti-name">Labels Creator</span></a>
+    <a href="marketing-studio.html" class="studio-card">
+      <div class="card-top"><span class="card-icon">📈</span><span class="card-badge new">New</span></div>
+      <div class="card-title">Marketing Studio</div>
+      <div class="card-desc">Content calendars, ad copy, hooks, hashtags, and campaign ideas — built for digital creators.</div>
+      <div class="card-tools">
+        <span class="tool-chip">Content Calendar</span>
+        <span class="tool-chip">Ad Copy</span>
+        <span class="tool-chip">Hooks</span>
+        <span class="tool-chip">Hashtags</span>
+      </div>
+      <div class="card-footer"><span class="card-count">Powered by Claude AI</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a href="products-studio.html" class="studio-card">
+      <div class="card-top"><span class="card-icon">📦</span><span class="card-badge new">New</span></div>
+      <div class="card-title">Products Studio</div>
+      <div class="card-desc">Digital product ideas, KDP book content, Etsy listings, and product descriptions — all AI-generated.</div>
+      <div class="card-tools">
+        <span class="tool-chip">KDP Books</span>
+        <span class="tool-chip">Etsy Listings</span>
+        <span class="tool-chip">Product Ideas</span>
+        <span class="tool-chip">Descriptions</span>
+      </div>
+      <div class="card-footer"><span class="card-count">Powered by Claude AI</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a href="ai-studio.html" class="studio-card">
+      <div class="card-top"><span class="card-icon">🤖</span><span class="card-badge new">New</span></div>
+      <div class="card-title">AI Studio</div>
+      <div class="card-desc">Summarizer, rewriter, idea generator, translator, and more — your all-in-one AI toolkit.</div>
+      <div class="card-tools">
+        <span class="tool-chip">Summarize</span>
+        <span class="tool-chip">Rewrite</span>
+        <span class="tool-chip">Translate</span>
+        <span class="tool-chip">Brainstorm</span>
+      </div>
+      <div class="card-footer"><span class="card-count">Powered by Claude AI</span><span class="card-arrow">→</span></div>
+    </a>
+
+    <a href="chat.html" class="studio-card">
+      <div class="card-top"><span class="card-icon">💬</span><span class="card-badge">Always On</span></div>
+      <div class="card-title">AI Chat</div>
+      <div class="card-desc">Chat with Claude or GPT — ask questions, get ideas, brainstorm, plan, or just think out loud.</div>
+      <div class="card-tools">
+        <span class="tool-chip">Claude AI</span>
+        <span class="tool-chip">GPT-3.5</span>
+        <span class="tool-chip">Model Switch</span>
+      </div>
+      <div class="card-footer"><span class="card-count">Two AI models · Free</span><span class="card-arrow">→</span></div>
+    </a>
+
   </div>
-</div>
+</section>
 
 <footer class="footer">
-  <div class="lotus" style="font-size:2rem;">🪷</div>
-  <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;margin:.4rem 0;">Cre8ive Vib3s Studio</div>
-  <p>Free · Unlimited · No Sign-In · Powered by Pollinations AI</p>
-  <p style="margin-top:.5rem;font-size:.68rem;">Build wealth. Stay calm. Create with intention.</p>
+  <p>© 2026 <span>CreatorSphere</span> · Built by lovechild82 · Free forever · MIT License</p>
 </footer>
 
-<script>
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
-// Handle hash navigation from index to studio pages
-window.addEventListener('load',()=>{
-  document.querySelectorAll('a[href*="#"]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      const href=a.getAttribute('href');
-      if(href.includes('.html#')){
-        // Store the target panel for the destination page
-        const hash=href.split('#')[1];
-        sessionStorage.setItem('gotoPanel',hash);
-      }
-    });
-  });
-});
-</script>
 </body>
 </html>
