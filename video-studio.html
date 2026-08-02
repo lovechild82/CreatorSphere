@@ -2,117 +2,746 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Studio — Cre8ive Vib3s</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Video Studio — CreatorSphere</title>
+<meta name="description" content="Create beautiful slideshow videos with music, voiceover, and text — free, unlimited, in-browser.">
+<!--
+  CreatorSphere — Video Studio
+  Convergence Workspace UI system © 2026 lovechild82 (MIT License)
+  ZenSereniTee brand system © 2026 lovechild82 (MIT License)
+-->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--cream:#faf6f0;--ink:#1a1410;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);display:flex;flex-direction:column;height:100vh;}
-.topnav{height:50px;background:#f5ede0;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem;flex-shrink:0;}
-.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;}
-.lotus{font-size:1.3rem;}
-.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;}
+:root{
+  --blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;
+  --gold2:rgba(212,175,110,0.12);--gold3:rgba(212,175,110,0.28);
+  --cream:#faf6f0;--ink:#1a1410;--ink2:#3d342e;
+  --muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);
+  --glass-bg:rgba(255,255,255,0.55);
+  --glass-border:rgba(212,175,110,0.18);
+  --glass-shadow:0 4px 24px rgba(212,175,110,0.1);
+  --red:#e05c5c;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;min-height:100dvh;}
+a{text-decoration:none;color:inherit;}
+.dot-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(212,175,110,0.2) 0.8px,transparent 0.8px);background-size:22px 22px;}
+.ambient-orb{position:fixed;top:-10%;right:-10%;width:380px;height:380px;border-radius:50%;filter:blur(100px);opacity:0.05;background:radial-gradient(circle,var(--blush),var(--gold));pointer-events:none;z-index:0;}
+.topnav{background:linear-gradient(135deg,rgba(253,248,243,0.96),rgba(245,237,224,0.96));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 1.25rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.logo{display:flex;align-items:center;gap:.5rem;}
+.lotus{font-size:1.3rem;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;}
 .bn span{color:var(--gold);}
-.navlinks{display:flex;gap:.5rem;margin-left:auto;}
-.nl{padding:.3rem .6rem;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.75rem;}
-.nl.active{background:rgba(212,175,110,0.2);}
-.container{display:flex;flex:1;overflow:hidden;}
-.sidebar{width:200px;background:var(--white);border-right:1px solid var(--border);overflow-y:auto;padding:.5rem;}
-.btn-nav{display:block;width:100%;padding:.4rem .5rem;border:none;background:none;cursor:pointer;text-align:left;font-size:.75rem;border-radius:6px;margin-bottom:.2rem;color:var(--ink);font-family:'Outfit',sans-serif;}
-.btn-nav.active{background:rgba(212,175,110,0.2);font-weight:600;}
-.content{flex:1;overflow-y:auto;padding:1.5rem;}
-.panel{display:none;}
-.panel.show{display:block;}
-.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;}
-.card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;margin-bottom:.3rem;}
-.card h3{font-size:.95rem;margin:.8rem 0 .4rem;}
-.card p{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.5rem;}
-.badge{display:inline-block;font-size:.6rem;padding:.2rem .5rem;background:rgba(178,201,173,.2);color:#3d5c38;border-radius:6px;margin-bottom:.5rem;}
-.link{color:var(--gold);text-decoration:none;font-weight:600;}
-.link:hover{text-decoration:underline;}
+.navlinks{display:flex;gap:.2rem;overflow-x:auto;}
+.navlinks::-webkit-scrollbar{display:none;}
+.nl{padding:.3rem .6rem;border-radius:7px;font-size:.68rem;color:var(--ink2);white-space:nowrap;border:1px solid transparent;}
+.nl.active{background:linear-gradient(135deg,rgba(242,196,206,.15),var(--gold2));color:var(--ink);font-weight:500;border-color:var(--border);}
+.studio-statusbar{background:linear-gradient(135deg,rgba(253,248,243,0.92),rgba(245,237,224,0.92));backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.32rem 1rem;display:flex;align-items:center;gap:1rem;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);overflow-x:auto;position:sticky;top:56px;z-index:190;}
+.studio-statusbar::-webkit-scrollbar{display:none;}
+.status-item{display:flex;align-items:center;gap:.3rem;white-space:nowrap;}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+.status-val{color:var(--gold);font-weight:500;}
+.status-sep{opacity:.25;}
+.page-wrap{padding:1rem;max-width:900px;margin:0 auto;padding-bottom:2rem;position:relative;z-index:2;}
+.glass-panel{background:rgba(255,255,255,0.88);border:1px solid var(--glass-border);box-shadow:var(--glass-shadow);border-radius:14px;}
+.section-head{margin-bottom:1rem;}
+.section-head h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;margin-bottom:.2rem;}
+.section-head p{font-size:.73rem;color:var(--muted);line-height:1.5;}
+.node-badge{display:inline-flex;align-items:center;gap:.3rem;font-family:'DM Mono',monospace;font-size:.47rem;letter-spacing:.12em;text-transform:uppercase;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.22rem .55rem;border-radius:8px;}
+.node-badge .nd{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;}
+.field{margin-bottom:.75rem;}
+.field label{display:block;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink2);margin-bottom:.28rem;}
+input[type=text],input[type=number],input[type=range],select,textarea{width:100%;border:1px solid var(--border);border-radius:10px;padding:.55rem .8rem;font-family:'Outfit',sans-serif;font-size:.81rem;color:var(--ink);background:rgba(250,246,240,0.8);outline:none;}
+input[type=range]{padding:.2rem 0;background:none;border:none;cursor:pointer;}
+select:focus,input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,110,.12);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.style-pills{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.22rem;}
+.pill{padding:.24rem .6rem;border-radius:20px;border:1px solid var(--border);font-size:.65rem;cursor:pointer;background:var(--white);color:var(--ink2);transition:transform 75ms cubic-bezier(.4,0,.2,1);}
+.pill:active{transform:scale(.95);}
+.pill.active{background:linear-gradient(135deg,rgba(242,196,206,.25),var(--gold2));border-color:var(--gold);color:var(--ink);font-weight:500;}
+.divider{border:none;border-top:1px solid var(--border);margin:.75rem 0;}
+.gen-btn{display:flex;align-items:center;justify-content:center;gap:.45rem;width:100%;padding:.75rem;border-radius:12px;border:none;background:linear-gradient(135deg,#c9956a,var(--gold));color:var(--ink);font-size:.85rem;font-weight:600;cursor:pointer;transition:transform 75ms,box-shadow 200ms;}
+.gen-btn:active{transform:scale(.97);}
+.gen-btn:hover:not(:disabled){box-shadow:0 5px 20px rgba(212,175,110,.4);}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;}
+.sec-btn{display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.55rem .9rem;border-radius:10px;border:1px solid var(--border);background:var(--white);font-size:.72rem;font-family:'Outfit',sans-serif;cursor:pointer;color:var(--ink2);transition:transform 75ms;}
+.sec-btn:active{transform:scale(.96);}
+.sec-btn.danger{border-color:var(--red);color:var(--red);}
+.toast{position:fixed;bottom:1.2rem;right:1.2rem;left:1.2rem;max-width:280px;margin-left:auto;background:var(--ink);color:var(--gold);font-family:'DM Mono',monospace;font-size:.62rem;padding:.45rem .85rem;border-radius:9px;border:1px solid var(--gold);z-index:9999;opacity:0;transition:opacity .28s;pointer-events:none;}
+.toast.show{opacity:1;}
+
+/* Format picker */
+.format-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.3rem;}
+.format-btn{padding:.65rem .4rem;border-radius:10px;border:1px solid var(--border);background:var(--white);cursor:pointer;text-align:center;transition:transform 75ms;}
+.format-btn:active{transform:scale(.95);}
+.format-btn.active{background:var(--gold2);border-color:var(--gold);}
+.format-icon{font-size:1.4rem;display:block;margin-bottom:.25rem;}
+.format-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.06em;color:var(--ink2);}
+.format-sub{font-size:.55rem;color:var(--muted);}
+
+/* Slide builder */
+.slides-area{margin-top:.5rem;}
+.slides-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.5rem;margin-bottom:.6rem;}
+.slide-card{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--white);aspect-ratio:1;cursor:pointer;}
+.slide-card.selected{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold3);}
+.slide-card img{width:100%;height:100%;object-fit:cover;display:block;}
+.slide-card .slide-num{position:absolute;top:.3rem;left:.3rem;background:rgba(26,20,16,.7);color:var(--gold);font-family:'DM Mono',monospace;font-size:.5rem;padding:.15rem .35rem;border-radius:5px;}
+.slide-card .slide-remove{position:absolute;top:.3rem;right:.3rem;width:20px;height:20px;border-radius:50%;border:none;background:rgba(200,80,80,.85);color:#fff;font-size:.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.slide-add{border:2px dashed var(--border);border-radius:10px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:.68rem;color:var(--muted);gap:.3rem;transition:border-color .15s;}
+.slide-add:hover{border-color:var(--gold);color:var(--gold);}
+.slide-add .sa-icon{font-size:1.4rem;}
+.slide-add input{display:none;}
+
+/* Text overlay */
+.text-overlay-panel{background:rgba(255,255,255,0.4);border:1px solid var(--border);border-radius:10px;padding:.7rem;margin-top:.5rem;}
+.text-overlay-row{display:flex;gap:.4rem;align-items:center;margin-bottom:.4rem;}
+.text-overlay-row input[type=text]{flex:1;font-size:.78rem;}
+.tov-pos{font-family:'DM Mono',monospace;font-size:.55rem;padding:.3rem .45rem;border-radius:7px;border:1px solid var(--border);background:var(--white);cursor:pointer;color:var(--ink2);}
+.tov-pos.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);}
+.tov-remove{border:none;background:none;color:var(--muted);cursor:pointer;font-size:.9rem;padding:.2rem;}
+.add-text-btn{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--gold);border:1px dashed rgba(212,175,110,.4);background:var(--gold2);border-radius:8px;padding:.3rem .6rem;cursor:pointer;}
+
+/* Music */
+.music-track{display:flex;align-items:center;gap:.6rem;padding:.5rem .6rem;border-radius:10px;border:1px solid var(--border);background:var(--white);cursor:pointer;transition:border-color .15s;}
+.music-track.active{border-color:var(--gold);background:var(--gold2);}
+.music-track .mt-icon{font-size:1.1rem;flex-shrink:0;}
+.music-track .mt-info{flex:1;}
+.music-track .mt-name{font-size:.72rem;font-weight:500;}
+.music-track .mt-vibe{font-size:.6rem;color:var(--muted);}
+.music-grid{display:flex;flex-direction:column;gap:.35rem;margin-top:.3rem;}
+
+/* Voiceover */
+.vo-area{background:rgba(255,255,255,0.4);border:1px solid var(--border);border-radius:10px;padding:.7rem;}
+.vo-rec-btn{display:flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border-radius:10px;border:none;background:var(--blush);color:var(--ink);font-size:.75rem;font-family:'Outfit',sans-serif;font-weight:500;cursor:pointer;}
+.vo-rec-btn.recording{background:var(--red);color:#fff;animation:pulse-rec 1s ease-in-out infinite;}
+@keyframes pulse-rec{0%,100%{opacity:1}50%{opacity:.65}}
+.vo-playback{margin-top:.5rem;display:none;}
+.vo-playback.show{display:block;}
+.vo-playback audio{width:100%;margin-top:.3rem;}
+
+/* Preview & export */
+.preview-canvas-wrap{background:#000;border-radius:12px;overflow:hidden;position:relative;margin-bottom:.6rem;}
+.preview-canvas-wrap canvas{display:block;width:100%;height:auto;}
+.preview-controls{display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-bottom:.6rem;}
+.preview-stat{font-family:'DM Mono',monospace;font-size:.55rem;color:var(--muted);text-align:center;margin-bottom:.6rem;}
+.progress-bar{height:4px;background:rgba(212,175,110,0.12);border-radius:2px;overflow:hidden;margin-bottom:.6rem;display:none;}
+.progress-bar.show{display:block;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blush),var(--gold));border-radius:2px;transition:width .2s;}
+
+@media(max-width:600px){
+  .field-row{grid-template-columns:1fr;}
+  .format-grid{grid-template-columns:repeat(3,1fr);}
+}
 </style>
 </head>
 <body>
+<div class="dot-grid"></div>
+<div class="ambient-orb"></div>
+<div class="toast" id="toast"></div>
 
 <nav class="topnav">
-  <a class="logo" href="index.html">
-    <div class="lotus">🪷</div>
-    <div class="bn">Cre8ive Vib3s <span>Studio</span></div>
-  </a>
+  <div class="logo">
+    <a href="index.html" style="display:flex;align-items:center;gap:.5rem;">
+      <div class="lotus">🪷</div>
+      <div><div class="bn">Creator<span>Sphere</span></div></div>
+    </a>
+  </div>
   <div class="navlinks">
     <a class="nl" href="index.html">🏠</a>
     <a class="nl" href="image-studio.html">🎨 Images</a>
     <a class="nl active" href="video-studio.html">🎬 Video</a>
     <a class="nl" href="writing-studio.html">✍️ Writing</a>
     <a class="nl" href="design-studio.html">✏️ Design</a>
-    <a class="nl" href="marketing-studio.html">📈 Marketing</a>
-    <a class="nl" href="products-studio.html">📦 Products</a>
-    <a class="nl" href="ai-studio.html">🤖 AI</a>
     <a class="nl" href="chat.html">💬 Chat</a>
   </div>
 </nav>
 
-<div class="container">
-  <div class="sidebar">
-    <button class="btn-nav active" onclick="show('edit')">✂️ Video Editors</button>
-    <button class="btn-nav" onclick="show('voice')">🎤 Voice Over</button>
-    <button class="btn-nav" onclick="show('captions')">📝 Auto Captions</button>
+<div class="studio-statusbar">
+  <div class="status-item"><span class="status-dot"></span>Video Studio</div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Slides: <span class="status-val" id="slideCount">0</span></div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Format: <span class="status-val" id="formatLabel">9:16</span></div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Duration: <span class="status-val" id="durationLabel">0s</span></div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Engine: <span class="status-val">In-Browser</span></div>
+  <span class="status-sep">·</span>
+  <div class="status-item">Free: <span class="status-val">∞</span></div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- STEP 1: FORMAT -->
+  <div class="glass-panel" style="padding:1rem;margin-bottom:.85rem;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.6rem;">
+      <div class="section-head" style="margin-bottom:0">
+        <h2>🎬 Video Studio</h2>
+        <p>Build slideshow videos with text, music, and voiceover — export as MP4.</p>
+      </div>
+      <div class="node-badge"><span class="nd"></span>VID_01</div>
+    </div>
+    <div class="field">
+      <label>Step 1 — Choose Format</label>
+      <div class="format-grid" id="formatGrid">
+        <div class="format-btn active" data-w="720" data-h="1280" data-label="9:16" onclick="setFormat(this)">
+          <span class="format-icon">📱</span>
+          <div class="format-label">9:16</div>
+          <div class="format-sub">Reels · TikTok · Shorts</div>
+        </div>
+        <div class="format-btn" data-w="1280" data-h="720" data-label="16:9" onclick="setFormat(this)">
+          <span class="format-icon">🖥️</span>
+          <div class="format-label">16:9</div>
+          <div class="format-sub">YouTube · Presentations</div>
+        </div>
+        <div class="format-btn" data-w="720" data-h="720" data-label="1:1" onclick="setFormat(this)">
+          <span class="format-icon">⬜</span>
+          <div class="format-label">1:1</div>
+          <div class="format-sub">Instagram · Posts</div>
+        </div>
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:0;">
+      <label>Seconds per slide</label>
+      <div style="display:flex;align-items:center;gap:.7rem;">
+        <input type="range" id="slideSeconds" min="1" max="10" value="3" oninput="updateDuration()">
+        <span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--gold);white-space:nowrap;" id="slideSecondsVal">3s</span>
+      </div>
+    </div>
   </div>
 
-  <div class="content">
-    
-    <div class="panel show" id="edit">
-      <div class="card">
-        <span class="badge">✅ 100% FREE & NO WATERMARKS</span>
-        <h2>✂️ Video Editors (Free & Unlimited)</h2>
+  <!-- STEP 2: SLIDES -->
+  <div class="glass-panel" style="padding:1rem;margin-bottom:.85rem;">
+    <div class="field" style="margin-bottom:.5rem;">
+      <label>Step 2 — Add Images (up to 20)</label>
+    </div>
+    <div class="slides-area">
+      <div class="slides-grid" id="slidesGrid">
+        <div class="slide-add" onclick="document.getElementById('slideUpload').click()">
+          <input type="file" id="slideUpload" accept="image/*" multiple onchange="addSlides(this)">
+          <span class="sa-icon">➕</span>
+          <span>Add Images</span>
+        </div>
       </div>
-
-      <div class="card">
-        <h3>⭐ BEST FREE OPTIONS</h3>
-        <p>🎬 <a href="https://www.capcut.com" target="_blank">CapCut</a> — Mobile + Desktop, no watermarks<br>
-        🎥 <a href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank">DaVinci Resolve</a> — Professional, no watermarks<br>
-        🎞️ <a href="https://shotcut.org" target="_blank">Shotcut</a> — Open-source, desktop<br>
-        🎬 <a href="https://www.openshot.org" target="_blank">OpenShot</a> — Simple & powerful<br>
-        🖥️ <a href="https://kdenlive.org" target="_blank">Kdenlive</a> — Professional editor<br>
-        </p>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+        <button class="sec-btn" onclick="document.getElementById('slideUpload').click()">📁 Upload from Device</button>
+        <button class="sec-btn" onclick="loadFromGallery()">🗂️ Pick from Gallery</button>
+        <button class="sec-btn danger" onclick="clearSlides()">🗑️ Clear All</button>
       </div>
     </div>
-
-    <div class="panel" id="voice">
-      <div class="card">
-        <h2>🎤 Voice Over (100% Free AI)</h2>
-      </div>
-      <div class="card">
-        <p>🎙️ <a href="https://cloud.google.com/text-to-speech" target="_blank">Google Text-to-Speech</a> — Natural voices, unlimited<br>
-        🎤 <a href="https://elevenlabs.io" target="_blank">Eleven Labs</a> — Free tier available<br>
-        🔊 <a href="https://voicebox.meta.com" target="_blank">VoiceBox (Meta)</a> — Free voice synthesis<br>
-        </p>
-      </div>
-    </div>
-
-    <div class="panel" id="captions">
-      <div class="card">
-        <h2>📝 Auto Captions (100% Free)</h2>
-      </div>
-      <div class="card">
-        <p>📝 <a href="https://www.capcut.com" target="_blank">CapCut Auto Captions</a> — Built-in, unlimited<br>
-        🎬 <a href="https://www.nikse.dk/subtitleedit" target="_blank">Subtitle Edit</a> — Open-source subtitle tool<br>
-        </p>
-      </div>
-    </div>
-
   </div>
+
+  <!-- STEP 3: TRANSITION -->
+  <div class="glass-panel" style="padding:1rem;margin-bottom:.85rem;">
+    <div class="field" style="margin-bottom:0;">
+      <label>Step 3 — Transition Effect</label>
+      <div class="style-pills" id="transitionPills">
+        <span class="pill active" data-val="fade">Fade</span>
+        <span class="pill" data-val="slide">Slide</span>
+        <span class="pill" data-val="zoom">Zoom In</span>
+        <span class="pill" data-val="kenburns">Ken Burns</span>
+        <span class="pill" data-val="none">None (Cut)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: TEXT OVERLAYS -->
+  <div class="glass-panel" style="padding:1rem;margin-bottom:.85rem;">
+    <div class="field" style="margin-bottom:.5rem;">
+      <label>Step 4 — Text Overlays (optional)</label>
+    </div>
+    <div class="text-overlay-panel">
+      <div id="textOverlayList"></div>
+      <button class="add-text-btn" onclick="addTextOverlay()">+ Add Text</button>
+    </div>
+    <div class="field" style="margin-top:.6rem;margin-bottom:0;">
+      <label>Text Style</label>
+      <div class="style-pills" id="textStylePills">
+        <span class="pill active" data-val="elegant">Elegant Serif</span>
+        <span class="pill" data-val="bold">Bold Modern</span>
+        <span class="pill" data-val="script">Script</span>
+        <span class="pill" data-val="minimal">Minimal</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: MUSIC -->
+  <div class="glass-panel" style="padding:1rem;margin-bottom:.85rem;">
+    <div class="field" style="margin-bottom:.5rem;">
+      <label>Step 5 — Background Music (optional)</label>
+    </div>
+    <div class="music-grid" id="musicGrid">
+      <div class="music-track active" data-track="none" onclick="selectMusic(this)">
+        <span class="mt-icon">🔇</span>
+        <div class="mt-info"><div class="mt-name">No Music</div><div class="mt-vibe">Silent</div></div>
+      </div>
+      <div class="music-track" data-track="calm" onclick="selectMusic(this)">
+        <span class="mt-icon">🪷</span>
+        <div class="mt-info"><div class="mt-name">Calm & Intentional</div><div class="mt-vibe">Soft piano · mindfulness · journaling</div></div>
+      </div>
+      <div class="music-track" data-track="uplifting" onclick="selectMusic(this)">
+        <span class="mt-icon">☀️</span>
+        <div class="mt-info"><div class="mt-name">Uplifting & Warm</div><div class="mt-vibe">Acoustic · motivational · positive</div></div>
+      </div>
+      <div class="music-track" data-track="luxury" onclick="selectMusic(this)">
+        <span class="mt-icon">✨</span>
+        <div class="mt-info"><div class="mt-name">Luxury & Elegant</div><div class="mt-vibe">Cinematic · sophisticated · brand</div></div>
+      </div>
+      <div class="music-track" data-track="energetic" onclick="selectMusic(this)">
+        <span class="mt-icon">⚡</span>
+        <div class="mt-info"><div class="mt-name">Energetic & Bold</div><div class="mt-vibe">Upbeat · trending · social media</div></div>
+      </div>
+    </div>
+    <div class="field" style="margin-top:.6rem;margin-bottom:0;">
+      <label>Or upload your own music</label>
+      <input type="file" id="customMusic" accept="audio/*" onchange="loadCustomMusic(this)" style="padding:.4rem;">
+    </div>
+  </div>
+
+  <!-- STEP 6: VOICEOVER -->
+  <div class="glass-panel" style="padding:1rem;margin-bottom:.85rem;">
+    <div class="field" style="margin-bottom:.5rem;">
+      <label>Step 6 — Voiceover (optional)</label>
+    </div>
+    <div class="vo-area">
+      <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+        <button class="vo-rec-btn" id="voRecBtn" onclick="toggleRecording()">🎙️ Record Voiceover</button>
+        <span style="font-size:.7rem;color:var(--muted);" id="voStatus">Tap to start recording</span>
+      </div>
+      <div class="vo-playback" id="voPlayback">
+        <audio id="voAudio" controls></audio>
+        <div style="display:flex;gap:.4rem;margin-top:.4rem;">
+          <button class="sec-btn" onclick="clearVoiceover()">🗑️ Remove</button>
+        </div>
+      </div>
+      <div class="field" style="margin-top:.6rem;margin-bottom:0;">
+        <label>Or upload a voiceover file</label>
+        <input type="file" id="voUpload" accept="audio/*" onchange="loadVoiceover(this)" style="padding:.4rem;">
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 7: PREVIEW & EXPORT -->
+  <div class="glass-panel" style="padding:1rem;">
+    <div class="field" style="margin-bottom:.6rem;">
+      <label>Step 7 — Preview & Export</label>
+    </div>
+    <div class="preview-canvas-wrap" id="previewWrap" style="display:none;">
+      <canvas id="previewCanvas"></canvas>
+    </div>
+    <div class="preview-stat" id="previewStat" style="display:none;"></div>
+    <div class="progress-bar" id="exportProgress">
+      <div class="progress-fill" id="exportFill" style="width:0%"></div>
+    </div>
+    <div class="preview-controls">
+      <button class="sec-btn" onclick="previewVideo()">▶️ Preview</button>
+      <button class="sec-btn" onclick="stopPreview()">⏹️ Stop</button>
+      <button class="gen-btn" id="exportBtn" onclick="exportVideo()" style="flex:1;min-width:160px;">⬇️ Export MP4</button>
+    </div>
+    <p style="font-size:.65rem;color:var(--muted);text-align:center;line-height:1.5;">Export uses the WebM/MP4 format supported by your browser. For best results, use Chrome or Safari on desktop. On iPhone, the video will download to your Files app.</p>
+  </div>
+
 </div>
 
 <script>
-function show(id) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('show'));
-  document.querySelectorAll('.btn-nav').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('show');
-  event.target.classList.add('active');
-}
-</script>
+/* ── State ── */
+let slides=[];
+let selectedMusic='none';
+let customMusicBlob=null;
+let voiceoverBlob=null;
+let mediaRecorder=null;
+let recordingChunks=[];
+let isRecording=false;
+let videoW=720,videoH=1280;
+let previewInterval=null;
+let previewFrame=0;
+let previewAudio=null;
+const textOverlays=[];
 
+/* ── Format ── */
+function setFormat(btn){
+  document.querySelectorAll('.format-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  videoW=parseInt(btn.dataset.w);
+  videoH=parseInt(btn.dataset.h);
+  document.getElementById('formatLabel').textContent=btn.dataset.label;
+  updateDuration();
+}
+
+/* ── Duration ── */
+function updateDuration(){
+  const s=parseInt(document.getElementById('slideSeconds').value);
+  document.getElementById('slideSecondsVal').textContent=s+'s';
+  const total=slides.length*s;
+  document.getElementById('durationLabel').textContent=total+'s';
+}
+
+/* ── Slides ── */
+function addSlides(input){
+  const files=Array.from(input.files);
+  const remaining=20-slides.length;
+  const toAdd=files.slice(0,remaining);
+  toAdd.forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=(e)=>{
+      const img=new Image();
+      img.onload=()=>{slides.push({img,name:file.name});renderSlides();updateDuration();};
+      img.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  if(files.length>remaining)toast(`Max 20 slides — only first ${remaining} added`);
+  input.value='';
+}
+
+function loadFromGallery(){
+  let gallery=[];
+  try{gallery=JSON.parse(localStorage.getItem('cvs_gallery')||'[]');}catch(e){}
+  if(!gallery.length){toast('No saved images in gallery yet — generate some in Image Studio first!');return;}
+  const remaining=20-slides.length;
+  const toAdd=gallery.slice(0,remaining);
+  let loaded=0;
+  toAdd.forEach(item=>{
+    const src=item.dataUrl||item.url;
+    if(!src)return;
+    const img=new Image();
+    img.onload=()=>{slides.push({img,name:'Gallery image'});loaded++;if(loaded===toAdd.length){renderSlides();updateDuration();}};
+    img.src=src;
+  });
+  toast(`Added ${toAdd.length} image${toAdd.length!==1?'s':''} from gallery`);
+}
+
+function removeSlide(idx){
+  slides.splice(idx,1);
+  renderSlides();
+  updateDuration();
+}
+
+function clearSlides(){
+  slides=[];
+  renderSlides();
+  updateDuration();
+}
+
+function renderSlides(){
+  const grid=document.getElementById('slidesGrid');
+  grid.innerHTML='';
+  slides.forEach((s,i)=>{
+    const card=document.createElement('div');
+    card.className='slide-card';
+    const img=document.createElement('img');
+    img.src=s.img.src;
+    const num=document.createElement('div');
+    num.className='slide-num';
+    num.textContent=i+1;
+    const rm=document.createElement('button');
+    rm.className='slide-remove';
+    rm.textContent='×';
+    rm.onclick=(e)=>{e.stopPropagation();removeSlide(i);};
+    card.appendChild(img);card.appendChild(num);card.appendChild(rm);
+    grid.appendChild(card);
+  });
+  const addBtn=document.createElement('div');
+  addBtn.className='slide-add';
+  if(slides.length<20){
+    addBtn.innerHTML='<span class="sa-icon">➕</span><span>Add Images</span>';
+    addBtn.onclick=()=>document.getElementById('slideUpload').click();
+  }
+  grid.appendChild(addBtn);
+  document.getElementById('slideCount').textContent=slides.length;
+}
+
+/* ── Text overlays ── */
+let textIdCounter=0;
+function addTextOverlay(){
+  const id=textIdCounter++;
+  textOverlays.push({id,text:'',position:'bottom'});
+  renderTextOverlays();
+}
+function removeTextOverlay(id){
+  const idx=textOverlays.findIndex(t=>t.id===id);
+  if(idx!==-1)textOverlays.splice(idx,1);
+  renderTextOverlays();
+}
+function renderTextOverlays(){
+  const list=document.getElementById('textOverlayList');
+  list.innerHTML='';
+  textOverlays.forEach(t=>{
+    const row=document.createElement('div');
+    row.className='text-overlay-row';
+    const input=document.createElement('input');
+    input.type='text';input.placeholder='Your text here…';input.value=t.text;
+    input.oninput=(e)=>{t.text=e.target.value;};
+    const posTop=document.createElement('button');
+    posTop.className='tov-pos'+(t.position==='top'?' active':'');
+    posTop.textContent='Top';
+    posTop.onclick=()=>{t.position='top';renderTextOverlays();};
+    const posBot=document.createElement('button');
+    posBot.className='tov-pos'+(t.position==='bottom'?' active':'');
+    posBot.textContent='Bottom';
+    posBot.onclick=()=>{t.position='bottom';renderTextOverlays();};
+    const rm=document.createElement('button');
+    rm.className='tov-remove';rm.textContent='×';
+    rm.onclick=()=>removeTextOverlay(t.id);
+    row.appendChild(input);row.appendChild(posTop);row.appendChild(posBot);row.appendChild(rm);
+    list.appendChild(row);
+  });
+}
+
+/* ── Music ── */
+function selectMusic(el){
+  document.querySelectorAll('.music-track').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  selectedMusic=el.dataset.track;
+}
+function loadCustomMusic(input){
+  const file=input.files[0];
+  if(!file)return;
+  customMusicBlob=file;
+  selectedMusic='custom';
+  document.querySelectorAll('.music-track').forEach(t=>t.classList.remove('active'));
+  toast('Custom music loaded ✓');
+}
+
+/* ── Voiceover recording ── */
+async function toggleRecording(){
+  if(isRecording){stopRecording();}
+  else{await startRecording();}
+}
+async function startRecording(){
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    recordingChunks=[];
+    mediaRecorder=new MediaRecorder(stream);
+    mediaRecorder.ondataavailable=(e)=>{if(e.data.size>0)recordingChunks.push(e.data);};
+    mediaRecorder.onstop=()=>{
+      voiceoverBlob=new Blob(recordingChunks,{type:'audio/webm'});
+      const url=URL.createObjectURL(voiceoverBlob);
+      const audio=document.getElementById('voAudio');
+      audio.src=url;
+      document.getElementById('voPlayback').classList.add('show');
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    mediaRecorder.start();
+    isRecording=true;
+    const btn=document.getElementById('voRecBtn');
+    btn.classList.add('recording');
+    btn.innerHTML='⏹️ Stop Recording';
+    document.getElementById('voStatus').textContent='Recording…';
+  }catch(e){toast('Microphone access denied — check your browser permissions');}
+}
+function stopRecording(){
+  if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();
+  isRecording=false;
+  const btn=document.getElementById('voRecBtn');
+  btn.classList.remove('recording');
+  btn.innerHTML='🎙️ Record Voiceover';
+  document.getElementById('voStatus').textContent='Recording saved';
+}
+function clearVoiceover(){
+  voiceoverBlob=null;
+  document.getElementById('voAudio').src='';
+  document.getElementById('voPlayback').classList.remove('show');
+  document.getElementById('voStatus').textContent='Tap to start recording';
+}
+function loadVoiceover(input){
+  const file=input.files[0];
+  if(!file)return;
+  voiceoverBlob=file;
+  const url=URL.createObjectURL(file);
+  document.getElementById('voAudio').src=url;
+  document.getElementById('voPlayback').classList.add('show');
+  document.getElementById('voStatus').textContent='Voiceover uploaded';
+}
+
+/* ── Canvas rendering ── */
+function getTextStyle(){return document.querySelector('#textStylePills .pill.active')?.dataset.val||'elegant';}
+function getTransition(){return document.querySelector('#transitionPills .pill.active')?.dataset.val||'fade';}
+
+function drawSlideToCanvas(ctx,img,w,h,progress,transition){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#000';
+  ctx.fillRect(0,0,w,h);
+  const scale=Math.max(w/img.width,h/img.height);
+  const sw=img.width*scale,sh=img.height*scale;
+  const sx=(w-sw)/2,sy=(h-sh)/2;
+  ctx.save();
+  if(transition==='kenburns'){
+    const zoom=1+progress*0.08;
+    ctx.translate(w/2,h/2);ctx.scale(zoom,zoom);ctx.translate(-w/2,-h/2);
+  }else if(transition==='zoom'){
+    const zoom=1+progress*0.05;
+    ctx.translate(w/2,h/2);ctx.scale(zoom,zoom);ctx.translate(-w/2,-h/2);
+  }
+  ctx.drawImage(img,sx,sy,sw,sh);
+  ctx.restore();
+}
+
+function drawTextOnCanvas(ctx,w,h){
+  const style=getTextStyle();
+  const overlays=textOverlays.filter(t=>t.text.trim());
+  if(!overlays.length)return;
+  overlays.forEach(t=>{
+    const isBottom=t.position==='bottom';
+    const fontSize=Math.round(w*0.055);
+    const fontFamily=style==='elegant'?'Cormorant Garamond':style==='script'?'cursive':'Outfit';
+    ctx.font=`${style==='bold'?'700':'500'} ${fontSize}px "${fontFamily}", sans-serif`;
+    ctx.textAlign='center';
+    const gradH=h*0.25;
+    const gradY=isBottom?h-gradH:0;
+    const grad=ctx.createLinearGradient(0,gradY,0,gradY+gradH);
+    grad.addColorStop(0,isBottom?'rgba(0,0,0,0)':'rgba(0,0,0,0.7)');
+    grad.addColorStop(1,isBottom?'rgba(0,0,0,0.7)':'rgba(0,0,0,0)');
+    ctx.fillStyle=grad;
+    ctx.fillRect(0,gradY,w,gradH);
+    ctx.fillStyle='#fff';
+    ctx.shadowColor='rgba(0,0,0,0.8)';
+    ctx.shadowBlur=8;
+    const y=isBottom?h-fontSize*1.2:fontSize*1.5;
+    ctx.fillText(t.text,w/2,y);
+    ctx.shadowBlur=0;
+  });
+}
+
+/* ── Preview ── */
+function previewVideo(){
+  if(!slides.length){toast('Add at least one image first');return;}
+  stopPreview();
+  const wrap=document.getElementById('previewWrap');
+  const canvas=document.getElementById('previewCanvas');
+  wrap.style.display='block';
+  const maxW=wrap.clientWidth||360;
+  const scale=maxW/videoW;
+  canvas.width=videoW;canvas.height=videoH;
+  canvas.style.width='100%';canvas.style.height='auto';
+  const ctx=canvas.getContext('2d');
+  const secs=parseInt(document.getElementById('slideSeconds').value);
+  const fps=24;
+  const framesPerSlide=secs*fps;
+  let frame=0;
+  const totalFrames=slides.length*framesPerSlide;
+  const transition=getTransition();
+  document.getElementById('previewStat').style.display='block';
+  if(voiceoverBlob||customMusicBlob){
+    previewAudio=new Audio();
+    previewAudio.src=URL.createObjectURL(voiceoverBlob||customMusicBlob);
+    previewAudio.play().catch(()=>{});
+  }
+  previewInterval=setInterval(()=>{
+    if(frame>=totalFrames){stopPreview();return;}
+    const slideIdx=Math.floor(frame/framesPerSlide);
+    const frameInSlide=frame%framesPerSlide;
+    const progress=frameInSlide/framesPerSlide;
+    const slide=slides[slideIdx];
+    const fadeFrames=fps*0.4;
+    let alpha=1;
+    if(transition==='fade'){
+      if(frameInSlide<fadeFrames)alpha=frameInSlide/fadeFrames;
+      else if(frameInSlide>framesPerSlide-fadeFrames)alpha=(framesPerSlide-frameInSlide)/fadeFrames;
+    }
+    drawSlideToCanvas(ctx,slide.img,videoW,videoH,progress,transition);
+    if(transition==='fade'&&alpha<1){
+      ctx.fillStyle=`rgba(0,0,0,${1-alpha})`;
+      ctx.fillRect(0,0,videoW,videoH);
+    }
+    drawTextOnCanvas(ctx,videoW,videoH);
+    const elapsed=frame/fps;
+    const total=totalFrames/fps;
+    document.getElementById('previewStat').textContent=`▶ ${elapsed.toFixed(1)}s / ${total.toFixed(1)}s · Slide ${slideIdx+1}/${slides.length}`;
+    frame++;
+  },1000/fps);
+}
+
+function stopPreview(){
+  if(previewInterval){clearInterval(previewInterval);previewInterval=null;}
+  if(previewAudio){previewAudio.pause();previewAudio=null;}
+}
+
+/* ── Export ── */
+async function exportVideo(){
+  if(!slides.length){toast('Add at least one image first');return;}
+  const btn=document.getElementById('exportBtn');
+  btn.disabled=true;btn.textContent='⏳ Exporting…';
+  const progressBar=document.getElementById('exportProgress');
+  const fill=document.getElementById('exportFill');
+  progressBar.classList.add('show');fill.style.width='0%';
+  const canvas=document.createElement('canvas');
+  canvas.width=videoW;canvas.height=videoH;
+  const ctx=canvas.getContext('2d');
+  const secs=parseInt(document.getElementById('slideSeconds').value);
+  const fps=24;
+  const framesPerSlide=secs*fps;
+  const totalFrames=slides.length*framesPerSlide;
+  const transition=getTransition();
+  const mimeType=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':MediaRecorder.isTypeSupported('video/webm')?'video/webm':'video/mp4';
+  const stream=canvas.captureStream(fps);
+  // Add audio if available
+  if(voiceoverBlob||customMusicBlob){
+    try{
+      const audioCtx=new AudioContext();
+      const ab=await (voiceoverBlob||customMusicBlob).arrayBuffer();
+      const decoded=await audioCtx.decodeAudioData(ab);
+      const source=audioCtx.createBufferSource();
+      source.buffer=decoded;
+      const dest=audioCtx.createMediaStreamDestination();
+      source.connect(dest);
+      source.start();
+      dest.stream.getAudioTracks().forEach(t=>stream.addTrack(t));
+    }catch(e){console.log('Audio mix failed, exporting video only');}
+  }
+  const recorder=new MediaRecorder(stream,{mimeType});
+  const chunks=[];
+  recorder.ondataavailable=(e)=>{if(e.data.size>0)chunks.push(e.data);};
+  recorder.onstop=()=>{
+    const blob=new Blob(chunks,{type:mimeType});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    const ext=mimeType.includes('webm')?'webm':'mp4';
+    a.download=`creatorsphere-video-${Date.now()}.${ext}`;
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    progressBar.classList.remove('show');
+    btn.disabled=false;btn.textContent='⬇️ Export MP4';
+    toast('Video exported! Check your downloads 🎬');
+  };
+  recorder.start();
+  let frame=0;
+  const renderFrame=()=>{
+    if(frame>=totalFrames){recorder.stop();return;}
+    const slideIdx=Math.floor(frame/framesPerSlide);
+    const frameInSlide=frame%framesPerSlide;
+    const progress=frameInSlide/framesPerSlide;
+    const slide=slides[slideIdx];
+    const fadeFrames=fps*0.4;
+    let alpha=1;
+    if(transition==='fade'){
+      if(frameInSlide<fadeFrames)alpha=frameInSlide/fadeFrames;
+      else if(frameInSlide>framesPerSlide-fadeFrames)alpha=(framesPerSlide-frameInSlide)/fadeFrames;
+    }
+    drawSlideToCanvas(ctx,slide.img,videoW,videoH,progress,transition);
+    if(transition==='fade'&&alpha<1){ctx.fillStyle=`rgba(0,0,0,${1-alpha})`;ctx.fillRect(0,0,videoW,videoH);}
+    drawTextOnCanvas(ctx,videoW,videoH);
+    fill.style.width=Math.round((frame/totalFrames)*100)+'%';
+    frame++;
+    requestAnimationFrame(renderFrame);
+  };
+  requestAnimationFrame(renderFrame);
+}
+
+/* ── Pills init ── */
+document.querySelectorAll('.style-pills, #transitionPills').forEach(group=>{
+  group.querySelectorAll('.pill').forEach(pill=>{
+    pill.addEventListener('click',()=>{
+      group.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+});
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+</script>
 </body>
 </html>
