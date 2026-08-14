@@ -2,40 +2,81 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design Studio — Cre8ive Vib3s</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Design Studio — CreatorSphere</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--cream:#faf6f0;--ink:#1a1410;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);display:flex;flex-direction:column;height:100vh;}
-.topnav{height:50px;background:#f5ede0;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem;flex-shrink:0;}
-.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;}
-.lotus{font-size:1.3rem;}
-.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;}
+:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--gold2:rgba(212,175,110,0.12);--cream:#faf6f0;--ink:#1a1410;--ink2:#3d342e;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;min-height:100dvh;}
+a{text-decoration:none;color:inherit;}
+.dot-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(212,175,110,0.2) 0.8px,transparent 0.8px);background-size:22px 22px;}
+.topnav{background:rgba(250,246,240,0.97);border-bottom:1px solid var(--border);padding:0 1.25rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.lotus{font-size:1.3rem;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;}
 .bn span{color:var(--gold);}
-.navlinks{display:flex;gap:.5rem;margin-left:auto;}
-.nl{padding:.3rem .6rem;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.75rem;}
-.nl.active{background:rgba(212,175,110,0.2);}
-.container{display:flex;flex:1;overflow:hidden;}
-.sidebar{width:200px;background:var(--white);border-right:1px solid var(--border);overflow-y:auto;padding:.5rem;}
-.btn-nav{display:block;width:100%;padding:.4rem .5rem;border:none;background:none;cursor:pointer;text-align:left;font-size:.75rem;border-radius:6px;margin-bottom:.2rem;color:var(--ink);font-family:'Outfit',sans-serif;}
-.btn-nav.active{background:rgba(212,175,110,0.2);font-weight:600;}
-.content{flex:1;overflow-y:auto;padding:1.5rem;}
-.panel{display:none;}
-.panel.show{display:block;}
-.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;}
-.card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;margin-bottom:.3rem;}
-.card h3{font-size:.95rem;margin:.8rem 0 .4rem;}
-.card p{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.5rem;}
-.badge{display:inline-block;font-size:.6rem;padding:.2rem .5rem;background:rgba(178,201,173,.2);color:#3d5c38;border-radius:6px;margin-bottom:.5rem;}
-.link{color:var(--gold);text-decoration:none;font-weight:600;}
+.navlinks{display:flex;gap:.2rem;overflow-x:auto;}
+.navlinks::-webkit-scrollbar{display:none;}
+.nl{padding:.3rem .6rem;border-radius:7px;font-size:.68rem;color:var(--ink2);white-space:nowrap;border:1px solid transparent;}
+.nl.active{background:var(--gold2);color:var(--ink);font-weight:500;border-color:var(--border);}
+.tool-rail{position:sticky;top:56px;z-index:190;background:rgba(250,246,240,0.97);border-bottom:1px solid var(--border);padding:.5rem .9rem;display:flex;gap:.4rem;overflow-x:auto;}
+.tool-rail::-webkit-scrollbar{display:none;}
+.rail-chip{flex-shrink:0;padding:.38rem .7rem;border-radius:20px;border:1px solid var(--border);background:var(--white);font-size:.67rem;color:var(--ink2);cursor:pointer;white-space:nowrap;}
+.rail-chip.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.main{padding:.9rem;max-width:860px;margin:0 auto;}
+.tool-panel{display:none;}.tool-panel.active{display:block;}
+.glass-panel{background:rgba(255,255,255,0.88);border:1px solid rgba(212,175,110,0.18);box-shadow:0 4px 24px rgba(212,175,110,0.1);border-radius:14px;}
+.panel-head{padding:.85rem 1rem;margin-bottom:.75rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;}
+.panel-head h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;margin-bottom:.18rem;}
+.panel-head p{font-size:.72rem;color:var(--muted);line-height:1.5;max-width:420px;}
+.node-badge{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.2rem .5rem;border-radius:8px;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:.28rem;}
+.node-badge .nd{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
+.form-panel{padding:.9rem;}
+.field{margin-bottom:.7rem;}
+.field label{display:block;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink2);margin-bottom:.28rem;}
+textarea,input[type=text],select{width:100%;border:1px solid var(--border);border-radius:10px;padding:.55rem .8rem;font-family:'Outfit',sans-serif;font-size:.81rem;color:var(--ink);background:rgba(250,246,240,0.8);outline:none;}
+textarea{resize:vertical;min-height:80px;line-height:1.55;}
+textarea:focus,input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,110,.12);}
+input::placeholder,textarea::placeholder{color:var(--muted);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.style-pills{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.22rem;}
+.pill{padding:.24rem .6rem;border-radius:20px;border:1px solid var(--border);font-size:.65rem;cursor:pointer;background:var(--white);color:var(--ink2);}
+.pill.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.divider{border:none;border-top:1px solid var(--border);margin:.7rem 0;}
+.gen-btn{display:flex;align-items:center;justify-content:center;gap:.45rem;width:100%;padding:.72rem;border-radius:11px;border:none;background:linear-gradient(135deg,#c9956a,var(--gold));color:var(--ink);font-size:.85rem;font-weight:600;cursor:pointer;}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;}
+.result-area{margin-top:.8rem;display:none;}.result-area.show{display:block;}
+.result-box{background:rgba(255,255,255,0.9);border:1px solid var(--border);border-radius:12px;padding:1rem;font-size:.82rem;line-height:1.75;white-space:pre-wrap;color:var(--ink2);min-height:120px;}
+.result-actions{display:flex;gap:.4rem;margin-top:.55rem;flex-wrap:wrap;}
+.act-btn{padding:.38rem .75rem;border-radius:8px;border:1px solid var(--border);background:var(--white);font-size:.68rem;font-family:'Outfit',sans-serif;cursor:pointer;color:var(--ink2);}
+.act-btn.primary{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.shimmer-line{height:14px;border-radius:6px;background:linear-gradient(90deg,#f0e8e0 25%,#e8ddd5 50%,#f0e8e0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;margin-bottom:.5rem;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+/* Color palette display */
+.palette-display{display:flex;gap:.4rem;margin-top:.7rem;flex-wrap:wrap;}
+.swatch-block{width:52px;height:52px;border-radius:10px;border:1px solid rgba(0,0,0,.08);cursor:pointer;position:relative;flex-shrink:0;}
+.swatch-block:hover::after{content:attr(data-hex);position:absolute;bottom:-1.4rem;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:.45rem;color:var(--muted);white-space:nowrap;}
+/* Font pairing display */
+.font-pair{background:rgba(255,255,255,0.9);border:1px solid var(--border);border-radius:12px;padding:1rem;margin-top:.5rem;}
+.fp-heading{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:.3rem;}
+.fp-body{font-size:.82rem;color:var(--ink2);line-height:1.6;}
+.fp-meta{font-family:'DM Mono',monospace;font-size:.5rem;color:var(--muted);margin-top:.5rem;letter-spacing:.06em;}
+/* Mood board grid */
+.moodboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-top:.6rem;}
+.mb-cell{border-radius:10px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:1px solid rgba(0,0,0,.06);}
+.toast{position:fixed;bottom:1.2rem;right:1.2rem;left:1.2rem;max-width:280px;margin-left:auto;background:var(--ink);color:var(--gold);font-family:'DM Mono',monospace;font-size:.62rem;padding:.45rem .85rem;border-radius:9px;border:1px solid var(--gold);z-index:9999;opacity:0;transition:opacity .28s;pointer-events:none;}
+.toast.show{opacity:1;}
+@media(max-width:600px){.field-row{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-
+<div class="dot-grid"></div>
+<div class="toast" id="toast"></div>
 <nav class="topnav">
-  <a class="logo" href="index.html"><div class="lotus">🪷</div><div class="bn">Cre8ive Vib3s <span>Studio</span></div></a>
+  <a href="index.html" style="display:flex;align-items:center;gap:.5rem;"><div class="lotus">🪷</div><div class="bn">Creator<span>Sphere</span></div></a>
   <div class="navlinks">
     <a class="nl" href="index.html">🏠</a>
     <a class="nl" href="image-studio.html">🎨 Images</a>
@@ -48,63 +89,172 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);di
     <a class="nl" href="chat.html">💬 Chat</a>
   </div>
 </nav>
-
-<div class="container">
-  <div class="sidebar">
-    <button class="btn-nav active" onclick="show('design')">🎨 Design Tools</button>
-    <button class="btn-nav" onclick="show('edit')">✏️ Photo Editors</button>
-    <button class="btn-nav" onclick="show('remove')">🗑️ Background Removal</button>
-  </div>
-
-  <div class="content">
-    <div class="panel show" id="design">
-      <div class="card">
-        <span class="badge">✅ 100% FREE</span>
-        <h2>🎨 Design Tools</h2>
-      </div>
-      <div class="card">
-        <h3>⭐ BEST FREE DESIGN</h3>
-        <p>🎯 <a href="https://designer.microsoft.com" target="_blank">Microsoft Designer</a> — AI-powered, unlimited<br>
-        📐 <a href="https://figma.com" target="_blank">Figma (Free Tier)</a> — Professional design<br>
-        🎨 <a href="https://www.canva.com" target="_blank">Canva (Free Tier)</a> — Templates + design<br>
-        🌈 <a href="https://www.gravit.io" target="_blank">Gravit Designer</a> — Vector design, free<br>
-        </p>
-      </div>
-    </div>
-
-    <div class="panel" id="edit">
-      <div class="card">
-        <h2>✏️ Photo Editors (100% Free)</h2>
-      </div>
-      <div class="card">
-        <p>🖌️ <a href="https://www.gimp.org" target="_blank">GIMP</a> — Professional, open-source<br>
-        🖼️ <a href="https://www.photopea.com" target="_blank">Photopea</a> — Online Photoshop alternative<br>
-        🎨 <a href="https://www.pixlr.com" target="_blank">Pixlr</a> — Full editor, unlimited<br>
-        </p>
-      </div>
-    </div>
-
-    <div class="panel" id="remove">
-      <div class="card">
-        <h2>🗑️ Background Removal (100% Free)</h2>
-      </div>
-      <div class="card">
-        <p>✂️ <a href="https://www.remove.bg" target="_blank">Remove.bg</a> — One-click removal<br>
-        🎯 <a href="https://www.photoroom.com" target="_blank">PhotoRoom</a> — Advanced, free<br>
-        </p>
-      </div>
-    </div>
-  </div>
+<div class="tool-rail">
+  <span class="rail-chip active" onclick="switchTool('brandkit')">🎨 Brand Kit</span>
+  <span class="rail-chip" onclick="switchTool('palette')">🎨 Color Palette</span>
+  <span class="rail-chip" onclick="switchTool('fonts')">🔤 Font Pairings</span>
+  <span class="rail-chip" onclick="switchTool('moodboard')">✨ Mood Board</span>
+  <span class="rail-chip" onclick="switchTool('logodirection')">✦ Logo Direction</span>
+  <span class="rail-chip" onclick="switchTool('visualidentity')">💎 Visual Identity</span>
 </div>
+<div class="main">
 
+  <!-- BRAND KIT -->
+  <div class="tool-panel active" id="panel-brandkit">
+    <div class="glass-panel panel-head"><div><h2>🎨 Brand Kit Builder</h2><p>Describe your brand and get a complete brand kit — colors, fonts, tone, and visual direction.</p></div><div class="node-badge"><span class="nd"></span>DSN_01</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Brand / business name</label><input type="text" id="bk-name" placeholder="e.g. ZenSereniTee"></div>
+      <div class="field"><label>What you do</label><textarea id="bk-what" placeholder="e.g. Mindfulness-based digital products and apparel for women entrepreneurs who want peace and profit…" rows="2"></textarea></div>
+      <div class="field"><label>Your audience</label><input type="text" id="bk-audience" placeholder="e.g. Women 25-45, entrepreneurs, wellness-minded, digital product sellers"></div>
+      <div class="field"><label>Brand personality</label><div class="style-pills" id="bk-vibe"><span class="pill active" data-val="calm, elegant, and empowering">Calm & Elegant</span><span class="pill" data-val="bold, energetic, and modern">Bold & Modern</span><span class="pill" data-val="warm, nurturing, and approachable">Warm & Nurturing</span><span class="pill" data-val="minimal, clean, and sophisticated">Minimal & Sophisticated</span><span class="pill" data-val="playful, colorful, and fun">Playful & Fun</span><span class="pill" data-val="luxury, premium, and exclusive">Luxury & Premium</span></div></div>
+      <div class="field"><label>Industry / niche</label><input type="text" id="bk-niche" placeholder="e.g. Wellness, digital products, mindfulness, fashion, beauty…"></div>
+      <hr class="divider"><button class="gen-btn" id="bk-btn" onclick="generate('bk','brandkit')">🎨 Build My Brand Kit</button>
+    </div>
+    <div class="result-area" id="bk-result"><div class="result-box" id="bk-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('bk')">📋 Copy</button><button class="act-btn" onclick="downloadResult('bk','brand-kit')">⬇️ Download</button><button class="act-btn" onclick="generate('bk','brandkit')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- COLOR PALETTE -->
+  <div class="tool-panel" id="panel-palette">
+    <div class="glass-panel panel-head"><div><h2>🎨 Color Palette Generator</h2><p>Generate beautiful, on-brand color palettes with hex codes — ready to use in Canva.</p></div><div class="node-badge"><span class="nd"></span>DSN_02</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Describe the mood or brand</label><textarea id="cp-desc" placeholder="e.g. A calm, feminine wellness brand — soft, earthy, and luxurious. Think blush, sage, and warm gold…" rows="2"></textarea></div>
+      <div class="field"><label>Palette style</label><div class="style-pills" id="cp-style"><span class="pill active" data-val="soft and feminine">Soft Feminine</span><span class="pill" data-val="bold and vibrant">Bold & Vibrant</span><span class="pill" data-val="earthy and natural">Earthy Natural</span><span class="pill" data-val="dark and moody">Dark & Moody</span><span class="pill" data-val="clean and minimal">Clean Minimal</span><span class="pill" data-val="luxury and rich">Luxury & Rich</span></div></div>
+      <div class="field"><label>Number of colors</label><div class="style-pills" id="cp-count"><span class="pill active" data-val="5">5 colors</span><span class="pill" data-val="8">8 colors</span><span class="pill" data-val="10">10 colors</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="cp-btn" onclick="generate('cp','palette')">🎨 Generate Palette</button>
+    </div>
+    <div class="result-area" id="cp-result"><div class="result-box" id="cp-output"></div><div class="palette-display" id="cp-swatches"></div><div class="result-actions" style="margin-top:.7rem;"><button class="act-btn primary" onclick="copyResult('cp')">📋 Copy Hex Codes</button><button class="act-btn" onclick="generate('cp','palette')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- FONT PAIRINGS -->
+  <div class="tool-panel" id="panel-fonts">
+    <div class="glass-panel panel-head"><div><h2>🔤 Font Pairing Suggester</h2><p>Get perfect heading + body font combinations for your brand — with Google Fonts links.</p></div><div class="node-badge"><span class="nd"></span>DSN_03</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Brand vibe</label><div class="style-pills" id="fp-vibe"><span class="pill active" data-val="elegant and feminine">Elegant Feminine</span><span class="pill" data-val="bold and modern">Bold Modern</span><span class="pill" data-val="warm and friendly">Warm Friendly</span><span class="pill" data-val="minimal and clean">Minimal Clean</span><span class="pill" data-val="luxury and premium">Luxury Premium</span><span class="pill" data-val="playful and creative">Playful Creative</span></div></div>
+      <div class="field"><label>Use case</label><div class="style-pills" id="fp-use"><span class="pill active" data-val="website and brand">Website & Brand</span><span class="pill" data-val="social media graphics">Social Media</span><span class="pill" data-val="print and packaging">Print & Packaging</span><span class="pill" data-val="digital products">Digital Products</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="fp-btn" onclick="generate('fp','fonts')">🔤 Get Font Pairings</button>
+    </div>
+    <div class="result-area" id="fp-result"><div class="result-box" id="fp-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('fp')">📋 Copy</button><button class="act-btn" onclick="generate('fp','fonts')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- MOOD BOARD -->
+  <div class="tool-panel" id="panel-moodboard">
+    <div class="glass-panel panel-head"><div><h2>✨ Mood Board Creator</h2><p>Describe your brand vision and get a detailed mood board direction — textures, imagery, and aesthetic notes.</p></div><div class="node-badge"><span class="nd"></span>DSN_04</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Brand or project name</label><input type="text" id="mb-name" placeholder="e.g. ZenSereniTee Fall Collection"></div>
+      <div class="field"><label>Describe the vibe / vision</label><textarea id="mb-vision" placeholder="e.g. A calm, intentional lifestyle — mornings with herbal tea, soft linen textures, journaling, golden hour light…" rows="3"></textarea></div>
+      <div class="field"><label>Aesthetic direction</label><div class="style-pills" id="mb-aesthetic"><span class="pill active" data-val="soft feminine, botanical, and ethereal">Soft Botanical</span><span class="pill" data-val="dark luxury, moody, and editorial">Dark Luxury</span><span class="pill" data-val="bright, airy, and coastal">Bright & Airy</span><span class="pill" data-val="earthy, warm, and boho">Earthy Boho</span><span class="pill" data-val="minimal, clean, and Scandinavian">Minimal Scandi</span><span class="pill" data-val="bold, colorful, and maximalist">Bold & Colorful</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="mb-btn" onclick="generate('mb','moodboard')">✨ Create Mood Board Direction</button>
+    </div>
+    <div class="result-area" id="mb-result"><div class="result-box" id="mb-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('mb')">📋 Copy</button><button class="act-btn" onclick="downloadResult('mb','mood-board')">⬇️ Download</button><button class="act-btn" onclick="generate('mb','moodboard')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- LOGO DIRECTION -->
+  <div class="tool-panel" id="panel-logodirection">
+    <div class="glass-panel panel-head"><div><h2>✦ Logo Direction Guide</h2><p>Get a clear creative brief for your logo — style, shape, color, and symbolism direction.</p></div><div class="node-badge"><span class="nd"></span>DSN_05</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Brand name</label><input type="text" id="ld-name" placeholder="e.g. ZenSereniTee"></div>
+      <div class="field"><label>What your brand does</label><textarea id="ld-what" placeholder="e.g. Mindfulness digital products and apparel for women entrepreneurs…" rows="2"></textarea></div>
+      <div class="field"><label>Logo style preference</label><div class="style-pills" id="ld-style"><span class="pill active" data-val="wordmark (text-based logo)">Wordmark</span><span class="pill" data-val="lettermark (initials only)">Lettermark</span><span class="pill" data-val="icon + wordmark combination">Icon + Wordmark</span><span class="pill" data-val="abstract symbol mark">Abstract Symbol</span><span class="pill" data-val="emblem or badge style">Emblem / Badge</span></div></div>
+      <div class="field"><label>Feel</label><div class="style-pills" id="ld-feel"><span class="pill active" data-val="elegant and timeless">Elegant & Timeless</span><span class="pill" data-val="modern and clean">Modern & Clean</span><span class="pill" data-val="bold and striking">Bold & Striking</span><span class="pill" data-val="playful and approachable">Playful</span><span class="pill" data-val="luxury and exclusive">Luxury</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="ld-btn" onclick="generate('ld','logodirection')">✦ Get Logo Direction</button>
+    </div>
+    <div class="result-area" id="ld-result"><div class="result-box" id="ld-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('ld')">📋 Copy</button><button class="act-btn" onclick="downloadResult('ld','logo-direction')">⬇️ Download</button><button class="act-btn" onclick="generate('ld','logodirection')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- VISUAL IDENTITY -->
+  <div class="tool-panel" id="panel-visualidentity">
+    <div class="glass-panel panel-head"><div><h2>💎 Visual Identity System</h2><p>Get a complete visual identity guide — colors, fonts, imagery style, and brand guidelines.</p></div><div class="node-badge"><span class="nd"></span>DSN_06</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Brand name</label><input type="text" id="vi-name" placeholder="e.g. ZenSereniTee"></div>
+      <div class="field"><label>Brand mission</label><textarea id="vi-mission" placeholder="e.g. To help women entrepreneurs build profitable, calm digital businesses through mindfulness-based strategies…" rows="2"></textarea></div>
+      <div class="field"><label>Target audience</label><input type="text" id="vi-audience" placeholder="e.g. Women 28-45, digital creators, wellness-minded entrepreneurs"></div>
+      <div class="field"><label>3 words that describe your brand</label><input type="text" id="vi-words" placeholder="e.g. Calm, Intentional, Profitable"></div>
+      <hr class="divider"><button class="gen-btn" id="vi-btn" onclick="generate('vi','visualidentity')">💎 Build Visual Identity</button>
+    </div>
+    <div class="result-area" id="vi-result"><div class="result-box" id="vi-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('vi')">📋 Copy</button><button class="act-btn" onclick="downloadResult('vi','visual-identity')">⬇️ Download</button><button class="act-btn" onclick="generate('vi','visualidentity')">🔄 Regenerate</button></div></div>
+  </div>
+
+</div>
 <script>
-function show(id) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('show'));
-  document.querySelectorAll('.btn-nav').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('show');
-  event.target.classList.add('active');
+function switchTool(id){
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.rail-chip').forEach(c=>c.classList.remove('active'));
+  const panel=document.getElementById('panel-'+id);
+  if(panel)panel.classList.add('active');
+  const chip=document.querySelector(`.rail-chip[onclick*="${id}"]`);
+  if(chip)chip.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-</script>
+document.querySelectorAll('.style-pills').forEach(group=>{
+  group.querySelectorAll('.pill').forEach(pill=>{
+    pill.addEventListener('click',()=>{group.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));pill.classList.add('active');});
+  });
+});
+function getActivePill(id){return document.getElementById(id)?.querySelector('.pill.active')?.dataset.val||'';}
+function v(id){return document.getElementById(id)?.value?.trim()||'';}
 
+function buildPrompt(tool){
+  const prompts={
+    brandkit:`Create a complete brand kit for "${v('bk-name')}".\nBusiness: ${v('bk-what')}\nAudience: ${v('bk-audience')}\nPersonality: ${getActivePill('bk-vibe')}\nNiche: ${v('bk-niche')}\n\nProvide:\n1. Brand Colors (5 colors with hex codes and usage notes)\n2. Typography (heading font + body font with rationale)\n3. Brand Voice & Tone (3-5 guidelines)\n4. Visual Style Direction (imagery, textures, aesthetic notes)\n5. Brand Tagline (3 options)\n6. Brand Values (3-5 core values)\nFormat clearly with headers.`,
+    palette:`Generate a ${getActivePill('cp-count')}-color palette for: ${v('cp-desc')}\nStyle: ${getActivePill('cp-style')}\n\nFor each color provide:\n- Color name\n- Hex code\n- RGB values\n- When/how to use it in the brand\n\nAlso suggest: primary color, secondary color, accent color, neutral, and background color roles. Format clearly.`,
+    fonts:`Suggest 3 perfect font pairings for a ${getActivePill('fp-vibe')} brand used for ${getActivePill('fp-use')}.\n\nFor each pairing provide:\n- Heading font name + why it works\n- Body font name + why it works\n- Size ratio recommendation\n- Google Fonts link for each\n- Example use: short headline + body text sample\n\nFormat clearly with numbered pairings.`,
+    moodboard:`Create a detailed mood board direction document for "${v('mb-name')}".\nVision: ${v('mb-vision')}\nAesthetic: ${getActivePill('mb-aesthetic')}\n\nProvide:\n1. Overall Aesthetic Direction (2-3 sentences)\n2. Color Story (5 colors with descriptions, no hex needed)\n3. Texture & Materials (5-7 texture/material references)\n4. Imagery Style (what photos/images to use, lighting, composition)\n5. Typography Mood (font personality, not specific names)\n6. Brands/Artists for Reference (5 similar aesthetics)\n7. Words That Capture the Feel (10 adjectives)\nFormat clearly with headers.`,
+    logodirection:`Write a detailed logo creative brief for "${v('ld-name')}".\nBusiness: ${v('ld-what')}\nStyle: ${getActivePill('ld-style')}\nFeel: ${getActivePill('ld-feel')}\n\nProvide:\n1. Logo Concept Direction (2-3 strong concepts)\n2. Symbolism & Meaning (what the logo should communicate)\n3. Color Direction (primary + secondary)\n4. Typography Direction (font personality)\n5. Shape & Form Language (geometric, organic, angular, etc.)\n6. What to Avoid\n7. Reference Brands (5 similar aesthetic logos)\nFormat clearly.`,
+    visualidentity:`Create a complete visual identity system for "${v('vi-name')}".\nMission: ${v('vi-mission')}\nAudience: ${v('vi-audience')}\nBrand words: ${v('vi-words')}\n\nProvide:\n1. Brand Foundation (mission, vision, values)\n2. Color System (primary, secondary, accent, neutral, background — with hex codes)\n3. Typography System (heading, subheading, body, accent fonts)\n4. Imagery Guidelines (photo style, filters, composition rules)\n5. Icon & Graphic Style\n6. Brand Voice Guidelines\n7. Do's and Don'ts\nFormat as a professional brand guidelines document.`,
+  };
+  return prompts[tool]||'';
+}
+
+async function generate(prefix,tool){
+  const prompt=buildPrompt(tool);
+  if(!prompt||prompt.length<30){toast('Fill in the details first');return;}
+  const btn=document.getElementById(prefix+'-btn');
+  const output=document.getElementById(prefix+'-output');
+  const resultArea=document.getElementById(prefix+'-result');
+  btn.disabled=true;btn.textContent='✨ Generating…';
+  resultArea.classList.add('show');
+  output.innerHTML='<div class="shimmer-line" style="width:85%"></div><div class="shimmer-line" style="width:65%"></div><div class="shimmer-line" style="width:90%"></div><div class="shimmer-line" style="width:70%"></div>';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'','anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
+    let text='';
+    if(res.ok){const data=await res.json();text=data.content?.[0]?.text||'';}
+    if(!text)throw new Error('No response');
+    output.textContent=text;
+    // Extract and render swatches for palette tool
+    if(tool==='palette'){renderSwatches(text,prefix);}
+  }catch(e){output.textContent='Something went wrong. Please try again.';toast('Generation failed — try again');}
+  const labels={brandkit:'🎨 Build My Brand Kit',palette:'🎨 Generate Palette',fonts:'🔤 Get Font Pairings',moodboard:'✨ Create Mood Board Direction',logodirection:'✦ Get Logo Direction',visualidentity:'💎 Build Visual Identity'};
+  btn.disabled=false;btn.textContent=labels[tool]||'✨ Generate';
+}
+
+function renderSwatches(text,prefix){
+  const swatchContainer=document.getElementById(prefix+'-swatches');
+  if(!swatchContainer)return;
+  const hexes=text.match(/#[0-9A-Fa-f]{6}/g)||[];
+  swatchContainer.innerHTML='';
+  [...new Set(hexes)].slice(0,10).forEach(hex=>{
+    const sw=document.createElement('div');
+    sw.className='swatch-block';
+    sw.style.background=hex;
+    sw.dataset.hex=hex;
+    sw.title=`${hex} — tap to copy`;
+    sw.onclick=()=>{navigator.clipboard.writeText(hex).then(()=>toast(`Copied ${hex}`));};
+    swatchContainer.appendChild(sw);
+  });
+}
+
+function copyResult(prefix){
+  const text=document.getElementById(prefix+'-output')?.textContent;
+  if(!text){toast('Nothing to copy yet');return;}
+  navigator.clipboard.writeText(text).then(()=>toast('Copied ✓')).catch(()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓');});
+}
+function downloadResult(prefix,filename){
+  const text=document.getElementById(prefix+'-output')?.textContent;
+  if(!text){toast('Generate content first');return;}
+  const blob=new Blob([text],{type:'text/plain'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`creatorsphere-${filename}-${Date.now()}.txt`;document.body.appendChild(a);a.click();document.body.removeChild(a);toast('Downloaded ✓');
+}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+</script>
 </body>
 </html>
