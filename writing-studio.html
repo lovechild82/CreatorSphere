@@ -2,40 +2,77 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Writing Studio — Cre8ive Vib3s</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Writing Studio — CreatorSphere</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--cream:#faf6f0;--ink:#1a1410;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);display:flex;flex-direction:column;height:100vh;}
-.topnav{height:50px;background:#f5ede0;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem;flex-shrink:0;}
-.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;}
-.lotus{font-size:1.3rem;}
-.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;}
+:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--gold2:rgba(212,175,110,0.12);--gold3:rgba(212,175,110,0.28);--cream:#faf6f0;--ink:#1a1410;--ink2:#3d342e;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;min-height:100dvh;}
+a{text-decoration:none;color:inherit;}
+.dot-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(212,175,110,0.2) 0.8px,transparent 0.8px);background-size:22px 22px;}
+.topnav{background:linear-gradient(135deg,rgba(253,248,243,0.96),rgba(245,237,224,0.96));backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 1.25rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.logo-wrap{display:flex;align-items:center;gap:.5rem;}
+.lotus{font-size:1.3rem;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;}
 .bn span{color:var(--gold);}
-.navlinks{display:flex;gap:.5rem;margin-left:auto;}
-.nl{padding:.3rem .6rem;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.75rem;}
-.nl.active{background:rgba(212,175,110,0.2);}
-.container{display:flex;flex:1;overflow:hidden;}
-.sidebar{width:200px;background:var(--white);border-right:1px solid var(--border);overflow-y:auto;padding:.5rem;}
-.btn-nav{display:block;width:100%;padding:.4rem .5rem;border:none;background:none;cursor:pointer;text-align:left;font-size:.75rem;border-radius:6px;margin-bottom:.2rem;color:var(--ink);font-family:'Outfit',sans-serif;}
-.btn-nav.active{background:rgba(212,175,110,0.2);font-weight:600;}
-.content{flex:1;overflow-y:auto;padding:1.5rem;}
-.panel{display:none;}
-.panel.show{display:block;}
-.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;}
-.card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;margin-bottom:.3rem;}
-.card h3{font-size:.95rem;margin:.8rem 0 .4rem;}
-.card p{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.5rem;}
-.badge{display:inline-block;font-size:.6rem;padding:.2rem .5rem;background:rgba(178,201,173,.2);color:#3d5c38;border-radius:6px;margin-bottom:.5rem;}
-.link{color:var(--gold);text-decoration:none;font-weight:600;}
+.navlinks{display:flex;gap:.2rem;overflow-x:auto;}
+.navlinks::-webkit-scrollbar{display:none;}
+.nl{padding:.3rem .6rem;border-radius:7px;font-size:.68rem;color:var(--ink2);white-space:nowrap;border:1px solid transparent;}
+.nl.active{background:linear-gradient(135deg,rgba(242,196,206,.15),var(--gold2));color:var(--ink);font-weight:500;border-color:var(--border);}
+.tool-rail{position:sticky;top:56px;z-index:190;background:rgba(250,246,240,0.97);border-bottom:1px solid var(--border);padding:.5rem .9rem;display:flex;gap:.4rem;overflow-x:auto;}
+.tool-rail::-webkit-scrollbar{display:none;}
+.rail-chip{flex-shrink:0;padding:.38rem .7rem;border-radius:20px;border:1px solid var(--border);background:var(--white);font-size:.67rem;color:var(--ink2);cursor:pointer;white-space:nowrap;transition:transform 75ms;}
+.rail-chip:active{transform:scale(.95);}
+.rail-chip.active{background:linear-gradient(135deg,rgba(242,196,206,.28),var(--gold2));border-color:var(--gold);color:var(--ink);font-weight:500;}
+.main{padding:.9rem;max-width:860px;margin:0 auto;}
+.tool-panel{display:none;}
+.tool-panel.active{display:block;}
+.glass-panel{background:rgba(255,255,255,0.88);border:1px solid rgba(212,175,110,0.18);box-shadow:0 4px 24px rgba(212,175,110,0.1);border-radius:14px;}
+.panel-head{padding:.85rem 1rem;margin-bottom:.75rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;}
+.panel-head h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;margin-bottom:.18rem;}
+.panel-head p{font-size:.72rem;color:var(--muted);line-height:1.5;max-width:420px;}
+.node-badge{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.2rem .5rem;border-radius:8px;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:.28rem;}
+.node-badge .nd{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+.form-panel{padding:.9rem;}
+.field{margin-bottom:.7rem;}
+.field label{display:block;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink2);margin-bottom:.28rem;}
+textarea,input[type=text],select{width:100%;border:1px solid var(--border);border-radius:10px;padding:.55rem .8rem;font-family:'Outfit',sans-serif;font-size:.81rem;color:var(--ink);background:rgba(250,246,240,0.8);outline:none;}
+textarea{resize:vertical;min-height:80px;line-height:1.55;}
+textarea:focus,input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,110,.12);}
+textarea::placeholder,input::placeholder{color:var(--muted);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.style-pills{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.22rem;}
+.pill{padding:.24rem .6rem;border-radius:20px;border:1px solid var(--border);font-size:.65rem;cursor:pointer;background:var(--white);color:var(--ink2);transition:transform 75ms;}
+.pill:active{transform:scale(.95);}
+.pill.active{background:linear-gradient(135deg,rgba(242,196,206,.25),var(--gold2));border-color:var(--gold);color:var(--ink);font-weight:500;}
+.divider{border:none;border-top:1px solid var(--border);margin:.7rem 0;}
+.gen-btn{display:flex;align-items:center;justify-content:center;gap:.45rem;width:100%;padding:.72rem;border-radius:11px;border:none;background:linear-gradient(135deg,#c9956a,var(--gold));color:var(--ink);font-size:.85rem;font-weight:600;cursor:pointer;transition:transform 75ms,box-shadow 200ms;}
+.gen-btn:active{transform:scale(.97);}
+.gen-btn:hover:not(:disabled){box-shadow:0 5px 20px rgba(212,175,110,.4);}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;}
+.result-area{margin-top:.8rem;display:none;}
+.result-area.show{display:block;}
+.result-box{background:rgba(255,255,255,0.9);border:1px solid var(--border);border-radius:12px;padding:1rem;font-size:.82rem;line-height:1.75;white-space:pre-wrap;color:var(--ink2);min-height:120px;}
+.result-actions{display:flex;gap:.4rem;margin-top:.55rem;flex-wrap:wrap;}
+.act-btn{padding:.38rem .75rem;border-radius:8px;border:1px solid var(--border);background:var(--white);font-size:.68rem;font-family:'Outfit',sans-serif;cursor:pointer;color:var(--ink2);transition:transform 75ms;}
+.act-btn:active{transform:scale(.95);}
+.act-btn.primary{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.shimmer-line{height:14px;border-radius:6px;background:linear-gradient(90deg,#f0e8e0 25%,#e8ddd5 50%,#f0e8e0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;margin-bottom:.5rem;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.toast{position:fixed;bottom:1.2rem;right:1.2rem;left:1.2rem;max-width:280px;margin-left:auto;background:var(--ink);color:var(--gold);font-family:'DM Mono',monospace;font-size:.62rem;padding:.45rem .85rem;border-radius:9px;border:1px solid var(--gold);z-index:9999;opacity:0;transition:opacity .28s;pointer-events:none;}
+.toast.show{opacity:1;}
+@media(max-width:600px){.field-row{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-
+<div class="dot-grid"></div>
+<div class="toast" id="toast"></div>
 <nav class="topnav">
-  <a class="logo" href="index.html"><div class="lotus">🪷</div><div class="bn">Cre8ive Vib3s <span>Studio</span></div></a>
+  <div class="logo-wrap"><a href="index.html" style="display:flex;align-items:center;gap:.5rem;"><div class="lotus">🪷</div><div class="bn">Creator<span>Sphere</span></div></a></div>
   <div class="navlinks">
     <a class="nl" href="index.html">🏠</a>
     <a class="nl" href="image-studio.html">🎨 Images</a>
@@ -48,52 +85,252 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);di
     <a class="nl" href="chat.html">💬 Chat</a>
   </div>
 </nav>
-
-<div class="container">
-  <div class="sidebar">
-    <button class="btn-nav active" onclick="show('ai')">🤖 AI Writers</button>
-    <button class="btn-nav" onclick="show('grammar')">✏️ Grammar Check</button>
-  </div>
-
-  <div class="content">
-    <div class="panel show" id="ai">
-      <div class="card">
-        <span class="badge">✅ 100% FREE & UNLIMITED</span>
-        <h2>🤖 AI Writing Tools</h2>
-      </div>
-      <div class="card">
-        <h3>⭐ BEST FREE AI WRITERS</h3>
-        <p>🧠 <a href="https://chat.deepseek.com" target="_blank">DeepSeek</a> — Best reasoning, unlimited free<br>
-        💬 <a href="https://claude.ai" target="_blank">Claude (Free Tier)</a> — Excellent writing<br>
-        🤖 <a href="https://qwen.alibabacloud.com" target="_blank">Qwen</a> — Free, open-source, powerful<br>
-        🎨 <a href="https://gemini.google.com" target="_blank">Google Gemini</a> — Versatile, unlimited<br>
-        ⚡ <a href="https://groq.com" target="_blank">Groq</a> — Lightning fast, free<br>
-        💭 <a href="https://pi.ai" target="_blank">Pi</a> — Empathetic writing assistant<br>
-        </p>
-      </div>
-    </div>
-
-    <div class="panel" id="grammar">
-      <div class="card">
-        <h2>✏️ Grammar & Editing (100% Free)</h2>
-      </div>
-      <div class="card">
-        <p>📝 <a href="https://languagetool.org" target="_blank">LanguageTool</a> — Open-source, free<br>
-        ✨ <a href="https://hemingwayapp.com" target="_blank">Hemingway Editor</a> — Free writing clarity<br>
-        </p>
-      </div>
-    </div>
-  </div>
+<div class="tool-rail" id="toolRail">
+  <span class="rail-chip active" onclick="switchTool('blogpost')">📝 Blog Post</span>
+  <span class="rail-chip" onclick="switchTool('caption')">📲 Caption</span>
+  <span class="rail-chip" onclick="switchTool('email')">📧 Email</span>
+  <span class="rail-chip" onclick="switchTool('script')">🎙️ Script</span>
+  <span class="rail-chip" onclick="switchTool('ebook')">📚 eBook Chapter</span>
+  <span class="rail-chip" onclick="switchTool('landing')">🏠 Landing Page</span>
+  <span class="rail-chip" onclick="switchTool('optin')">✉️ Optin Page</span>
+  <span class="rail-chip" onclick="switchTool('article')">📰 Article</span>
+  <span class="rail-chip" onclick="switchTool('bio')">👤 Bio / About</span>
+  <span class="rail-chip" onclick="switchTool('story')">📖 Brand Story</span>
 </div>
+<div class="main">
 
+  <!-- BLOG POST -->
+  <div class="tool-panel active" id="panel-blogpost">
+    <div class="glass-panel panel-head"><div><h2>📝 Blog Post Writer</h2><p>Generate a full blog post — intro, body, and conclusion — optimized for your niche.</p></div><div class="node-badge"><span class="nd"></span>WRT_01</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Topic or title</label><input type="text" id="bp-topic" placeholder="e.g. 5 ways to start selling digital products with zero budget"></div>
+      <div class="field"><label>Niche / audience</label><input type="text" id="bp-niche" placeholder="e.g. Women entrepreneurs, digital creators, beginners"></div>
+      <div class="field"><label>Tone</label><div class="style-pills" id="bp-tone"><span class="pill active" data-val="calm and empowering">Calm & Empowering</span><span class="pill" data-val="professional and authoritative">Professional</span><span class="pill" data-val="conversational and friendly">Conversational</span><span class="pill" data-val="motivational and bold">Motivational</span></div></div>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0"><label>Length</label><select id="bp-length"><option value="short (400-600 words)">Short (400–600 words)</option><option value="medium (800-1000 words)" selected>Medium (800–1000 words)</option><option value="long (1500+ words)">Long (1500+ words)</option></select></div>
+        <div class="field" style="margin-bottom:0"><label>Format</label><select id="bp-format"><option value="article with headers">Article with headers</option><option value="listicle with numbered points">Listicle</option><option value="storytelling narrative format">Storytelling</option></select></div>
+      </div>
+      <hr class="divider"><button class="gen-btn" id="bp-btn" onclick="generate('bp','blogpost')">📝 Write Blog Post</button>
+    </div>
+    <div class="result-area" id="bp-result"><div class="result-box" id="bp-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('bp')">📋 Copy</button><button class="act-btn" onclick="downloadResult('bp','blog-post')">⬇️ Download</button><button class="act-btn" onclick="generate('bp','blogpost')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- CAPTION -->
+  <div class="tool-panel" id="panel-caption">
+    <div class="glass-panel panel-head"><div><h2>📲 Caption Writer</h2><p>AI-powered captions for Instagram, TikTok, Facebook, and Pinterest — with hooks and CTAs.</p></div><div class="node-badge"><span class="nd"></span>WRT_02</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>What's the post about?</label><textarea id="cap-topic" placeholder="e.g. New digital planner launch, mindfulness morning routine, behind the scenes of my process…" rows="3"></textarea></div>
+      <div class="field"><label>Platform</label><div class="style-pills" id="cap-platform"><span class="pill active" data-val="Instagram">Instagram</span><span class="pill" data-val="TikTok">TikTok</span><span class="pill" data-val="Facebook">Facebook</span><span class="pill" data-val="Pinterest">Pinterest</span><span class="pill" data-val="LinkedIn">LinkedIn</span></div></div>
+      <div class="field"><label>Tone</label><div class="style-pills" id="cap-tone"><span class="pill active" data-val="calm and authentic">Calm & Authentic</span><span class="pill" data-val="motivational">Motivational</span><span class="pill" data-val="educational">Educational</span><span class="pill" data-val="storytelling">Storytelling</span><span class="pill" data-val="promotional">Promotional</span></div></div>
+      <div class="field"><label>Include</label><div class="style-pills" id="cap-include"><span class="pill active" data-val="hashtags">Hashtags</span><span class="pill" data-val="call to action">CTA</span><span class="pill" data-val="emojis">Emojis</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="cap-btn" onclick="generate('cap','caption')">📲 Write Caption</button>
+    </div>
+    <div class="result-area" id="cap-result"><div class="result-box" id="cap-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('cap')">📋 Copy</button><button class="act-btn" onclick="generate('cap','caption')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- EMAIL -->
+  <div class="tool-panel" id="panel-email">
+    <div class="glass-panel panel-head"><div><h2>📧 Email Copy Writer</h2><p>Write compelling emails — launches, newsletters, sequences, and follow-ups.</p></div><div class="node-badge"><span class="nd"></span>WRT_03</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Email purpose</label><input type="text" id="em-purpose" placeholder="e.g. Launch announcement for my new digital planner, welcome email for new subscribers…"></div>
+      <div class="field"><label>Email type</label><div class="style-pills" id="em-type"><span class="pill active" data-val="launch announcement email">Launch Announcement</span><span class="pill" data-val="weekly newsletter email">Newsletter</span><span class="pill" data-val="welcome sequence email">Welcome Email</span><span class="pill" data-val="promotional sales email">Sales Email</span><span class="pill" data-val="follow-up email">Follow-Up</span></div></div>
+      <div class="field"><label>Tone</label><div class="style-pills" id="em-tone"><span class="pill active" data-val="warm and personal">Warm & Personal</span><span class="pill" data-val="professional">Professional</span><span class="pill" data-val="urgent and exciting">Urgent & Exciting</span></div></div>
+      <div class="field"><label>Your brand / business name (optional)</label><input type="text" id="em-brand" placeholder="e.g. ZenSereniTee, CreatorSphere…"></div>
+      <hr class="divider"><button class="gen-btn" id="em-btn" onclick="generate('em','email')">📧 Write Email</button>
+    </div>
+    <div class="result-area" id="em-result"><div class="result-box" id="em-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('em')">📋 Copy</button><button class="act-btn" onclick="downloadResult('em','email-copy')">⬇️ Download</button><button class="act-btn" onclick="generate('em','email')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- SCRIPT -->
+  <div class="tool-panel" id="panel-script">
+    <div class="glass-panel panel-head"><div><h2>🎙️ Video / Podcast Script</h2><p>Write scripts for YouTube videos, TikToks, Reels, and podcast episodes.</p></div><div class="node-badge"><span class="nd"></span>WRT_04</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Topic</label><input type="text" id="sc-topic" placeholder="e.g. How I made my first $500 selling digital products as a beginner"></div>
+      <div class="field"><label>Format</label><div class="style-pills" id="sc-format"><span class="pill active" data-val="YouTube video script">YouTube Video</span><span class="pill" data-val="TikTok / Reels short script">TikTok / Reel (60s)</span><span class="pill" data-val="podcast episode script">Podcast Episode</span><span class="pill" data-val="Instagram Live script">Instagram Live</span></div></div>
+      <div class="field"><label>Duration</label><div class="style-pills" id="sc-duration"><span class="pill active" data-val="60 seconds">60 seconds</span><span class="pill" data-val="3-5 minutes">3–5 minutes</span><span class="pill" data-val="8-10 minutes">8–10 minutes</span><span class="pill" data-val="15-20 minutes">15–20 minutes</span></div></div>
+      <div class="field"><label>Include</label><div class="style-pills" id="sc-include"><span class="pill active" data-val="strong hook opening">Hook Opening</span><span class="pill" data-val="call to action ending">CTA Ending</span><span class="pill" data-val="storytelling elements">Storytelling</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="sc-btn" onclick="generate('sc','script')">🎙️ Write Script</button>
+    </div>
+    <div class="result-area" id="sc-result"><div class="result-box" id="sc-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('sc')">📋 Copy</button><button class="act-btn" onclick="downloadResult('sc','script')">⬇️ Download</button><button class="act-btn" onclick="generate('sc','script')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- EBOOK -->
+  <div class="tool-panel" id="panel-ebook">
+    <div class="glass-panel panel-head"><div><h2>📚 eBook Chapter Writer</h2><p>Generate chapters for your eBook, lead magnet, or digital guide.</p></div><div class="node-badge"><span class="nd"></span>WRT_05</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>eBook title</label><input type="text" id="eb-title" placeholder="e.g. The Patient & Profitable Playbook"></div>
+      <div class="field"><label>Chapter topic</label><textarea id="eb-chapter" placeholder="e.g. Chapter 3: How to create your first digital product in a weekend with zero experience…" rows="2"></textarea></div>
+      <div class="field"><label>Target reader</label><input type="text" id="eb-reader" placeholder="e.g. Beginner women entrepreneurs who want passive income"></div>
+      <div class="field"><label>Tone</label><div class="style-pills" id="eb-tone"><span class="pill active" data-val="calm, empowering, and educational">Calm & Empowering</span><span class="pill" data-val="practical and step-by-step">Practical & Step-by-Step</span><span class="pill" data-val="conversational and relatable">Conversational</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="eb-btn" onclick="generate('eb','ebook')">📚 Write Chapter</button>
+    </div>
+    <div class="result-area" id="eb-result"><div class="result-box" id="eb-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('eb')">📋 Copy</button><button class="act-btn" onclick="downloadResult('eb','ebook-chapter')">⬇️ Download</button><button class="act-btn" onclick="generate('eb','ebook')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- LANDING PAGE -->
+  <div class="tool-panel" id="panel-landing">
+    <div class="glass-panel panel-head"><div><h2>🏠 Landing Page Copy</h2><p>Write high-converting landing page copy — headline, benefits, and CTA sections.</p></div><div class="node-badge"><span class="nd"></span>WRT_06</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Product / offer name</label><input type="text" id="lp-product" placeholder="e.g. The Digital Creator Starter Kit, Mindful Money Planner…"></div>
+      <div class="field"><label>What it does / main benefit</label><textarea id="lp-benefit" placeholder="e.g. Helps beginner creators launch their first digital product in 7 days, without tech overwhelm…" rows="2"></textarea></div>
+      <div class="field"><label>Target customer</label><input type="text" id="lp-target" placeholder="e.g. Women who want to earn online but don't know where to start"></div>
+      <div class="field"><label>Price point (optional)</label><input type="text" id="lp-price" placeholder="e.g. $27, Free download, $97…"></div>
+      <hr class="divider"><button class="gen-btn" id="lp-btn" onclick="generate('lp','landing')">🏠 Write Landing Page Copy</button>
+    </div>
+    <div class="result-area" id="lp-result"><div class="result-box" id="lp-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('lp')">📋 Copy</button><button class="act-btn" onclick="downloadResult('lp','landing-page')">⬇️ Download</button><button class="act-btn" onclick="generate('lp','landing')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- OPTIN PAGE -->
+  <div class="tool-panel" id="panel-optin">
+    <div class="glass-panel panel-head"><div><h2>✉️ Optin Page Copy</h2><p>Write opt-in page copy to grow your email list — headline, subheadline, and bullet points.</p></div><div class="node-badge"><span class="nd"></span>WRT_07</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Lead magnet name</label><input type="text" id="op-name" placeholder="e.g. Free Digital Product Checklist, 5-Day Calm Creator Challenge…"></div>
+      <div class="field"><label>What subscribers get</label><textarea id="op-value" placeholder="e.g. A free PDF with 10 digital product ideas you can sell this week, plus a simple launch checklist…" rows="2"></textarea></div>
+      <div class="field"><label>For whom</label><input type="text" id="op-who" placeholder="e.g. Beginner creators who want passive income without overwhelm"></div>
+      <hr class="divider"><button class="gen-btn" id="op-btn" onclick="generate('op','optin')">✉️ Write Optin Page</button>
+    </div>
+    <div class="result-area" id="op-result"><div class="result-box" id="op-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('op')">📋 Copy</button><button class="act-btn" onclick="downloadResult('op','optin-page')">⬇️ Download</button><button class="act-btn" onclick="generate('op','optin')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- ARTICLE -->
+  <div class="tool-panel" id="panel-article">
+    <div class="glass-panel panel-head"><div><h2>📰 Article Writer</h2><p>Write SEO-friendly articles for your blog, Medium, or content marketing.</p></div><div class="node-badge"><span class="nd"></span>WRT_08</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Article topic</label><input type="text" id="ar-topic" placeholder="e.g. How to start a digital product business with no money"></div>
+      <div class="field"><label>Target keyword (optional)</label><input type="text" id="ar-keyword" placeholder="e.g. digital products for beginners, passive income for women…"></div>
+      <div class="field"><label>Style</label><div class="style-pills" id="ar-style"><span class="pill active" data-val="informative and educational">Educational</span><span class="pill" data-val="opinion piece / personal perspective">Opinion Piece</span><span class="pill" data-val="how-to tutorial article">How-To Tutorial</span><span class="pill" data-val="listicle article">Listicle</span></div></div>
+      <div class="field"><label>Length</label><select id="ar-length"><option value="400-600 words">Short (400–600 words)</option><option value="800-1000 words" selected>Medium (800–1000 words)</option><option value="1500+ words">Long-form (1500+ words)</option></select></div>
+      <hr class="divider"><button class="gen-btn" id="ar-btn" onclick="generate('ar','article')">📰 Write Article</button>
+    </div>
+    <div class="result-area" id="ar-result"><div class="result-box" id="ar-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('ar')">📋 Copy</button><button class="act-btn" onclick="downloadResult('ar','article')">⬇️ Download</button><button class="act-btn" onclick="generate('ar','article')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- BIO -->
+  <div class="tool-panel" id="panel-bio">
+    <div class="glass-panel panel-head"><div><h2>👤 Bio / About Writer</h2><p>Write your Instagram bio, website about page, or professional bio — in your voice.</p></div><div class="node-badge"><span class="nd"></span>WRT_09</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Your name</label><input type="text" id="bio-name" placeholder="e.g. Kenia Williams"></div>
+      <div class="field"><label>What you do</label><textarea id="bio-what" placeholder="e.g. I help women build calm, profitable digital businesses through mindfulness-based strategies and digital products…" rows="2"></textarea></div>
+      <div class="field"><label>Your brand / business</label><input type="text" id="bio-brand" placeholder="e.g. ZenSereniTee, CreatorSphere…"></div>
+      <div class="field"><label>Bio type</label><div class="style-pills" id="bio-type"><span class="pill active" data-val="Instagram bio (150 characters max)">Instagram Bio</span><span class="pill" data-val="full website about page">About Page</span><span class="pill" data-val="short professional bio (2-3 sentences)">Short Professional</span><span class="pill" data-val="LinkedIn summary bio">LinkedIn</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="bio-btn" onclick="generate('bio','bio')">👤 Write My Bio</button>
+    </div>
+    <div class="result-area" id="bio-result"><div class="result-box" id="bio-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('bio')">📋 Copy</button><button class="act-btn" onclick="generate('bio','bio')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <!-- BRAND STORY -->
+  <div class="tool-panel" id="panel-story">
+    <div class="glass-panel panel-head"><div><h2>📖 Brand Story Writer</h2><p>Write your brand's origin story — the authentic journey that connects with your audience.</p></div><div class="node-badge"><span class="nd"></span>WRT_10</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Brand / business name</label><input type="text" id="bs-brand" placeholder="e.g. ZenSereniTee"></div>
+      <div class="field"><label>Your origin / why you started</label><textarea id="bs-origin" placeholder="e.g. I started ZenSereniTee because I was burned out from the corporate world and needed a way to build income on my own terms, calmly…" rows="3"></textarea></div>
+      <div class="field"><label>Who you serve</label><input type="text" id="bs-serves" placeholder="e.g. Women entrepreneurs who want peace AND profit"></div>
+      <div class="field"><label>Length</label><div class="style-pills" id="bs-length"><span class="pill active" data-val="short brand story (1 paragraph)">Short (1 paragraph)</span><span class="pill" data-val="medium brand story (3-4 paragraphs)">Medium (3–4 paragraphs)</span><span class="pill" data-val="full brand story (600+ words)">Full Story</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="bs-btn" onclick="generate('bs','story')">📖 Write Brand Story</button>
+    </div>
+    <div class="result-area" id="bs-result"><div class="result-box" id="bs-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('bs')">📋 Copy</button><button class="act-btn" onclick="downloadResult('bs','brand-story')">⬇️ Download</button><button class="act-btn" onclick="generate('bs','story')">🔄 Regenerate</button></div></div>
+  </div>
+
+</div>
 <script>
-function show(id) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('show'));
-  document.querySelectorAll('.btn-nav').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('show');
-  event.target.classList.add('active');
-}
-</script>
+const BACKEND='https://your-render-backend.onrender.com';
 
+function switchTool(id){
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.rail-chip').forEach(c=>c.classList.remove('active'));
+  const panel=document.getElementById('panel-'+id);
+  if(panel)panel.classList.add('active');
+  const chip=document.querySelector(`.rail-chip[onclick*="${id}"]`);
+  if(chip)chip.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.querySelectorAll('.style-pills').forEach(group=>{
+  group.querySelectorAll('.pill').forEach(pill=>{
+    pill.addEventListener('click',()=>{
+      group.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+});
+
+function getActivePill(id){return document.getElementById(id)?.querySelector('.pill.active')?.dataset.val||'';}
+
+function buildPrompt(tool){
+  const v=(id)=>document.getElementById(id)?.value?.trim()||'';
+  const p=(id)=>getActivePill(id);
+  const prompts={
+    blogpost:`Write a ${p('bp-length')} ${p('bp-format')} blog post with a ${p('bp-tone')} tone.\nTopic: ${v('bp-topic')}\nTarget audience: ${v('bp-niche')}\nInclude: a compelling headline, intro hook, well-structured body with subheadings, and a conclusion with a call to action. Format with clear sections.`,
+    caption:`Write a ${p('cap-tone')} ${p('cap-platform')} caption for this post: ${v('cap-topic')}\nInclude: ${p('cap-include')}. Make it authentic, engaging, and on-brand. Add a strong hook in the first line.`,
+    email:`Write a ${p('em-tone')} ${p('em-type')} for: ${v('em-purpose')}\nBrand: ${v('em-brand')||'the sender'}\nInclude: subject line, preheader text, email body with clear sections, and a CTA. Keep it human and personal.`,
+    script:`Write a ${p('sc-format')} script on the topic: ${v('sc-topic')}\nDuration: ${p('sc-duration')}\nInclude: ${p('sc-include')}. Format with speaker cues and section labels. Make it natural to speak aloud.`,
+    ebook:`Write a chapter for an eBook titled "${v('eb-title')}".\nChapter topic: ${v('eb-chapter')}\nTarget reader: ${v('eb-reader')}\nTone: ${p('eb-tone')}\nInclude an engaging opening, well-structured body with subheadings, key takeaways, and a transition to the next chapter.`,
+    landing:`Write high-converting landing page copy for: ${v('lp-product')}\nMain benefit: ${v('lp-benefit')}\nTarget customer: ${v('lp-target')}\nPrice: ${v('lp-price')||'not specified'}\nInclude: headline, subheadline, 3-5 benefit bullets, social proof placeholder, and a clear CTA. Write in a persuasive but authentic voice.`,
+    optin:`Write opt-in page copy for a lead magnet called: ${v('op-name')}\nWhat subscribers get: ${v('op-value')}\nFor: ${v('op-who')}\nInclude: attention-grabbing headline, subheadline, 3-5 benefit bullets, and a button CTA text. Keep it concise and compelling.`,
+    article:`Write a ${v('ar-length')} ${p('ar-style')} on: ${v('ar-topic')}\nTarget keyword: ${v('ar-keyword')||'none specified'}\nInclude: SEO-friendly title, meta description, intro hook, body with H2 subheadings, and a conclusion with CTA.`,
+    bio:`Write a ${p('bio-type')} for ${v('bio-name')}.\nWhat they do: ${v('bio-what')}\nBrand: ${v('bio-brand')}\nMake it authentic, clear, and compelling. Match the tone and length requirements of the bio type.`,
+    story:`Write a ${p('bs-length')} for the brand "${v('bs-brand')}".\nOrigin: ${v('bs-origin')}\nThey serve: ${v('bs-serves')}\nMake it authentic, emotionally resonant, and inspiring. Write in first person with warmth and vulnerability.`,
+  };
+  return prompts[tool]||'';
+}
+
+async function generate(prefix,tool){
+  const prompt=buildPrompt(tool);
+  if(!prompt||prompt.includes('undefined')||prompt.trim().length<20){toast('Fill in the details first');return;}
+  const btn=document.getElementById(prefix+'-btn');
+  const output=document.getElementById(prefix+'-output');
+  const resultArea=document.getElementById(prefix+'-result');
+  btn.disabled=true;btn.textContent='✍️ Writing…';
+  resultArea.classList.add('show');
+  output.innerHTML='<div class="shimmer-line" style="width:85%"></div><div class="shimmer-line" style="width:65%"></div><div class="shimmer-line" style="width:90%"></div><div class="shimmer-line" style="width:70%"></div>';
+  try{
+    let text='';
+    // Try streaming via Anthropic API directly (no backend needed for writing)
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':'','anthropic-version':'2023-06-01'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1500,messages:[{role:'user',content:prompt}]})
+    });
+    if(res.ok){
+      const data=await res.json();
+      text=data.content?.[0]?.text||'';
+    }
+    if(!text){
+      // Fallback: try the Render backend
+      const res2=await fetch(BACKEND+'/api/chat/anthropic',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({messages:[{role:'user',content:prompt}]})
+      });
+      if(res2.ok){const d=await res2.json();text=d.content||d.message||'';}
+    }
+    if(!text)throw new Error('No response');
+    output.textContent=text;
+  }catch(e){
+    output.textContent='Something went wrong. Please check your internet connection and try again.';
+    toast('Generation failed — try again');
+  }
+  btn.disabled=false;
+  const labels={blogpost:'📝 Write Blog Post',caption:'📲 Write Caption',email:'📧 Write Email',script:'🎙️ Write Script',ebook:'📚 Write Chapter',landing:'🏠 Write Landing Page Copy',optin:'✉️ Write Optin Page',article:'📰 Write Article',bio:'👤 Write My Bio',story:'📖 Write Brand Story'};
+  btn.textContent=labels[tool]||'✍️ Generate';
+}
+
+function copyResult(prefix){
+  const text=document.getElementById(prefix+'-output')?.textContent;
+  if(!text){toast('Nothing to copy yet');return;}
+  navigator.clipboard.writeText(text).then(()=>toast('Copied to clipboard ✓')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓');
+  });
+}
+
+function downloadResult(prefix,filename){
+  const text=document.getElementById(prefix+'-output')?.textContent;
+  if(!text){toast('Generate content first');return;}
+  const blob=new Blob([text],{type:'text/plain'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`creatorsphere-${filename}-${Date.now()}.txt`;document.body.appendChild(a);a.click();document.body.removeChild(a);toast('Downloaded ✓');
+}
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+</script>
 </body>
 </html>
