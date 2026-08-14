@@ -1,2 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Products Studio — CreatorSphere</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--gold2:rgba(212,175,110,0.12);--cream:#faf6f0;--ink:#1a1410;--ink2:#3d342e;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;min-height:100dvh;}
+a{text-decoration:none;color:inherit;}
+.dot-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(212,175,110,0.2) 0.8px,transparent 0.8px);background-size:22px 22px;}
+.topnav{background:rgba(250,246,240,0.97);border-bottom:1px solid var(--border);padding:0 1.25rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.lotus{font-size:1.3rem;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;}
+.bn span{color:var(--gold);}
+.navlinks{display:flex;gap:.2rem;overflow-x:auto;}
+.navlinks::-webkit-scrollbar{display:none;}
+.nl{padding:.3rem .6rem;border-radius:7px;font-size:.68rem;color:var(--ink2);white-space:nowrap;border:1px solid transparent;}
+.nl.active{background:var(--gold2);color:var(--ink);font-weight:500;border-color:var(--border);}
+.tool-rail{position:sticky;top:56px;z-index:190;background:rgba(250,246,240,0.97);border-bottom:1px solid var(--border);padding:.5rem .9rem;display:flex;gap:.4rem;overflow-x:auto;}
+.tool-rail::-webkit-scrollbar{display:none;}
+.rail-chip{flex-shrink:0;padding:.38rem .7rem;border-radius:20px;border:1px solid var(--border);background:var(--white);font-size:.67rem;color:var(--ink2);cursor:pointer;white-space:nowrap;}
+.rail-chip.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.main{padding:.9rem;max-width:860px;margin:0 auto;}
+.tool-panel{display:none;}.tool-panel.active{display:block;}
+.glass-panel{background:rgba(255,255,255,0.88);border:1px solid rgba(212,175,110,0.18);box-shadow:0 4px 24px rgba(212,175,110,0.1);border-radius:14px;}
+.panel-head{padding:.85rem 1rem;margin-bottom:.75rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;}
+.panel-head h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;margin-bottom:.18rem;}
+.panel-head p{font-size:.72rem;color:var(--muted);line-height:1.5;max-width:420px;}
+.node-badge{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.2rem .5rem;border-radius:8px;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:.28rem;}
+.node-badge .nd{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
+.form-panel{padding:.9rem;}
+.field{margin-bottom:.7rem;}
+.field label{display:block;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink2);margin-bottom:.28rem;}
+textarea,input[type=text],select{width:100%;border:1px solid var(--border);border-radius:10px;padding:.55rem .8rem;font-family:'Outfit',sans-serif;font-size:.81rem;color:var(--ink);background:rgba(250,246,240,0.8);outline:none;}
+textarea{resize:vertical;min-height:80px;line-height:1.55;}
+textarea:focus,input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,110,.12);}
+input::placeholder,textarea::placeholder{color:var(--muted);}
+.style-pills{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.22rem;}
+.pill{padding:.24rem .6rem;border-radius:20px;border:1px solid var(--border);font-size:.65rem;cursor:pointer;background:var(--white);color:var(--ink2);}
+.pill.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.divider{border:none;border-top:1px solid var(--border);margin:.7rem 0;}
+.gen-btn{display:flex;align-items:center;justify-content:center;gap:.45rem;width:100%;padding:.72rem;border-radius:11px;border:none;background:linear-gradient(135deg,#c9956a,var(--gold));color:var(--ink);font-size:.85rem;font-weight:600;cursor:pointer;}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;}
+.result-area{margin-top:.8rem;display:none;}.result-area.show{display:block;}
+.result-box{background:rgba(255,255,255,0.9);border:1px solid var(--border);border-radius:12px;padding:1rem;font-size:.82rem;line-height:1.75;white-space:pre-wrap;color:var(--ink2);min-height:120px;}
+.result-actions{display:flex;gap:.4rem;margin-top:.55rem;flex-wrap:wrap;}
+.act-btn{padding:.38rem .75rem;border-radius:8px;border:1px solid var(--border);background:var(--white);font-size:.68rem;font-family:'Outfit',sans-serif;cursor:pointer;color:var(--ink2);}
+.act-btn.primary{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.shimmer-line{height:14px;border-radius:6px;background:linear-gradient(90deg,#f0e8e0 25%,#e8ddd5 50%,#f0e8e0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;margin-bottom:.5rem;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.toast{position:fixed;bottom:1.2rem;right:1.2rem;left:1.2rem;max-width:280px;margin-left:auto;background:var(--ink);color:var(--gold);font-family:'DM Mono',monospace;font-size:.62rem;padding:.45rem .85rem;border-radius:9px;border:1px solid var(--gold);z-index:9999;opacity:0;transition:opacity .28s;pointer-events:none;}
+.toast.show{opacity:1;}
+</style>
+</head>
+<body>
+<div class="dot-grid"></div>
+<div class="toast" id="toast"></div>
+<nav class="topnav">
+  <a href="index.html" style="display:flex;align-items:center;gap:.5rem;"><div class="lotus">🪷</div><div class="bn">Creator<span>Sphere</span></div></a>
+  <div class="navlinks">
+    <a class="nl" href="index.html">🏠</a>
+    <a class="nl" href="image-studio.html">🎨 Images</a>
+    <a class="nl" href="video-studio.html">🎬 Video</a>
+    <a class="nl" href="writing-studio.html">✍️ Writing</a>
+    <a class="nl" href="design-studio.html">✏️ Design</a>
+    <a class="nl" href="marketing-studio.html">📈 Marketing</a>
+    <a class="nl active" href="products-studio.html">📦 Products</a>
+    <a class="nl" href="ai-studio.html">🤖 AI</a>
+    <a class="nl" href="chat.html">💬 Chat</a>
+  </div>
+</nav>
+<div class="tool-rail">
+  <span class="rail-chip active" onclick="switchTool('productideas')">💡 Product Ideas</span>
+  <span class="rail-chip" onclick="switchTool('kdpcontent')">📚 KDP Book</span>
+  <span class="rail-chip" onclick="switchTool('etsylisting')">🛍️ Etsy Listing</span>
+  <span class="rail-chip" onclick="switchTool('productdesc')">📝 Product Description</span>
+  <span class="rail-chip" onclick="switchTool('pricing')">💰 Pricing Strategy</span>
+  <span class="rail-chip" onclick="switchTool('leadmagnet')">🧲 Lead Magnet Ideas</span>
+  <span class="rail-chip" onclick="switchTool('bundleideas')">🎁 Bundle Ideas</span>
+  <span class="rail-chip" onclick="switchTool('productlaunch')">🚀 Launch Plan</span>
+</div>
+<div class="main">
 
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Products Studio — Cre8ive Vib3s</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"><style>:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--cream:#faf6f0;--ink:#1a1410;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);display:flex;flex-direction:column;height:100vh;}.topnav{height:50px;background:#f5ede0;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem;flex-shrink:0;}.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;}.lotus{font-size:1.3rem;}.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;}.bn span{color:var(--gold);}.navlinks{display:flex;gap:.5rem;margin-left:auto;}.nl{padding:.3rem .6rem;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.75rem;}.nl.active{background:rgba(212,175,110,0.2);}.container{display:flex;flex:1;overflow:hidden;}.sidebar{width:200px;background:var(--white);border-right:1px solid var(--border);overflow-y:auto;padding:.5rem;}.btn-nav{display:block;width:100%;padding:.4rem .5rem;border:none;background:none;cursor:pointer;text-align:left;font-size:.75rem;border-radius:6px;margin-bottom:.2rem;color:var(--ink);font-family:'Outfit',sans-serif;}.btn-nav.active{background:rgba(212,175,110,0.2);font-weight:600;}.content{flex:1;overflow-y:auto;padding:1.5rem;}.panel{display:none;}.panel.show{display:block;}.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;}.card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;margin-bottom:.3rem;}.card p{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.5rem;}.badge{display:inline-block;font-size:.6rem;padding:.2rem .5rem;background:rgba(178,201,173,.2);color:#3d5c38;border-radius:6px;margin-bottom:.5rem;}.link{color:var(--gold);text-decoration:none;font-weight:600;}</style></head><body><nav class="topnav"><a class="logo" href="index.html"><div class="lotus">🪷</div><div class="bn">Cre8ive Vib3s <span>Studio</span></div></a><div class="navlinks"><a class="nl" href="index.html">🏠</a><a class="nl" href="image-studio.html">🎨</a><a class="nl" href="video-studio.html">🎬</a><a class="nl" href="writing-studio.html">✍️</a><a class="nl" href="design-studio.html">✏️</a><a class="nl" href="marketing-studio.html">📈</a><a class="nl active" href="products-studio.html">📦</a><a class="nl" href="ai-studio.html">🤖</a><a class="nl" href="chat.html">💬</a></div></nav><div class="container"><div class="sidebar"><button class="btn-nav active" onclick="show('sell')">💰 Sell Products</button><button class="btn-nav" onclick="show('build')">🛠️ Build Products</button></div><div class="content"><div class="panel show" id="sell"><div class="card"><span class="badge">✅ 100% FREE & UNLIMITED</span><h2>💰 Sell Digital Products</h2></div><div class="card"><p>🛒 <a href="https://gumroad.com" target="_blank">Gumroad (Free)</a> — Sell unlimited<br>🎁 <a href="https://www.sendowl.com" target="_blank">SendOwl (Free)</a> — Digital delivery<br>💳 <a href="https://stripe.com" target="_blank">Stripe</a> — Payment processing<br>🛍️ <a href="https://ko-fi.com" target="_blank">Ko-fi (Free)</a> — Creator shop</p></div></div><div class="panel" id="build"><div class="card"><h2>🛠️ Build Products (100% Free)</h2></div><div class="card"><p>📋 <a href="https://www.notion.so" target="_blank">Notion (Free)</a> — Templates & docs<br>🔗 <a href="https://www.airtable.com" target="_blank">Airtable (Free)</a> — Databases<br>📚 <a href="https://notebooklm.google.com" target="_blank">NotebookLM</a> — Content creation</p></div></div></div></div><script>function show(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.querySelectorAll('.btn-nav').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('show');event.target.classList.add('active');}</script></body></html>
+  <div class="tool-panel active" id="panel-productideas">
+    <div class="glass-panel panel-head"><div><h2>💡 Digital Product Ideas</h2><p>Get tailored digital product ideas for your niche — ready to create and sell.</p></div><div class="node-badge"><span class="nd"></span>PRD_01</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Your niche / expertise</label><input type="text" id="pi-niche" placeholder="e.g. Mindfulness, digital marketing, budgeting, fitness, watercolor art…"></div>
+      <div class="field"><label>Your audience</label><input type="text" id="pi-audience" placeholder="e.g. Beginner women entrepreneurs who want passive income"></div>
+      <div class="field"><label>Product type</label><div class="style-pills" id="pi-type"><span class="pill active" data-val="all types of digital products">All Types</span><span class="pill" data-val="PDF templates and printables">Templates & Printables</span><span class="pill" data-val="ebooks and guides">eBooks & Guides</span><span class="pill" data-val="online courses and workshops">Courses</span><span class="pill" data-val="Canva templates">Canva Templates</span><span class="pill" data-val="digital planners and journals">Planners & Journals</span></div></div>
+      <div class="field"><label>Price range</label><div class="style-pills" id="pi-price"><span class="pill active" data-val="low ticket ($7-$27)">Low Ticket ($7–$27)</span><span class="pill" data-val="mid ticket ($27-$97)">Mid Ticket ($27–$97)</span><span class="pill" data-val="high ticket ($97-$497)">High Ticket ($97+)</span><span class="pill" data-val="all price points">All Price Points</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="pi-btn" onclick="generate('pi','productideas')">💡 Generate Product Ideas</button>
+    </div>
+    <div class="result-area" id="pi-result"><div class="result-box" id="pi-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('pi')">📋 Copy</button><button class="act-btn" onclick="downloadResult('pi','product-ideas')">⬇️ Download</button><button class="act-btn" onclick="generate('pi','productideas')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-kdpcontent">
+    <div class="glass-panel panel-head"><div><h2>📚 KDP Book Content</h2><p>Generate Amazon KDP book ideas, titles, descriptions, and chapter outlines for self-publishing.</p></div><div class="node-badge"><span class="nd"></span>PRD_02</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Book topic / niche</label><input type="text" id="kdp-topic" placeholder="e.g. Mindfulness for busy moms, budgeting for beginners, watercolor painting…"></div>
+      <div class="field"><label>Book type</label><div class="style-pills" id="kdp-type"><span class="pill active" data-val="non-fiction guide or how-to book">Non-Fiction Guide</span><span class="pill" data-val="low content book (journal, planner, logbook)">Low Content (Journal/Planner)</span><span class="pill" data-val="activity book or workbook">Activity / Workbook</span><span class="pill" data-val="coloring book">Coloring Book</span><span class="pill" data-val="children's book">Children's Book</span></div></div>
+      <div class="field"><label>Target reader</label><input type="text" id="kdp-reader" placeholder="e.g. Women in their 30s who want to reduce stress and build better habits"></div>
+      <div class="field"><label>What to generate</label><div class="style-pills" id="kdp-output"><span class="pill active" data-val="5 book title ideas + full chapter outline">Title Ideas + Chapter Outline</span><span class="pill" data-val="Amazon book description (sales copy)">Amazon Description</span><span class="pill" data-val="back cover blurb">Back Cover Blurb</span><span class="pill" data-val="keywords and categories for KDP">KDP Keywords & Categories</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="kdp-btn" onclick="generate('kdp','kdpcontent')">📚 Generate KDP Content</button>
+    </div>
+    <div class="result-area" id="kdp-result"><div class="result-box" id="kdp-output2"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('kdp')">📋 Copy</button><button class="act-btn" onclick="downloadResult('kdp','kdp-content')">⬇️ Download</button><button class="act-btn" onclick="generate('kdp','kdpcontent')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-etsylisting">
+    <div class="glass-panel panel-head"><div><h2>🛍️ Etsy Listing Generator</h2><p>Write SEO-optimized Etsy listings — title, description, tags, and pricing notes.</p></div><div class="node-badge"><span class="nd"></span>PRD_03</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Product name / what it is</label><input type="text" id="etsy-product" placeholder="e.g. Weekly Mindfulness Planner — Printable PDF, A4 & Letter size"></div>
+      <div class="field"><label>Product details</label><textarea id="etsy-details" placeholder="e.g. 12-page printable planner with weekly spread, daily affirmations, habit tracker, and gratitude prompts. Instant digital download." rows="3"></textarea></div>
+      <div class="field"><label>Target buyer</label><input type="text" id="etsy-buyer" placeholder="e.g. Women who love journaling, mindfulness enthusiasts, busy moms…"></div>
+      <div class="field"><label>Generate</label><div class="style-pills" id="etsy-gen"><span class="pill active" data-val="full listing (title + description + tags + price suggestion)">Full Listing</span><span class="pill" data-val="SEO title only (140 characters)">SEO Title Only</span><span class="pill" data-val="description only">Description Only</span><span class="pill" data-val="13 Etsy tags only">Tags Only</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="etsy-btn" onclick="generate('etsy','etsylisting')">🛍️ Generate Etsy Listing</button>
+    </div>
+    <div class="result-area" id="etsy-result"><div class="result-box" id="etsy-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('etsy')">📋 Copy</button><button class="act-btn" onclick="downloadResult('etsy','etsy-listing')">⬇️ Download</button><button class="act-btn" onclick="generate('etsy','etsylisting')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-productdesc">
+    <div class="glass-panel panel-head"><div><h2>📝 Product Description Writer</h2><p>Write compelling product descriptions for any platform — Gumroad, Payhip, Stan Store, website.</p></div><div class="node-badge"><span class="nd"></span>PRD_04</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Product name</label><input type="text" id="pd-name" placeholder="e.g. The Mindful Creator Blueprint"></div>
+      <div class="field"><label>What it includes</label><textarea id="pd-includes" placeholder="e.g. 47-page PDF guide, 3 Canva templates, weekly planner printable, and a bonus video training…" rows="2"></textarea></div>
+      <div class="field"><label>Main benefit / transformation</label><textarea id="pd-benefit" placeholder="e.g. Helps beginners launch their first digital product in 7 days without overwhelm…" rows="2"></textarea></div>
+      <div class="field"><label>Platform</label><div class="style-pills" id="pd-platform"><span class="pill active" data-val="Gumroad / Payhip / Stan Store">Gumroad / Payhip</span><span class="pill" data-val="Etsy digital download">Etsy</span><span class="pill" data-val="personal website or landing page">Website</span><span class="pill" data-val="TikTok Shop">TikTok Shop</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="pd-btn" onclick="generate('pd','productdesc')">📝 Write Description</button>
+    </div>
+    <div class="result-area" id="pd-result"><div class="result-box" id="pd-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('pd')">📋 Copy</button><button class="act-btn" onclick="downloadResult('pd','product-description')">⬇️ Download</button><button class="act-btn" onclick="generate('pd','productdesc')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-pricing">
+    <div class="glass-panel panel-head"><div><h2>💰 Pricing Strategy</h2><p>Get a data-informed pricing strategy for your digital product — with justification and positioning.</p></div><div class="node-badge"><span class="nd"></span>PRD_05</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Product name and what it is</label><textarea id="pr-product" placeholder="e.g. A 30-page printable mindfulness journal PDF with daily prompts, habit tracker, and weekly reflection pages…" rows="2"></textarea></div>
+      <div class="field"><label>Your audience income level</label><div class="style-pills" id="pr-income"><span class="pill active" data-val="budget-conscious beginners">Budget-Conscious</span><span class="pill" data-val="middle income professionals">Middle Income</span><span class="pill" data-val="established business owners">Established Businesses</span></div></div>
+      <div class="field"><label>Platform</label><div class="style-pills" id="pr-platform"><span class="pill active" data-val="Etsy">Etsy</span><span class="pill" data-val="Gumroad / Payhip">Gumroad / Payhip</span><span class="pill" data-val="own website">Own Website</span><span class="pill" data-val="TikTok Shop">TikTok Shop</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="pr-btn" onclick="generate('pr','pricing')">💰 Get Pricing Strategy</button>
+    </div>
+    <div class="result-area" id="pr-result"><div class="result-box" id="pr-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('pr')">📋 Copy</button><button class="act-btn" onclick="generate('pr','pricing')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-leadmagnet">
+    <div class="glass-panel panel-head"><div><h2>🧲 Lead Magnet Ideas</h2><p>Generate irresistible free offer ideas to grow your email list fast.</p></div><div class="node-badge"><span class="nd"></span>PRD_06</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Your niche</label><input type="text" id="lm-niche" placeholder="e.g. Digital products for beginners, mindfulness coaching, Etsy sellers…"></div>
+      <div class="field"><label>Your paid offer (optional)</label><input type="text" id="lm-offer" placeholder="e.g. $47 digital product course, $27 Canva template pack…"></div>
+      <div class="field"><label>Lead magnet format</label><div class="style-pills" id="lm-format"><span class="pill active" data-val="all formats">All Formats</span><span class="pill" data-val="PDF checklist or cheat sheet">Checklist / Cheat Sheet</span><span class="pill" data-val="free mini ebook or guide">Mini eBook</span><span class="pill" data-val="email challenge or course">Email Challenge</span><span class="pill" data-val="free template or printable">Template / Printable</span><span class="pill" data-val="free training or masterclass">Free Training</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="lm-btn" onclick="generate('lm','leadmagnet')">🧲 Generate Lead Magnet Ideas</button>
+    </div>
+    <div class="result-area" id="lm-result"><div class="result-box" id="lm-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('lm')">📋 Copy</button><button class="act-btn" onclick="generate('lm','leadmagnet')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-bundleideas">
+    <div class="glass-panel panel-head"><div><h2>🎁 Bundle Ideas</h2><p>Create high-value product bundles that increase your average order value.</p></div><div class="node-badge"><span class="nd"></span>PRD_07</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Your existing products (list what you have)</label><textarea id="bi-products" placeholder="e.g. Mindfulness journal PDF ($17), Weekly planner template ($12), Vision board printable ($9), Habit tracker ($7)…" rows="3"></textarea></div>
+      <div class="field"><label>Bundle goal</label><div class="style-pills" id="bi-goal"><span class="pill active" data-val="increase average order value">Increase Order Value</span><span class="pill" data-val="create a premium offer">Create Premium Offer</span><span class="pill" data-val="seasonal or holiday bundle">Seasonal Bundle</span><span class="pill" data-val="starter kit for beginners">Beginner Starter Kit</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="bi-btn" onclick="generate('bi','bundleideas')">🎁 Generate Bundle Ideas</button>
+    </div>
+    <div class="result-area" id="bi-result"><div class="result-box" id="bi-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('bi')">📋 Copy</button><button class="act-btn" onclick="generate('bi','bundleideas')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-productlaunch">
+    <div class="glass-panel panel-head"><div><h2>🚀 Product Launch Plan</h2><p>Get a step-by-step launch plan for your digital product — from pre-launch to post-launch.</p></div><div class="node-badge"><span class="nd"></span>PRD_08</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Product name and price</label><input type="text" id="pl-product" placeholder="e.g. The Digital Creator Starter Kit — $47"></div>
+      <div class="field"><label>Your audience size (approx)</label><div class="style-pills" id="pl-size"><span class="pill active" data-val="small audience (under 500 followers)">Small (under 500)</span><span class="pill" data-val="growing audience (500-5,000 followers)">Growing (500–5K)</span><span class="pill" data-val="established audience (5,000+ followers)">Established (5K+)</span></div></div>
+      <div class="field"><label>Launch timeline</label><div class="style-pills" id="pl-timeline"><span class="pill active" data-val="1 week launch">1 Week</span><span class="pill" data-val="2 week launch">2 Weeks</span><span class="pill" data-val="1 month launch">1 Month</span></div></div>
+      <div class="field"><label>Platforms you use</label><input type="text" id="pl-platforms" placeholder="e.g. Instagram, TikTok, email list, Pinterest…"></div>
+      <hr class="divider"><button class="gen-btn" id="pl-btn" onclick="generate('pl','productlaunch')">🚀 Build Launch Plan</button>
+    </div>
+    <div class="result-area" id="pl-result"><div class="result-box" id="pl-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('pl')">📋 Copy</button><button class="act-btn" onclick="downloadResult('pl','launch-plan')">⬇️ Download</button><button class="act-btn" onclick="generate('pl','productlaunch')">🔄 Regenerate</button></div></div>
+  </div>
+
+</div>
+<script>
+function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.rail-chip').forEach(c=>c.classList.remove('active'));const panel=document.getElementById('panel-'+id);if(panel)panel.classList.add('active');const chip=document.querySelector(`.rail-chip[onclick*="${id}"]`);if(chip)chip.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('.style-pills').forEach(group=>{group.querySelectorAll('.pill').forEach(pill=>{pill.addEventListener('click',()=>{group.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));pill.classList.add('active');});});});
+function p(id){return document.getElementById(id)?.querySelector('.pill.active')?.dataset.val||'';}
+function v(id){return (document.getElementById(id)?.value||document.getElementById(id+'2')?.textContent||'').trim();}
+function buildPrompt(tool){
+  const prompts={
+    productideas:`Generate 10 ${p('pi-type')} digital product ideas for someone in the ${v('pi-niche')} niche.\nTarget audience: ${v('pi-audience')}\nPrice range: ${p('pi-price')}\n\nFor each idea:\n1. Product name\n2. Format (PDF, Canva template, course, etc.)\n3. What it includes\n4. Suggested price\n5. Why this audience would buy it\n\nMake them specific, actionable, and beginner-friendly to create.`,
+    kdpcontent:`${p('kdp-output')} for a ${p('kdp-type')} about "${v('kdp-topic')}".\nTarget reader: ${v('kdp-reader')}\n\nBe specific, marketable, and optimized for Amazon KDP. Use proven title formulas and SEO-friendly language.`,
+    etsylisting:`Write a ${p('etsy-gen')} for this Etsy digital product:\nProduct: ${v('etsy-product')}\nDetails: ${v('etsy-details')}\nTarget buyer: ${v('etsy-buyer')}\n\nFor a full listing include:\n- SEO title (140 chars max, keyword-rich)\n- Description (hook, what it is, what's included, who it's for, how to use, download info)\n- 13 tags (comma-separated, all lowercase)\n- Suggested price\nOptimize for Etsy search ranking.`,
+    productdesc:`Write a compelling product description for "${v('pd-name')}" on ${p('pd-platform')}.\nIncludes: ${v('pd-includes')}\nMain benefit: ${v('pd-benefit')}\n\nWrite in an engaging, benefit-focused tone. Include: hook headline, what it is, what's included (bullets), who it's for, transformation/outcome, and a clear CTA.`,
+    pricing:`Provide a complete pricing strategy for this digital product:\n${v('pr-product')}\nAudience: ${p('pr-income')}\nPlatform: ${p('pr-platform')}\n\nInclude:\n1. Recommended price point and why\n2. Price anchoring strategy\n3. Launch price vs regular price\n4. Bundle pricing suggestion\n5. Competitor price range context\n6. Psychological pricing tips for this niche`,
+    leadmagnet:`Generate 10 lead magnet ideas for the ${v('lm-niche')} niche.\nPaid offer: ${v('lm-offer')||'not specified'}\nPreferred format: ${p('lm-format')}\n\nFor each idea:\n1. Lead magnet title\n2. Format\n3. What it includes\n4. Why it attracts the right buyer\n5. Optin page headline suggestion`,
+    bundleideas:`Create 3 bundle ideas using these products:\n${v('bi-products')}\nGoal: ${p('bi-goal')}\n\nFor each bundle:\n1. Bundle name\n2. Products included\n3. Individual total value vs bundle price\n4. Who it's for\n5. Positioning and sales angle`,
+    productlaunch:`Create a ${p('pl-timeline')} launch plan for: ${v('pl-product')}\nAudience size: ${p('pl-size')}\nPlatforms: ${v('pl-platforms')}\n\nInclude:\n1. Pre-launch phase (content, email, teasers)\n2. Launch day checklist\n3. Post-launch follow-up\n4. Daily content ideas\n5. Email sequence outline (3-5 emails)\n6. Sales goal suggestions`,
+  };
+  return prompts[tool]||'';
+}
+async function generate(prefix,tool){
+  const prompt=buildPrompt(tool);
+  if(!prompt||prompt.length<20){toast('Fill in the details first');return;}
+  const outputId=prefix==='kdp'?'kdp-output2':prefix+'-output';
+  const btn=document.getElementById(prefix+'-btn');
+  const output=document.getElementById(outputId);
+  const resultArea=document.getElementById(prefix+'-result');
+  btn.disabled=true;btn.textContent='⏳ Generating…';
+  resultArea.classList.add('show');
+  output.innerHTML='<div class="shimmer-line" style="width:85%"></div><div class="shimmer-line" style="width:65%"></div><div class="shimmer-line" style="width:90%"></div>';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'','anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
+    let text='';
+    if(res.ok){const data=await res.json();text=data.content?.[0]?.text||'';}
+    if(!text)throw new Error('No response');
+    output.textContent=text;
+  }catch(e){output.textContent='Something went wrong. Please try again.';toast('Generation failed — try again');}
+  const labels={productideas:'💡 Generate Product Ideas',kdpcontent:'📚 Generate KDP Content',etsylisting:'🛍️ Generate Etsy Listing',productdesc:'📝 Write Description',pricing:'💰 Get Pricing Strategy',leadmagnet:'🧲 Generate Lead Magnet Ideas',bundleideas:'🎁 Generate Bundle Ideas',productlaunch:'🚀 Build Launch Plan'};
+  btn.disabled=false;btn.textContent=labels[tool]||'⏳ Generate';
+}
+function copyResult(prefix){const id=prefix==='kdp'?'kdp-output2':prefix+'-output';const text=document.getElementById(id)?.textContent;if(!text){toast('Nothing to copy yet');return;}navigator.clipboard.writeText(text).then(()=>toast('Copied ✓')).catch(()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓');});}
+function downloadResult(prefix,filename){const id=prefix==='kdp'?'kdp-output2':prefix+'-output';const text=document.getElementById(id)?.textContent;if(!text){toast('Generate content first');return;}const blob=new Blob([text],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`creatorsphere-${filename}-${Date.now()}.txt`;document.body.appendChild(a);a.click();document.body.removeChild(a);toast('Downloaded ✓');}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+</script>
+</body>
+</html>
