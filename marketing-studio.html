@@ -1,1 +1,227 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Marketing Studio — Cre8ive Vib3s</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"><style>:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--cream:#faf6f0;--ink:#1a1410;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);display:flex;flex-direction:column;height:100vh;}.topnav{height:50px;background:#f5ede0;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem;flex-shrink:0;}.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;}.lotus{font-size:1.3rem;}.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;}.bn span{color:var(--gold);}.navlinks{display:flex;gap:.5rem;margin-left:auto;}.nl{padding:.3rem .6rem;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.75rem;}.nl.active{background:rgba(212,175,110,0.2);}.container{display:flex;flex:1;overflow:hidden;}.sidebar{width:200px;background:var(--white);border-right:1px solid var(--border);overflow-y:auto;padding:.5rem;}.btn-nav{display:block;width:100%;padding:.4rem .5rem;border:none;background:none;cursor:pointer;text-align:left;font-size:.75rem;border-radius:6px;margin-bottom:.2rem;color:var(--ink);font-family:'Outfit',sans-serif;}.btn-nav.active{background:rgba(212,175,110,0.2);font-weight:600;}.content{flex:1;overflow-y:auto;padding:1.5rem;}.panel{display:none;}.panel.show{display:block;}.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;}.card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;margin-bottom:.3rem;}.card p{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.5rem;}.badge{display:inline-block;font-size:.6rem;padding:.2rem .5rem;background:rgba(178,201,173,.2);color:#3d5c38;border-radius:6px;margin-bottom:.5rem;}.link{color:var(--gold);text-decoration:none;font-weight:600;}</style></head><body><nav class="topnav"><a class="logo" href="index.html"><div class="lotus">🪷</div><div class="bn">Cre8ive Vib3s <span>Studio</span></div></a><div class="navlinks"><a class="nl" href="index.html">🏠</a><a class="nl" href="image-studio.html">🎨</a><a class="nl" href="video-studio.html">🎬</a><a class="nl" href="writing-studio.html">✍️</a><a class="nl" href="design-studio.html">✏️</a><a class="nl active" href="marketing-studio.html">📈</a><a class="nl" href="products-studio.html">📦</a><a class="nl" href="ai-studio.html">🤖</a><a class="nl" href="chat.html">💬</a></div></nav><div class="container"><div class="sidebar"><button class="btn-nav active" onclick="show('email')">📧 Email</button><button class="btn-nav" onclick="show('social')">📱 Social</button><button class="btn-nav" onclick="show('auto')">🤖 Automation</button></div><div class="content"><div class="panel show" id="email"><div class="card"><span class="badge">✅ 100% FREE & UNLIMITED</span><h2>📧 Email Marketing</h2></div><div class="card"><p>📧 <a href="https://brevo.com" target="_blank">Brevo (Free)</a> — Unlimited emails<br>🔗 <a href="https://mailchimp.com" target="_blank">Mailchimp (Free)</a> — Email campaigns<br>📬 <a href="https://www.substack.com" target="_blank">Substack</a> — Newsletter platform</p></div></div><div class="panel" id="social"><div class="card"><h2>📱 Social Media</h2></div><div class="card"><p>📅 <a href="https://buffer.com" target="_blank">Buffer (Free)</a> — Schedule posts<br>🎨 <a href="https://www.canva.com" target="_blank">Canva (Free)</a> — Social graphics</p></div></div><div class="panel" id="auto"><div class="card"><h2>🤖 Automation (100% Free)</h2></div><div class="card"><p>⚙️ <a href="https://n8n.io" target="_blank">n8n</a> — Open-source, unlimited<br>🎯 <a href="https://www.bardeen.ai" target="_blank">Bardeen</a> — Free automation</p></div></div></div></div><script>function show(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.querySelectorAll('.btn-nav').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('show');event.target.classList.add('active');}</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Marketing Studio — CreatorSphere</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--gold2:rgba(212,175,110,0.12);--cream:#faf6f0;--ink:#1a1410;--ink2:#3d342e;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;min-height:100dvh;}
+a{text-decoration:none;color:inherit;}
+.dot-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(212,175,110,0.2) 0.8px,transparent 0.8px);background-size:22px 22px;}
+.topnav{background:rgba(250,246,240,0.97);border-bottom:1px solid var(--border);padding:0 1.25rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.lotus{font-size:1.3rem;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;}
+.bn span{color:var(--gold);}
+.navlinks{display:flex;gap:.2rem;overflow-x:auto;}
+.navlinks::-webkit-scrollbar{display:none;}
+.nl{padding:.3rem .6rem;border-radius:7px;font-size:.68rem;color:var(--ink2);white-space:nowrap;border:1px solid transparent;}
+.nl.active{background:var(--gold2);color:var(--ink);font-weight:500;border-color:var(--border);}
+.tool-rail{position:sticky;top:56px;z-index:190;background:rgba(250,246,240,0.97);border-bottom:1px solid var(--border);padding:.5rem .9rem;display:flex;gap:.4rem;overflow-x:auto;}
+.tool-rail::-webkit-scrollbar{display:none;}
+.rail-chip{flex-shrink:0;padding:.38rem .7rem;border-radius:20px;border:1px solid var(--border);background:var(--white);font-size:.67rem;color:var(--ink2);cursor:pointer;white-space:nowrap;}
+.rail-chip.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.main{padding:.9rem;max-width:860px;margin:0 auto;}
+.tool-panel{display:none;}.tool-panel.active{display:block;}
+.glass-panel{background:rgba(255,255,255,0.88);border:1px solid rgba(212,175,110,0.18);box-shadow:0 4px 24px rgba(212,175,110,0.1);border-radius:14px;}
+.panel-head{padding:.85rem 1rem;margin-bottom:.75rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;}
+.panel-head h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;margin-bottom:.18rem;}
+.panel-head p{font-size:.72rem;color:var(--muted);line-height:1.5;max-width:420px;}
+.node-badge{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.2rem .5rem;border-radius:8px;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:.28rem;}
+.node-badge .nd{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
+.form-panel{padding:.9rem;}
+.field{margin-bottom:.7rem;}
+.field label{display:block;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink2);margin-bottom:.28rem;}
+textarea,input[type=text],select{width:100%;border:1px solid var(--border);border-radius:10px;padding:.55rem .8rem;font-family:'Outfit',sans-serif;font-size:.81rem;color:var(--ink);background:rgba(250,246,240,0.8);outline:none;}
+textarea{resize:vertical;min-height:80px;line-height:1.55;}
+textarea:focus,input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,110,.12);}
+input::placeholder,textarea::placeholder{color:var(--muted);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.style-pills{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.22rem;}
+.pill{padding:.24rem .6rem;border-radius:20px;border:1px solid var(--border);font-size:.65rem;cursor:pointer;background:var(--white);color:var(--ink2);}
+.pill.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.divider{border:none;border-top:1px solid var(--border);margin:.7rem 0;}
+.gen-btn{display:flex;align-items:center;justify-content:center;gap:.45rem;width:100%;padding:.72rem;border-radius:11px;border:none;background:linear-gradient(135deg,#c9956a,var(--gold));color:var(--ink);font-size:.85rem;font-weight:600;cursor:pointer;}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;}
+.result-area{margin-top:.8rem;display:none;}.result-area.show{display:block;}
+.result-box{background:rgba(255,255,255,0.9);border:1px solid var(--border);border-radius:12px;padding:1rem;font-size:.82rem;line-height:1.75;white-space:pre-wrap;color:var(--ink2);min-height:120px;}
+.result-actions{display:flex;gap:.4rem;margin-top:.55rem;flex-wrap:wrap;}
+.act-btn{padding:.38rem .75rem;border-radius:8px;border:1px solid var(--border);background:var(--white);font-size:.68rem;font-family:'Outfit',sans-serif;cursor:pointer;color:var(--ink2);}
+.act-btn.primary{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.shimmer-line{height:14px;border-radius:6px;background:linear-gradient(90deg,#f0e8e0 25%,#e8ddd5 50%,#f0e8e0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;margin-bottom:.5rem;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.toast{position:fixed;bottom:1.2rem;right:1.2rem;left:1.2rem;max-width:280px;margin-left:auto;background:var(--ink);color:var(--gold);font-family:'DM Mono',monospace;font-size:.62rem;padding:.45rem .85rem;border-radius:9px;border:1px solid var(--gold);z-index:9999;opacity:0;transition:opacity .28s;pointer-events:none;}
+.toast.show{opacity:1;}
+@media(max-width:600px){.field-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="dot-grid"></div>
+<div class="toast" id="toast"></div>
+<nav class="topnav">
+  <a href="index.html" style="display:flex;align-items:center;gap:.5rem;"><div class="lotus">🪷</div><div class="bn">Creator<span>Sphere</span></div></a>
+  <div class="navlinks">
+    <a class="nl" href="index.html">🏠</a>
+    <a class="nl" href="image-studio.html">🎨 Images</a>
+    <a class="nl" href="video-studio.html">🎬 Video</a>
+    <a class="nl" href="writing-studio.html">✍️ Writing</a>
+    <a class="nl" href="design-studio.html">✏️ Design</a>
+    <a class="nl active" href="marketing-studio.html">📈 Marketing</a>
+    <a class="nl" href="products-studio.html">📦 Products</a>
+    <a class="nl" href="ai-studio.html">🤖 AI</a>
+    <a class="nl" href="chat.html">💬 Chat</a>
+  </div>
+</nav>
+<div class="tool-rail">
+  <span class="rail-chip active" onclick="switchTool('calendar')">📅 Content Calendar</span>
+  <span class="rail-chip" onclick="switchTool('adcopy')">📣 Ad Copy</span>
+  <span class="rail-chip" onclick="switchTool('hooks')">🪝 Hook Generator</span>
+  <span class="rail-chip" onclick="switchTool('hashtags')">🏷️ Hashtags</span>
+  <span class="rail-chip" onclick="switchTool('campaign')">🚀 Campaign Ideas</span>
+  <span class="rail-chip" onclick="switchTool('cta')">💥 CTA Generator</span>
+  <span class="rail-chip" onclick="switchTool('contentideas')">💡 Content Ideas</span>
+  <span class="rail-chip" onclick="switchTool('salespage')">💰 Sales Copy</span>
+</div>
+<div class="main">
+
+  <div class="tool-panel active" id="panel-calendar">
+    <div class="glass-panel panel-head"><div><h2>📅 Content Calendar</h2><p>Get a full week or month of content ideas — posts, themes, and captions mapped out.</p></div><div class="node-badge"><span class="nd"></span>MKT_01</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Your brand / niche</label><input type="text" id="cc-brand" placeholder="e.g. ZenSereniTee — mindfulness & digital products for women entrepreneurs"></div>
+      <div class="field"><label>Platforms</label><div class="style-pills" id="cc-platform"><span class="pill active" data-val="Instagram">Instagram</span><span class="pill" data-val="TikTok">TikTok</span><span class="pill" data-val="Facebook">Facebook</span><span class="pill" data-val="Pinterest">Pinterest</span><span class="pill" data-val="YouTube">YouTube</span></div></div>
+      <div class="field"><label>Duration</label><div class="style-pills" id="cc-duration"><span class="pill active" data-val="1 week (7 days)">1 Week</span><span class="pill" data-val="2 weeks (14 days)">2 Weeks</span><span class="pill" data-val="1 month (30 days)">1 Month</span></div></div>
+      <div class="field"><label>Content pillars (optional)</label><input type="text" id="cc-pillars" placeholder="e.g. Mindset, Digital products, Behind the scenes, Inspiration, Tips"></div>
+      <hr class="divider"><button class="gen-btn" id="cc-btn" onclick="generate('cc','calendar')">📅 Build Content Calendar</button>
+    </div>
+    <div class="result-area" id="cc-result"><div class="result-box" id="cc-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('cc')">📋 Copy</button><button class="act-btn" onclick="downloadResult('cc','content-calendar')">⬇️ Download</button><button class="act-btn" onclick="generate('cc','calendar')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-adcopy">
+    <div class="glass-panel panel-head"><div><h2>📣 Ad Copy Generator</h2><p>Write scroll-stopping ad copy for Facebook, Instagram, and Pinterest ads.</p></div><div class="node-badge"><span class="nd"></span>MKT_02</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Product or offer</label><input type="text" id="ad-product" placeholder="e.g. Digital Mindfulness Planner — $27"></div>
+      <div class="field"><label>Main benefit</label><textarea id="ad-benefit" placeholder="e.g. Helps overwhelmed women entrepreneurs plan their week with calm intention so they can grow their business without burnout…" rows="2"></textarea></div>
+      <div class="field"><label>Target audience</label><input type="text" id="ad-audience" placeholder="e.g. Women 28-45 who run online businesses and struggle with time management"></div>
+      <div class="field"><label>Ad format</label><div class="style-pills" id="ad-format"><span class="pill active" data-val="Facebook / Instagram feed ad">Facebook/Instagram Feed</span><span class="pill" data-val="Instagram story ad">Story Ad</span><span class="pill" data-val="Pinterest promoted pin">Pinterest Pin</span><span class="pill" data-val="TikTok ad script">TikTok Ad</span></div></div>
+      <div class="field"><label>Tone</label><div class="style-pills" id="ad-tone"><span class="pill active" data-val="empathetic and relatable">Empathetic</span><span class="pill" data-val="urgent and exciting">Urgent</span><span class="pill" data-val="educational and informative">Educational</span><span class="pill" data-val="inspiring and motivational">Inspiring</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="ad-btn" onclick="generate('ad','adcopy')">📣 Write Ad Copy</button>
+    </div>
+    <div class="result-area" id="ad-result"><div class="result-box" id="ad-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('ad')">📋 Copy</button><button class="act-btn" onclick="generate('ad','adcopy')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-hooks">
+    <div class="glass-panel panel-head"><div><h2>🪝 Hook Generator</h2><p>Generate scroll-stopping opening lines for videos, posts, and emails.</p></div><div class="node-badge"><span class="nd"></span>MKT_03</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Topic or offer</label><input type="text" id="hk-topic" placeholder="e.g. How to start selling digital products with zero experience"></div>
+      <div class="field"><label>Hook style</label><div class="style-pills" id="hk-style"><span class="pill active" data-val="curiosity / open loop">Curiosity</span><span class="pill" data-val="bold statement / controversy">Bold Statement</span><span class="pill" data-val="relatable problem">Relatable Problem</span><span class="pill" data-val="surprising statistic or fact">Surprising Fact</span><span class="pill" data-val="personal story opener">Personal Story</span><span class="pill" data-val="question hook">Question</span></div></div>
+      <div class="field"><label>Platform</label><div class="style-pills" id="hk-platform"><span class="pill active" data-val="Instagram / TikTok video">Instagram/TikTok</span><span class="pill" data-val="YouTube video">YouTube</span><span class="pill" data-val="email subject line">Email</span><span class="pill" data-val="blog post intro">Blog</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="hk-btn" onclick="generate('hk','hooks')">🪝 Generate 10 Hooks</button>
+    </div>
+    <div class="result-area" id="hk-result"><div class="result-box" id="hk-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('hk')">📋 Copy</button><button class="act-btn" onclick="generate('hk','hooks')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-hashtags">
+    <div class="glass-panel panel-head"><div><h2>🏷️ Hashtag Generator</h2><p>Get targeted hashtag sets for Instagram, TikTok, and Pinterest — organized by size.</p></div><div class="node-badge"><span class="nd"></span>MKT_04</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Post topic or niche</label><input type="text" id="ht-topic" placeholder="e.g. Digital planner for women entrepreneurs, mindfulness morning routine…"></div>
+      <div class="field"><label>Platform</label><div class="style-pills" id="ht-platform"><span class="pill active" data-val="Instagram">Instagram</span><span class="pill" data-val="TikTok">TikTok</span><span class="pill" data-val="Pinterest">Pinterest</span></div></div>
+      <div class="field"><label>Count</label><div class="style-pills" id="ht-count"><span class="pill active" data-val="15">15 hashtags</span><span class="pill" data-val="30">30 hashtags</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="ht-btn" onclick="generate('ht','hashtags')">🏷️ Generate Hashtags</button>
+    </div>
+    <div class="result-area" id="ht-result"><div class="result-box" id="ht-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('ht')">📋 Copy</button><button class="act-btn" onclick="generate('ht','hashtags')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-campaign">
+    <div class="glass-panel panel-head"><div><h2>🚀 Campaign Ideas</h2><p>Generate full marketing campaign concepts — theme, content, and execution plan.</p></div><div class="node-badge"><span class="nd"></span>MKT_05</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Brand / business</label><input type="text" id="cmp-brand" placeholder="e.g. ZenSereniTee"></div>
+      <div class="field"><label>Campaign goal</label><div class="style-pills" id="cmp-goal"><span class="pill active" data-val="product launch">Product Launch</span><span class="pill" data-val="grow email list">Grow Email List</span><span class="pill" data-val="increase sales">Increase Sales</span><span class="pill" data-val="grow social following">Grow Following</span><span class="pill" data-val="brand awareness">Brand Awareness</span></div></div>
+      <div class="field"><label>Timeline</label><div class="style-pills" id="cmp-timeline"><span class="pill active" data-val="1 week">1 Week</span><span class="pill" data-val="2 weeks">2 Weeks</span><span class="pill" data-val="1 month">1 Month</span></div></div>
+      <div class="field"><label>Budget</label><div class="style-pills" id="cmp-budget"><span class="pill active" data-val="zero budget (organic only)">Zero Budget (Organic)</span><span class="pill" data-val="small budget ($50-$200)">Small Budget</span><span class="pill" data-val="medium budget ($200-$500)">Medium Budget</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="cmp-btn" onclick="generate('cmp','campaign')">🚀 Generate Campaign</button>
+    </div>
+    <div class="result-area" id="cmp-result"><div class="result-box" id="cmp-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('cmp')">📋 Copy</button><button class="act-btn" onclick="downloadResult('cmp','campaign')">⬇️ Download</button><button class="act-btn" onclick="generate('cmp','campaign')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-cta">
+    <div class="glass-panel panel-head"><div><h2>💥 CTA Generator</h2><p>Generate compelling calls-to-action for your posts, pages, and emails.</p></div><div class="node-badge"><span class="nd"></span>MKT_06</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>What action do you want people to take?</label><input type="text" id="cta-action" placeholder="e.g. Buy my planner, Join my email list, Follow my account, Book a call…"></div>
+      <div class="field"><label>CTA style</label><div class="style-pills" id="cta-style"><span class="pill active" data-val="direct and clear">Direct & Clear</span><span class="pill" data-val="soft and inviting">Soft & Inviting</span><span class="pill" data-val="urgent and time-sensitive">Urgent</span><span class="pill" data-val="benefit-focused">Benefit-Focused</span><span class="pill" data-val="question-based">Question-Based</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="cta-btn" onclick="generate('cta','cta')">💥 Generate 10 CTAs</button>
+    </div>
+    <div class="result-area" id="cta-result"><div class="result-box" id="cta-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('cta')">📋 Copy</button><button class="act-btn" onclick="generate('cta','cta')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-contentideas">
+    <div class="glass-panel panel-head"><div><h2>💡 Content Ideas Generator</h2><p>Never run out of content — get 30 unique ideas tailored to your niche and audience.</p></div><div class="node-badge"><span class="nd"></span>MKT_07</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Your niche</label><input type="text" id="ci-niche" placeholder="e.g. Digital products, mindfulness, women entrepreneurs, passive income…"></div>
+      <div class="field"><label>Content type</label><div class="style-pills" id="ci-type"><span class="pill active" data-val="social media posts">Social Media Posts</span><span class="pill" data-val="video / Reel ideas">Video / Reels</span><span class="pill" data-val="blog post ideas">Blog Posts</span><span class="pill" data-val="email newsletter ideas">Email Newsletter</span><span class="pill" data-val="podcast episode ideas">Podcast Episodes</span></div></div>
+      <div class="field"><label>Count</label><div class="style-pills" id="ci-count"><span class="pill active" data-val="15">15 ideas</span><span class="pill" data-val="30">30 ideas</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="ci-btn" onclick="generate('ci','contentideas')">💡 Generate Ideas</button>
+    </div>
+    <div class="result-area" id="ci-result"><div class="result-box" id="ci-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('ci')">📋 Copy</button><button class="act-btn" onclick="downloadResult('ci','content-ideas')">⬇️ Download</button><button class="act-btn" onclick="generate('ci','contentideas')">🔄 Regenerate</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-salespage">
+    <div class="glass-panel panel-head"><div><h2>💰 Sales Copy Writer</h2><p>Write persuasive sales page copy that converts — for any digital product or offer.</p></div><div class="node-badge"><span class="nd"></span>MKT_08</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Product name</label><input type="text" id="sp-name" placeholder="e.g. The Mindful Creator Blueprint"></div>
+      <div class="field"><label>What it is + main benefit</label><textarea id="sp-desc" placeholder="e.g. A digital course that teaches women how to build a passive income business selling digital products, even with no experience…" rows="2"></textarea></div>
+      <div class="field"><label>Price</label><input type="text" id="sp-price" placeholder="e.g. $47, $97, $197…"></div>
+      <div class="field"><label>Target buyer pain point</label><textarea id="sp-pain" placeholder="e.g. They're overwhelmed, tired of trading time for money, want freedom but don't know where to start…" rows="2"></textarea></div>
+      <hr class="divider"><button class="gen-btn" id="sp-btn" onclick="generate('sp','salespage')">💰 Write Sales Copy</button>
+    </div>
+    <div class="result-area" id="sp-result"><div class="result-box" id="sp-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('sp')">📋 Copy</button><button class="act-btn" onclick="downloadResult('sp','sales-copy')">⬇️ Download</button><button class="act-btn" onclick="generate('sp','salespage')">🔄 Regenerate</button></div></div>
+  </div>
+
+</div>
+<script>
+function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.rail-chip').forEach(c=>c.classList.remove('active'));const panel=document.getElementById('panel-'+id);if(panel)panel.classList.add('active');const chip=document.querySelector(`.rail-chip[onclick*="${id}"]`);if(chip)chip.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('.style-pills').forEach(group=>{group.querySelectorAll('.pill').forEach(pill=>{pill.addEventListener('click',()=>{group.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));pill.classList.add('active');});});});
+function p(id){return document.getElementById(id)?.querySelector('.pill.active')?.dataset.val||'';}
+function v(id){return document.getElementById(id)?.value?.trim()||'';}
+function buildPrompt(tool){
+  const prompts={
+    calendar:`Create a ${p('cc-duration')} content calendar for ${v('cc-brand')} on ${p('cc-platform')}.\nContent pillars: ${v('cc-pillars')||'not specified'}\n\nFor each day provide: Day number, Content type (post/reel/story), Topic/idea, Caption hook, and Hashtag suggestion. Format as a clear day-by-day plan.`,
+    adcopy:`Write ${p('ad-format')} ad copy for: ${v('ad-product')}\nMain benefit: ${v('ad-benefit')}\nTarget audience: ${v('ad-audience')}\nTone: ${p('ad-tone')}\n\nInclude: Primary headline, body copy (2-3 variations), and CTA. Keep it scroll-stopping and conversion-focused.`,
+    hooks:`Generate 10 ${p('hk-style')} hooks for ${p('hk-platform')} about: ${v('hk-topic')}\n\nMake each hook under 2 sentences, immediately compelling, and varied in approach. Number them 1-10.`,
+    hashtags:`Generate ${p('ht-count')} ${p('ht-platform')} hashtags for: ${v('ht-topic')}\n\nOrganize into 3 groups:\n- Large (1M+ posts): 5 hashtags\n- Medium (100K-1M posts): 5-10 hashtags\n- Niche (under 100K posts): 5-10 hashtags\n\nList hashtags with # symbol, ready to copy.`,
+    campaign:`Create a ${p('cmp-timeline')} ${p('cmp-goal')} campaign for ${v('cmp-brand')} with a ${p('cmp-budget')}.\n\nInclude:\n1. Campaign Theme & Name\n2. Campaign Goal & KPIs\n3. Week-by-week content plan\n4. Key posts/content pieces needed\n5. Email sequence outline\n6. Launch day checklist\n7. Promotional messaging`,
+    cta:`Generate 10 ${p('cta-style')} calls-to-action for: ${v('cta-action')}\n\nMake each CTA unique, compelling, and under 15 words. Number them 1-10. Include a mix of lengths.`,
+    contentideas:`Generate ${p('ci-count')} ${p('ci-type')} ideas for the ${v('ci-niche')} niche.\n\nFor each idea provide: Title/topic and a 1-sentence description of the angle. Number them. Include a mix of educational, inspirational, behind-the-scenes, promotional, and entertaining content.`,
+    salespage:`Write sales page copy for "${v('sp-name')}".\nDescription: ${v('sp-desc')}\nPrice: ${v('sp-price')}\nBuyer pain: ${v('sp-pain')}\n\nInclude:\n1. Power headline\n2. Empathy opening\n3. Problem agitation (2-3 paragraphs)\n4. Solution introduction\n5. What's included (bullet points)\n6. Transformation promise\n7. Objection handling (3 FAQs)\n8. Strong CTA section`,
+  };
+  return prompts[tool]||'';
+}
+async function generate(prefix,tool){
+  const prompt=buildPrompt(tool);
+  if(!prompt||prompt.length<20){toast('Fill in the details first');return;}
+  const btn=document.getElementById(prefix+'-btn');
+  const output=document.getElementById(prefix+'-output');
+  const resultArea=document.getElementById(prefix+'-result');
+  btn.disabled=true;btn.textContent='📈 Generating…';
+  resultArea.classList.add('show');
+  output.innerHTML='<div class="shimmer-line" style="width:85%"></div><div class="shimmer-line" style="width:65%"></div><div class="shimmer-line" style="width:90%"></div>';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'','anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
+    let text='';
+    if(res.ok){const data=await res.json();text=data.content?.[0]?.text||'';}
+    if(!text)throw new Error('No response');
+    output.textContent=text;
+  }catch(e){output.textContent='Something went wrong. Please try again.';toast('Generation failed — try again');}
+  const labels={calendar:'📅 Build Content Calendar',adcopy:'📣 Write Ad Copy',hooks:'🪝 Generate 10 Hooks',hashtags:'🏷️ Generate Hashtags',campaign:'🚀 Generate Campaign',cta:'💥 Generate 10 CTAs',contentideas:'💡 Generate Ideas',salespage:'💰 Write Sales Copy'};
+  btn.disabled=false;btn.textContent=labels[tool]||'📈 Generate';
+}
+function copyResult(prefix){const text=document.getElementById(prefix+'-output')?.textContent;if(!text){toast('Nothing to copy yet');return;}navigator.clipboard.writeText(text).then(()=>toast('Copied ✓')).catch(()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓');});}
+function downloadResult(prefix,filename){const text=document.getElementById(prefix+'-output')?.textContent;if(!text){toast('Generate content first');return;}const blob=new Blob([text],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`creatorsphere-${filename}-${Date.now()}.txt`;document.body.appendChild(a);a.click();document.body.removeChild(a);toast('Downloaded ✓');}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+</script>
+</body>
+</html>
