@@ -1,1 +1,240 @@
-idth, ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"><style>:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--cream:#faf6f0;--ink:#1a1410;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);display:flex;flex-direction:column;height:100vh;}.topnav{height:50px;background:#f5ede0;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem;flex-shrink:0;}.logo{display:flex;align-items:center;gap
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AI Studio — CreatorSphere</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blush:#f2c4ce;--sage:#b2c9ad;--gold:#d4af6e;--gold2:rgba(212,175,110,0.12);--cream:#faf6f0;--ink:#1a1410;--ink2:#3d342e;--muted:#9a8e85;--white:#fff;--border:rgba(212,175,110,0.2);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;min-height:100dvh;}
+a{text-decoration:none;color:inherit;}
+.dot-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(212,175,110,0.2) 0.8px,transparent 0.8px);background-size:22px 22px;}
+.topnav{background:rgba(250,246,240,0.97);border-bottom:1px solid var(--border);padding:0 1.25rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.lotus{font-size:1.3rem;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;}
+.bn span{color:var(--gold);}
+.navlinks{display:flex;gap:.2rem;overflow-x:auto;}
+.navlinks::-webkit-scrollbar{display:none;}
+.nl{padding:.3rem .6rem;border-radius:7px;font-size:.68rem;color:var(--ink2);white-space:nowrap;border:1px solid transparent;}
+.nl.active{background:var(--gold2);color:var(--ink);font-weight:500;border-color:var(--border);}
+.tool-rail{position:sticky;top:56px;z-index:190;background:rgba(250,246,240,0.97);border-bottom:1px solid var(--border);padding:.5rem .9rem;display:flex;gap:.4rem;overflow-x:auto;}
+.tool-rail::-webkit-scrollbar{display:none;}
+.rail-chip{flex-shrink:0;padding:.38rem .7rem;border-radius:20px;border:1px solid var(--border);background:var(--white);font-size:.67rem;color:var(--ink2);cursor:pointer;white-space:nowrap;}
+.rail-chip.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.main{padding:.9rem;max-width:860px;margin:0 auto;}
+.tool-panel{display:none;}.tool-panel.active{display:block;}
+.glass-panel{background:rgba(255,255,255,0.88);border:1px solid rgba(212,175,110,0.18);box-shadow:0 4px 24px rgba(212,175,110,0.1);border-radius:14px;}
+.panel-head{padding:.85rem 1rem;margin-bottom:.75rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;}
+.panel-head h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;margin-bottom:.18rem;}
+.panel-head p{font-size:.72rem;color:var(--muted);line-height:1.5;max-width:420px;}
+.node-badge{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;background:var(--gold2);color:var(--gold);border:1px solid rgba(212,175,110,.3);padding:.2rem .5rem;border-radius:8px;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:.28rem;}
+.node-badge .nd{width:5px;height:5px;border-radius:50%;background:var(--sage);animation:pulse-dot 2.5s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
+.form-panel{padding:.9rem;}
+.field{margin-bottom:.7rem;}
+.field label{display:block;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink2);margin-bottom:.28rem;}
+textarea,input[type=text],select{width:100%;border:1px solid var(--border);border-radius:10px;padding:.55rem .8rem;font-family:'Outfit',sans-serif;font-size:.81rem;color:var(--ink);background:rgba(250,246,240,0.8);outline:none;}
+textarea{resize:vertical;min-height:120px;line-height:1.6;}
+textarea:focus,input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,110,.12);}
+input::placeholder,textarea::placeholder{color:var(--muted);}
+.style-pills{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.22rem;}
+.pill{padding:.24rem .6rem;border-radius:20px;border:1px solid var(--border);font-size:.65rem;cursor:pointer;background:var(--white);color:var(--ink2);}
+.pill.active{background:var(--gold2);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.divider{border:none;border-top:1px solid var(--border);margin:.7rem 0;}
+.gen-btn{display:flex;align-items:center;justify-content:center;gap:.45rem;width:100%;padding:.72rem;border-radius:11px;border:none;background:linear-gradient(135deg,#c9956a,var(--gold));color:var(--ink);font-size:.85rem;font-weight:600;cursor:pointer;}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;}
+.result-area{margin-top:.8rem;display:none;}.result-area.show{display:block;}
+.result-box{background:rgba(255,255,255,0.9);border:1px solid var(--border);border-radius:12px;padding:1rem;font-size:.82rem;line-height:1.75;white-space:pre-wrap;color:var(--ink2);min-height:120px;}
+.result-actions{display:flex;gap:.4rem;margin-top:.55rem;flex-wrap:wrap;}
+.act-btn{padding:.38rem .75rem;border-radius:8px;border:1px solid var(--border);background:var(--white);font-size:.68rem;font-family:'Outfit',sans-serif;cursor:pointer;color:var(--ink2);}
+.act-btn.primary{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:500;}
+.shimmer-line{height:14px;border-radius:6px;background:linear-gradient(90deg,#f0e8e0 25%,#e8ddd5 50%,#f0e8e0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;margin-bottom:.5rem;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.char-count{font-family:'DM Mono',monospace;font-size:.48rem;color:var(--muted);text-align:right;margin-top:.2rem;}
+.toast{position:fixed;bottom:1.2rem;right:1.2rem;left:1.2rem;max-width:280px;margin-left:auto;background:var(--ink);color:var(--gold);font-family:'DM Mono',monospace;font-size:.62rem;padding:.45rem .85rem;border-radius:9px;border:1px solid var(--gold);z-index:9999;opacity:0;transition:opacity .28s;pointer-events:none;}
+.toast.show{opacity:1;}
+</style>
+</head>
+<body>
+<div class="dot-grid"></div>
+<div class="toast" id="toast"></div>
+<nav class="topnav">
+  <a href="index.html" style="display:flex;align-items:center;gap:.5rem;"><div class="lotus">🪷</div><div class="bn">Creator<span>Sphere</span></div></a>
+  <div class="navlinks">
+    <a class="nl" href="index.html">🏠</a>
+    <a class="nl" href="image-studio.html">🎨 Images</a>
+    <a class="nl" href="video-studio.html">🎬 Video</a>
+    <a class="nl" href="writing-studio.html">✍️ Writing</a>
+    <a class="nl" href="design-studio.html">✏️ Design</a>
+    <a class="nl" href="marketing-studio.html">📈 Marketing</a>
+    <a class="nl" href="products-studio.html">📦 Products</a>
+    <a class="nl active" href="ai-studio.html">🤖 AI</a>
+    <a class="nl" href="chat.html">💬 Chat</a>
+  </div>
+</nav>
+<div class="tool-rail">
+  <span class="rail-chip active" onclick="switchTool('summarizer')">📄 Summarizer</span>
+  <span class="rail-chip" onclick="switchTool('rewriter')">✏️ Rewriter</span>
+  <span class="rail-chip" onclick="switchTool('translator')">🌍 Translator</span>
+  <span class="rail-chip" onclick="switchTool('brainstorm')">💡 Brainstorm</span>
+  <span class="rail-chip" onclick="switchTool('improver')">⬆️ Text Improver</span>
+  <span class="rail-chip" onclick="switchTool('tone')">🎭 Tone Changer</span>
+  <span class="rail-chip" onclick="switchTool('keywords')">🔑 Keyword Extractor</span>
+  <span class="rail-chip" onclick="switchTool('explainer')">🔍 Explainer</span>
+  <span class="rail-chip" onclick="switchTool('grammar')">✅ Grammar Fix</span>
+  <span class="rail-chip" onclick="switchTool('expand')">📝 Expand / Shorten</span>
+</div>
+<div class="main">
+
+  <div class="tool-panel active" id="panel-summarizer">
+    <div class="glass-panel panel-head"><div><h2>📄 Summarizer</h2><p>Paste any text and get a clear, concise summary in seconds.</p></div><div class="node-badge"><span class="nd"></span>AI_01</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Paste your text</label><textarea id="sum-text" placeholder="Paste an article, blog post, email, document, or any text here…" rows="6" oninput="countChars('sum-text','sum-count')"></textarea><div class="char-count" id="sum-count">0 characters</div></div>
+      <div class="field"><label>Summary length</label><div class="style-pills" id="sum-length"><span class="pill active" data-val="one paragraph">1 Paragraph</span><span class="pill" data-val="3 bullet points">3 Bullet Points</span><span class="pill" data-val="5 bullet points">5 Bullet Points</span><span class="pill" data-val="one sentence (TL;DR)">TL;DR (1 sentence)</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="sum-btn" onclick="generate('sum','summarizer')">📄 Summarize</button>
+    </div>
+    <div class="result-area" id="sum-result"><div class="result-box" id="sum-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('sum')">📋 Copy</button><button class="act-btn" onclick="generate('sum','summarizer')">🔄 Redo</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-rewriter">
+    <div class="glass-panel panel-head"><div><h2>✏️ Rewriter</h2><p>Rewrite any text — change the tone, style, or structure while keeping the meaning.</p></div><div class="node-badge"><span class="nd"></span>AI_02</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Paste your text</label><textarea id="rw-text" placeholder="Paste the text you want rewritten…" rows="6" oninput="countChars('rw-text','rw-count')"></textarea><div class="char-count" id="rw-count">0 characters</div></div>
+      <div class="field"><label>Rewrite style</label><div class="style-pills" id="rw-style"><span class="pill active" data-val="more professional and polished">More Professional</span><span class="pill" data-val="more casual and conversational">More Casual</span><span class="pill" data-val="more concise and direct">More Concise</span><span class="pill" data-val="more detailed and expanded">More Detailed</span><span class="pill" data-val="simpler language (easy to read)">Simpler Language</span><span class="pill" data-val="more engaging and compelling">More Engaging</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="rw-btn" onclick="generate('rw','rewriter')">✏️ Rewrite</button>
+    </div>
+    <div class="result-area" id="rw-result"><div class="result-box" id="rw-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('rw')">📋 Copy</button><button class="act-btn" onclick="generate('rw','rewriter')">🔄 Redo</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-translator">
+    <div class="glass-panel panel-head"><div><h2>🌍 Translator</h2><p>Translate any text into any language — fast and accurate.</p></div><div class="node-badge"><span class="nd"></span>AI_03</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Paste your text</label><textarea id="tr-text" placeholder="Paste the text you want translated…" rows="5" oninput="countChars('tr-text','tr-count')"></textarea><div class="char-count" id="tr-count">0 characters</div></div>
+      <div class="field"><label>Translate to</label><div class="style-pills" id="tr-lang"><span class="pill active" data-val="Spanish">🇪🇸 Spanish</span><span class="pill" data-val="French">🇫🇷 French</span><span class="pill" data-val="Portuguese">🇧🇷 Portuguese</span><span class="pill" data-val="German">🇩🇪 German</span><span class="pill" data-val="Italian">🇮🇹 Italian</span><span class="pill" data-val="Japanese">🇯🇵 Japanese</span><span class="pill" data-val="Korean">🇰🇷 Korean</span><span class="pill" data-val="Chinese (Simplified)">🇨🇳 Chinese</span><span class="pill" data-val="Arabic">🇸🇦 Arabic</span><span class="pill" data-val="Hindi">🇮🇳 Hindi</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="tr-btn" onclick="generate('tr','translator')">🌍 Translate</button>
+    </div>
+    <div class="result-area" id="tr-result"><div class="result-box" id="tr-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('tr')">📋 Copy</button><button class="act-btn" onclick="generate('tr','translator')">🔄 Redo</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-brainstorm">
+    <div class="glass-panel panel-head"><div><h2>💡 Brainstorm / Idea Generator</h2><p>Get a flood of creative ideas on any topic — business, content, products, names, and more.</p></div><div class="node-badge"><span class="nd"></span>AI_04</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>What do you need ideas for?</label><textarea id="bs-topic" placeholder="e.g. Names for my mindfulness brand, YouTube video ideas for digital product creators, ways to grow my email list for free…" rows="3"></textarea></div>
+      <div class="field"><label>Number of ideas</label><div class="style-pills" id="bs-count"><span class="pill active" data-val="10">10 ideas</span><span class="pill" data-val="20">20 ideas</span><span class="pill" data-val="30">30 ideas</span></div></div>
+      <div class="field"><label>Style</label><div class="style-pills" id="bs-style"><span class="pill active" data-val="practical and actionable">Practical</span><span class="pill" data-val="creative and out-of-the-box">Creative & Wild</span><span class="pill" data-val="a mix of practical and creative">Mix of Both</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="bs-btn" onclick="generate('bs','brainstorm')">💡 Brainstorm Ideas</button>
+    </div>
+    <div class="result-area" id="bs-result"><div class="result-box" id="bs-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('bs')">📋 Copy</button><button class="act-btn" onclick="downloadResult('bs','brainstorm')">⬇️ Download</button><button class="act-btn" onclick="generate('bs','brainstorm')">🔄 More Ideas</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-improver">
+    <div class="glass-panel panel-head"><div><h2>⬆️ Text Improver</h2><p>Paste any text and get a polished, improved version — better flow, clarity, and impact.</p></div><div class="node-badge"><span class="nd"></span>AI_05</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Paste your text</label><textarea id="imp-text" placeholder="Paste the text you want improved…" rows="6" oninput="countChars('imp-text','imp-count')"></textarea><div class="char-count" id="imp-count">0 characters</div></div>
+      <div class="field"><label>Improve for</label><div class="style-pills" id="imp-goal"><span class="pill active" data-val="overall clarity and flow">Clarity & Flow</span><span class="pill" data-val="persuasion and conversion">Persuasion</span><span class="pill" data-val="engagement and readability">Engagement</span><span class="pill" data-val="SEO and search visibility">SEO</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="imp-btn" onclick="generate('imp','improver')">⬆️ Improve Text</button>
+    </div>
+    <div class="result-area" id="imp-result"><div class="result-box" id="imp-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('imp')">📋 Copy</button><button class="act-btn" onclick="generate('imp','improver')">🔄 Redo</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-tone">
+    <div class="glass-panel panel-head"><div><h2>🎭 Tone Changer</h2><p>Change the tone of any text without changing the meaning — formal, casual, bold, or soft.</p></div><div class="node-badge"><span class="nd"></span>AI_06</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Paste your text</label><textarea id="tc-text" placeholder="Paste the text whose tone you want to change…" rows="5" oninput="countChars('tc-text','tc-count')"></textarea><div class="char-count" id="tc-count">0 characters</div></div>
+      <div class="field"><label>Change tone to</label><div class="style-pills" id="tc-tone"><span class="pill active" data-val="professional and confident">Professional</span><span class="pill" data-val="warm and empathetic">Warm & Empathetic</span><span class="pill" data-val="casual and friendly">Casual & Friendly</span><span class="pill" data-val="bold and direct">Bold & Direct</span><span class="pill" data-val="calm and nurturing">Calm & Nurturing</span><span class="pill" data-val="exciting and energetic">Exciting & Energetic</span><span class="pill" data-val="formal and authoritative">Formal & Authoritative</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="tc-btn" onclick="generate('tc','tone')">🎭 Change Tone</button>
+    </div>
+    <div class="result-area" id="tc-result"><div class="result-box" id="tc-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('tc')">📋 Copy</button><button class="act-btn" onclick="generate('tc','tone')">🔄 Redo</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-keywords">
+    <div class="glass-panel panel-head"><div><h2>🔑 Keyword Extractor</h2><p>Extract the most important keywords and phrases from any text — for SEO, research, or tagging.</p></div><div class="node-badge"><span class="nd"></span>AI_07</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Paste your text</label><textarea id="kw-text" placeholder="Paste your article, blog post, product description, or any content…" rows="6" oninput="countChars('kw-text','kw-count')"></textarea><div class="char-count" id="kw-count">0 characters</div></div>
+      <div class="field"><label>Extract for</label><div class="style-pills" id="kw-use"><span class="pill active" data-val="SEO keywords">SEO Keywords</span><span class="pill" data-val="Etsy / Pinterest tags">Etsy / Pinterest Tags</span><span class="pill" data-val="main topics and themes">Topics & Themes</span><span class="pill" data-val="hashtags">Hashtags</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="kw-btn" onclick="generate('kw','keywords')">🔑 Extract Keywords</button>
+    </div>
+    <div class="result-area" id="kw-result"><div class="result-box" id="kw-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('kw')">📋 Copy</button><button class="act-btn" onclick="generate('kw','keywords')">🔄 Redo</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-explainer">
+    <div class="glass-panel panel-head"><div><h2>🔍 Explainer</h2><p>Explain any topic simply — like you're explaining to a beginner or a 5-year-old.</p></div><div class="node-badge"><span class="nd"></span>AI_08</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>What do you want explained?</label><textarea id="ex-topic" placeholder="e.g. How does SEO work? What is passive income? How do I set up a Gumroad store? Explain digital marketing funnels…" rows="3"></textarea></div>
+      <div class="field"><label>Explain like I'm a</label><div class="style-pills" id="ex-level"><span class="pill active" data-val="complete beginner with no prior knowledge">Complete Beginner</span><span class="pill" data-val="someone with basic knowledge">Basic Knowledge</span><span class="pill" data-val="5-year-old (super simple)">5-Year-Old</span><span class="pill" data-val="smart professional learning something new">Smart Professional</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="ex-btn" onclick="generate('ex','explainer')">🔍 Explain It</button>
+    </div>
+    <div class="result-area" id="ex-result"><div class="result-box" id="ex-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('ex')">📋 Copy</button><button class="act-btn" onclick="generate('ex','explainer')">🔄 Redo</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-grammar">
+    <div class="glass-panel panel-head"><div><h2>✅ Grammar & Spell Fix</h2><p>Fix grammar, spelling, punctuation, and sentence structure — instantly.</p></div><div class="node-badge"><span class="nd"></span>AI_09</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Paste your text</label><textarea id="gr-text" placeholder="Paste any text with grammar or spelling issues…" rows="6" oninput="countChars('gr-text','gr-count')"></textarea><div class="char-count" id="gr-count">0 characters</div></div>
+      <div class="field"><label>Fix level</label><div class="style-pills" id="gr-level"><span class="pill active" data-val="fix grammar and spelling only, keep the original voice">Grammar & Spelling Only</span><span class="pill" data-val="fix grammar, spelling, and improve sentence flow">Grammar + Flow</span><span class="pill" data-val="full proofreading and professional polish">Full Proofread</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="gr-btn" onclick="generate('gr','grammar')">✅ Fix Grammar</button>
+    </div>
+    <div class="result-area" id="gr-result"><div class="result-box" id="gr-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('gr')">📋 Copy</button><button class="act-btn" onclick="generate('gr','grammar')">🔄 Redo</button></div></div>
+  </div>
+
+  <div class="tool-panel" id="panel-expand">
+    <div class="glass-panel panel-head"><div><h2>📝 Expand / Shorten</h2><p>Make any text longer with more detail, or shorter and more concise — your choice.</p></div><div class="node-badge"><span class="nd"></span>AI_10</div></div>
+    <div class="glass-panel form-panel">
+      <div class="field"><label>Paste your text</label><textarea id="es-text" placeholder="Paste the text you want to expand or shorten…" rows="5" oninput="countChars('es-text','es-count')"></textarea><div class="char-count" id="es-count">0 characters</div></div>
+      <div class="field"><label>Action</label><div class="style-pills" id="es-action"><span class="pill active" data-val="expand with more detail, examples, and depth">Expand (add more)</span><span class="pill" data-val="shorten to half the length while keeping key points">Shorten (50%)</span><span class="pill" data-val="shorten to 2-3 sentences (executive summary)">Shorten to 2-3 sentences</span></div></div>
+      <hr class="divider"><button class="gen-btn" id="es-btn" onclick="generate('es','expand')">📝 Expand / Shorten</button>
+    </div>
+    <div class="result-area" id="es-result"><div class="result-box" id="es-output"></div><div class="result-actions"><button class="act-btn primary" onclick="copyResult('es')">📋 Copy</button><button class="act-btn" onclick="generate('es','expand')">🔄 Redo</button></div></div>
+  </div>
+
+</div>
+<script>
+function switchTool(id){document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.rail-chip').forEach(c=>c.classList.remove('active'));const panel=document.getElementById('panel-'+id);if(panel)panel.classList.add('active');const chip=document.querySelector(`.rail-chip[onclick*="${id}"]`);if(chip)chip.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('.style-pills').forEach(group=>{group.querySelectorAll('.pill').forEach(pill=>{pill.addEventListener('click',()=>{group.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));pill.classList.add('active');});});});
+function p(id){return document.getElementById(id)?.querySelector('.pill.active')?.dataset.val||'';}
+function v(id){return document.getElementById(id)?.value?.trim()||'';}
+function countChars(inputId,countId){const el=document.getElementById(inputId);const cnt=document.getElementById(countId);if(el&&cnt)cnt.textContent=el.value.length.toLocaleString()+' characters';}
+function buildPrompt(tool){
+  const prompts={
+    summarizer:`Summarize the following text as ${p('sum-length')}. Be accurate, clear, and capture the most important points.\n\nTEXT:\n${v('sum-text')}`,
+    rewriter:`Rewrite the following text to be ${p('rw-style')}. Keep the core meaning intact.\n\nTEXT:\n${v('rw-text')}`,
+    translator:`Translate the following text to ${p('tr-lang')}. Provide only the translation, no explanations.\n\nTEXT:\n${v('tr-text')}`,
+    brainstorm:`Generate ${p('bs-count')} ${p('bs-style')} ideas for: ${v('bs-topic')}\n\nNumber each idea. Be specific and actionable.`,
+    improver:`Improve the following text for ${p('imp-goal')}. Keep the original meaning and voice but make it significantly better.\n\nTEXT:\n${v('imp-text')}`,
+    tone:`Rewrite the following text with a ${p('tc-tone')} tone. Keep the same meaning and core content.\n\nTEXT:\n${v('tc-text')}`,
+    keywords:`Extract ${p('kw-use')} from the following text. List them clearly, most important first.\n\nTEXT:\n${v('kw-text')}`,
+    explainer:`Explain the following to a ${p('ex-level')}. Use simple language, analogies if helpful, and make it easy to understand.\n\nTOPIC: ${v('ex-topic')}`,
+    grammar:`${p('gr-level')} for the following text. Return only the corrected text, no explanations.\n\nTEXT:\n${v('gr-text')}`,
+    expand:`${p('es-action')} for the following text. Keep the same voice and style.\n\nTEXT:\n${v('es-text')}`,
+  };
+  return prompts[tool]||'';
+}
+async function generate(prefix,tool){
+  const prompt=buildPrompt(tool);
+  if(!prompt||prompt.trim().length<10){toast('Add some text first');return;}
+  const btn=document.getElementById(prefix+'-btn');
+  const output=document.getElementById(prefix+'-output');
+  const resultArea=document.getElementById(prefix+'-result');
+  btn.disabled=true;btn.textContent='🤖 Processing…';
+  resultArea.classList.add('show');
+  output.innerHTML='<div class="shimmer-line" style="width:85%"></div><div class="shimmer-line" style="width:65%"></div><div class="shimmer-line" style="width:90%"></div>';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'','anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
+    let text='';
+    if(res.ok){const data=await res.json();text=data.content?.[0]?.text||'';}
+    if(!text)throw new Error('No response');
+    output.textContent=text;
+  }catch(e){output.textContent='Something went wrong. Please try again.';toast('Generation failed — try again');}
+  const labels={summarizer:'📄 Summarize',rewriter:'✏️ Rewrite',translator:'🌍 Translate',brainstorm:'💡 Brainstorm Ideas',improver:'⬆️ Improve Text',tone:'🎭 Change Tone',keywords:'🔑 Extract Keywords',explainer:'🔍 Explain It',grammar:'✅ Fix Grammar',expand:'📝 Expand / Shorten'};
+  btn.disabled=false;btn.textContent=labels[tool]||'🤖 Generate';
+}
+function copyResult(prefix){const text=document.getElementById(prefix+'-output')?.textContent;if(!text){toast('Nothing to copy yet');return;}navigator.clipboard.writeText(text).then(()=>toast('Copied ✓')).catch(()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓');});}
+function downloadResult(prefix,filename){const text=document.getElementById(prefix+'-output')?.textContent;if(!text){toast('Generate content first');return;}const blob=new Blob([text],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`creatorsphere-${filename}-${Date.now()}.txt`;document.body.appendChild(a);a.click();document.body.removeChild(a);toast('Downloaded ✓');}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+</script>
+</body>
+</html>
